@@ -1,0 +1,401 @@
+﻿customer_id;customer_name;customer_type;street;postal_code;city;country;email;home_warehouse_code;created_date
+C00001;Ľudovít Pavelko - Elektro;Electrician;Palárikova 5;831 05;Bratislava;SK;customer00001@example.com;BA;30.06.2024
+C00002;Dezider Plešivec - Elektro;Electrician;Štepná 5;040 05;Košice;SK;customer00002@example.com;KE;01.01.2026
+C00003;Ladislav Prokop - Elektro;Electrician;Šůrova 6;615 05;Brno;CZ;customer00003@example.com;BRN;11.12.2023
+C00004;Miloš Kučera - Elektro;Electrician;Dobrošovská 20;612 05;Brno;CZ;customer00004@example.com;BRN;03.11.2025
+C00005;Pankrác Beňo - Elektro;Electrician;Staničná 9;911 08;Trenčín;SK;customer00005@example.com;ZA;13.01.2025
+C00006;Alexej Haluška - Elektro;Electrician;Pavla Blaha 239;040 05;Košice;SK;customer00006@example.com;KE;03.02.2025
+C00007;Elektro Zásuvka Prešov;Retail shop;Metodova 1;080 04;Prešov;SK;customer00007@example.com;KE;21.05.2024
+C00008;Montatrade s.r.o.;Construction;Javorová 908;831 08;Bratislava;SK;customer00008@example.com;BA;04.06.2025
+C00009;Bernard Krásnohorský - Elektro;Electrician;Brančská 54;010 08;Žilina;SK;customer00009@example.com;ZA;14.10.2024
+C00010;Rastislav Ryša - Elektro;Electrician;Nad lomom 20;841 05;Bratislava;SK;customer00010@example.com;BA;06.02.2024
+C00011;Zdenko Kubík - Elektro;Electrician;Ihrisková 3;917 01;Trnava;SK;customer00011@example.com;BA;14.10.2024
+C00012;Kazimír Filípek - Elektro;Electrician;Žilinská 77;010 05;Žilina;SK;customer00012@example.com;ZA;31.07.2025
+C00013;Elektro Prúd Prešov;Retail shop;Planét 104;080 08;Prešov;SK;customer00013@example.com;KE;05.04.2025
+C00014;Dušan Pavlíček - Elektro;Electrician;Lýcejná 15;821 01;Bratislava;SK;customer00014@example.com;BA;12.10.2024
+C00015;Krištof Majdán - Elektro;Electrician;Humenské námestie 812;917 08;Trnava;SK;customer00015@example.com;BA;29.12.2025
+C00016;Jarolím Ondruš - Elektro;Electrician;Krížna 803;811 05;Bratislava;SK;customer00016@example.com;BA;11.02.2025
+C00017;Gustáv Dočolomanský - Elektro;Electrician;K pasienkom 69;831 05;Bratislava;SK;customer00017@example.com;BA;23.09.2023
+C00018;Elektro Svetlo Bratislava;Retail shop;Biela 7;821 05;Bratislava;SK;customer00018@example.com;BA;07.07.2024
+C00019;Kábeltech s.r.o.;Construction;Delená cesta 959;811 08;Bratislava;SK;customer00019@example.com;BA;18.03.2026
+C00020;Alojz Pavlov - Elektro;Electrician;Technická 3;040 08;Košice;SK;customer00020@example.com;KE;15.07.2023
+C00021;Elektro Zásuvka Prešov;Retail shop;Charkovská 725;080 05;Prešov;SK;customer00021@example.com;KE;26.03.2025
+C00022;Richard Štefanka - Elektro;Electrician;Závadská 70;036 05;Martin;SK;customer00022@example.com;ZA;29.06.2023
+C00023;Alexander Richard - Elektro;Electrician;Pod Kobylou 9;831 05;Bratislava;SK;customer00023@example.com;BA;24.11.2025
+C00024;Elektro Zásuvka Trnava;Retail shop;Ševčenkova 4;917 04;Trnava;SK;customer00024@example.com;BA;19.07.2026
+C00025;Gašpar Hoza - Elektro;Electrician;Ševčenkova 9;010 08;Žilina;SK;customer00025@example.com;ZA;17.10.2023
+C00026;Arnošt Jelínek - Elektro;Electrician;Vašátkova 5;760 05;Zlín;CZ;customer00026@example.com;BRN;10.03.2025
+C00027;Dezider Paulik - Elektro;Electrician;Papánkovo námestie 183;821 05;Bratislava;SK;customer00027@example.com;BA;31.03.2026
+C00028;René Habšuda - Elektro;Electrician;Jurkovičova 205;911 01;Trenčín;SK;customer00028@example.com;ZA;19.11.2025
+C00029;Elektro Iskra Žilina;Retail shop;Furmanská 624;010 05;Žilina;SK;customer00029@example.com;ZA;09.01.2026
+C00030;Elektro Kontakt Prešov;Retail shop;Jána Raka 88;080 04;Prešov;SK;customer00030@example.com;KE;20.02.2024
+C00031;Bohumír Kysela - Elektro;Electrician;Podkarpatská 985;080 04;Prešov;SK;customer00031@example.com;KE;01.07.2026
+C00032;Vladimír Martinák - Elektro;Electrician;Pavlovská 579;040 04;Košice;SK;customer00032@example.com;KE;25.01.2024
+C00033;Dalibor Duska - Elektro;Electrician;Oleandrová 13;974 04;Banská Bystrica;SK;customer00033@example.com;ZA;01.05.2024
+C00034;Inštalpro s.r.o.;Construction;Ulica svornosti 4;058 01;Poprad;SK;customer00034@example.com;KE;20.12.2024
+C00035;Tichomír Nôta - Elektro;Electrician;Riazanská 4;911 08;Trenčín;SK;customer00035@example.com;ZA;26.02.2024
+C00036;Edmund Masný - Elektro;Electrician;Štvrtá 3;841 01;Bratislava;SK;customer00036@example.com;BA;12.08.2023
+C00037;Techtrade s.r.o.;Construction;Beňovského 9;040 05;Košice;SK;customer00037@example.com;KE;11.06.2023
+C00038;Elektro Zásuvka Bratislava;Retail shop;Mokrohájska cesta 266;841 04;Bratislava;SK;customer00038@example.com;BA;29.03.2024
+C00039;Bohdan Habšuda - Elektro;Electrician;Kremnická 990;040 04;Košice;SK;customer00039@example.com;KE;16.04.2026
+C00040;Albín Daňa - Elektro;Electrician;Linzbothova 98;010 04;Žilina;SK;customer00040@example.com;ZA;06.01.2025
+C00041;Elektro Obvod Žilina;Retail shop;Černyševského 5;010 01;Žilina;SK;customer00041@example.com;ZA;20.06.2024
+C00042;Cyril Duška - Elektro;Electrician;Jaseňová 9;851 04;Bratislava;SK;customer00042@example.com;BA;06.12.2023
+C00043;Bohuš Palov - Elektro;Electrician;Odborárske námestie 448;040 01;Košice;SK;customer00043@example.com;KE;09.05.2026
+C00044;Elektro Kontakt Košice;Retail shop;Jarošova 1;040 05;Košice;SK;customer00044@example.com;KE;08.07.2025
+C00045;Elektro Kontakt Banská Bystrica;Retail shop;Súhvezdná 77;974 04;Banská Bystrica;SK;customer00045@example.com;ZA;21.11.2023
+C00046;Elektro Zásuvka Košice;Retail shop;Ulica 8. mája 4;040 01;Košice;SK;customer00046@example.com;KE;05.06.2026
+C00047;Inštalinvest s.r.o.;Construction;Staromlynská 3;917 01;Trnava;SK;customer00047@example.com;BA;31.10.2024
+C00048;Félix Valachovič - Elektro;Electrician;Uršulínska 523;851 08;Bratislava;SK;customer00048@example.com;BA;13.06.2026
+C00049;Elektro Zásuvka Brno;Retail shop;Heineho 6;623 01;Brno;CZ;customer00049@example.com;BRN;22.02.2024
+C00050;Kristián Bukovský - Elektro;Electrician;Strážnická 8;811 04;Bratislava;SK;customer00050@example.com;BA;14.04.2026
+C00051;Vlastimil Stodola - Elektro;Electrician;Srnčia 484;811 01;Bratislava;SK;customer00051@example.com;BA;28.02.2025
+C00052;Alexej Franko - Elektro;Electrician;Nový záhon 857;949 08;Nitra;SK;customer00052@example.com;BA;23.08.2024
+C00053;Elektro Zásuvka Banská Bystrica;Retail shop;Šulekova 272;974 08;Banská Bystrica;SK;customer00053@example.com;ZA;06.09.2024
+C00054;Elektro Obvod Žilina;Retail shop;Bajkalská 621;010 08;Žilina;SK;customer00054@example.com;ZA;28.12.2025
+C00055;Alfréd Macka - Elektro;Electrician;Cesta na Klanec 990;974 08;Banská Bystrica;SK;customer00055@example.com;ZA;27.01.2024
+C00056;Šimon Havel - Elektro;Electrician;Nad Šancemi 60;623 01;Brno;CZ;customer00056@example.com;BRN;07.04.2025
+C00057;Elektro Svetlo Banská Bystrica;Retail shop;Murnice 860;974 04;Banská Bystrica;SK;customer00057@example.com;ZA;17.09.2023
+C00058;Elektro Svetlo Žilina;Retail shop;Roľnícka 10;010 08;Žilina;SK;customer00058@example.com;ZA;26.04.2023
+C00059;Elektro Iskra Bratislava;Retail shop;Na Štyridsiatku 1;851 05;Bratislava;SK;customer00059@example.com;BA;20.05.2025
+C00060;Elektro Iskra Bratislava;Retail shop;Príjazdná 47;851 01;Bratislava;SK;customer00060@example.com;BA;17.10.2025
+C00061;Elektro Prúd Bratislava;Retail shop;Na grbe 620;841 01;Bratislava;SK;customer00061@example.com;BA;08.05.2024
+C00062;Matyáš Němeček - Elektro;Electrician;Petříkova 563;760 04;Zlín;CZ;customer00062@example.com;BRN;27.08.2023
+C00063;Stavinvest s.r.o.;Construction;Za Stanicou 1;831 01;Bratislava;SK;customer00063@example.com;BA;08.05.2026
+C00064;Albín Štefanka - Elektro;Electrician;Tbiliská 5;040 08;Košice;SK;customer00064@example.com;KE;02.08.2023
+C00065;Izidor Vicena - Elektro;Electrician;Flöglova 3;917 04;Trnava;SK;customer00065@example.com;BA;18.06.2023
+C00066;Timotej Nôta - Elektro;Electrician;Americké námestie 959;010 04;Žilina;SK;customer00066@example.com;ZA;12.08.2024
+C00067;Elektro Zásuvka Bratislava;Retail shop;Námestie Rodiny 117;831 04;Bratislava;SK;customer00067@example.com;BA;28.11.2025
+C00068;Elektrosystem s.r.o.;Construction;Skerličova 528;911 08;Trenčín;SK;customer00068@example.com;ZA;14.02.2024
+C00069;Melichar Sýkora - Elektro;Electrician;Prievozská 568;949 04;Nitra;SK;customer00069@example.com;BA;18.04.2023
+C00070;Kábelinvest s.r.o.;Construction;Rajtákova 494;851 05;Bratislava;SK;customer00070@example.com;BA;27.02.2026
+C00071;Stavpro s.r.o.;Construction;Furdekova 5;831 04;Bratislava;SK;customer00071@example.com;BA;07.12.2023
+C00072;Marek Melicherík - Elektro;Electrician;Čárskeho 19;917 05;Trnava;SK;customer00072@example.com;BA;07.04.2026
+C00073;Elektro Iskra Bratislava;Retail shop;Pionierska 16;841 01;Bratislava;SK;customer00073@example.com;BA;23.08.2024
+C00074;Svätopluk Kobielsky - Elektro;Electrician;Brančská 7;058 01;Poprad;SK;customer00074@example.com;KE;31.08.2023
+C00075;Vladimír Čekovský - Elektro;Electrician;Knižková dolina 9;040 05;Košice;SK;customer00075@example.com;KE;26.05.2023
+C00076;Ambróz Sklenica - Elektro;Electrician;Viedenská cesta 84;949 08;Nitra;SK;customer00076@example.com;BA;19.12.2023
+C00077;Miloslav Beneš - Elektro;Electrician;Pankrácké Nám. 452;602 08;Brno;CZ;customer00077@example.com;BRN;26.10.2024
+C00078;Elektro Kontakt Žilina;Retail shop;Čajkovského 732;010 08;Žilina;SK;customer00078@example.com;ZA;02.08.2025
+C00079;Elektro Svetlo Brno;Retail shop;Mochovská 8;602 04;Brno;CZ;customer00079@example.com;BRN;24.06.2024
+C00080;Elektro Zásuvka Nitra;Retail shop;Trebišovská 400;949 05;Nitra;SK;customer00080@example.com;BA;19.03.2024
+C00081;Urban Martinovič - Elektro;Electrician;Levická 680;917 08;Trnava;SK;customer00081@example.com;BA;13.06.2024
+C00082;Milan Achberger - Elektro;Electrician;Bagarova 1;949 05;Nitra;SK;customer00082@example.com;BA;26.03.2025
+C00083;Ľuboš Junáš - Elektro;Electrician;Kvetná 1;010 01;Žilina;SK;customer00083@example.com;ZA;19.05.2024
+C00084;Elektroinvest spol. s r.o.;Construction;Oválová 97;623 08;Brno;CZ;customer00084@example.com;BRN;14.08.2023
+C00085;Elektro Obvod Prešov;Retail shop;Kovorobotnícka 202;080 05;Prešov;SK;customer00085@example.com;KE;09.08.2025
+C00086;Elektro Obvod Prešov;Retail shop;Lúčna 434;080 05;Prešov;SK;customer00086@example.com;KE;02.04.2025
+C00087;Henrich Paška - Elektro;Electrician;Petržalská 5;974 08;Banská Bystrica;SK;customer00087@example.com;ZA;29.04.2025
+C00088;Daniel Polák - Elektro;Electrician;Na Cikánce 5;623 05;Brno;CZ;customer00088@example.com;BRN;13.06.2023
+C00089;Aleš Ondráš - Elektro;Electrician;Na skale 9;841 08;Bratislava;SK;customer00089@example.com;BA;02.03.2024
+C00090;Miloš Haňak - Elektro;Electrician;Vodné elektrárne 72;811 01;Bratislava;SK;customer00090@example.com;BA;10.12.2023
+C00091;Kábelsystem s.r.o.;Construction;Dvojkrížna 5;811 08;Bratislava;SK;customer00091@example.com;BA;08.08.2024
+C00092;Otakar Černý - Elektro;Electrician;Vídeňská 1;602 05;Brno;CZ;customer00092@example.com;BRN;17.02.2024
+C00093;Techtrade s.r.o.;Construction;Sartorisova 90;010 08;Žilina;SK;customer00093@example.com;ZA;13.03.2025
+C00094;Pankrác Paľa - Elektro;Electrician;Orechový rad 690;821 08;Bratislava;SK;customer00094@example.com;BA;24.11.2025
+C00095;Elektro Obvod Brno;Retail shop;Vokrojova 79;623 04;Brno;CZ;customer00095@example.com;BRN;18.10.2023
+C00096;Elektro Svetlo Martin;Retail shop;Lýcejná 19;036 08;Martin;SK;customer00096@example.com;ZA;18.08.2023
+C00097;Bohdan Baňas - Elektro;Electrician;Vlčkova 789;911 08;Trenčín;SK;customer00097@example.com;ZA;20.04.2024
+C00098;Voltservis s.r.o.;Construction;Trhová 21;841 01;Bratislava;SK;customer00098@example.com;BA;31.03.2025
+C00099;Ľubor Deák - Elektro;Electrician;Ľadová 888;851 05;Bratislava;SK;customer00099@example.com;BA;24.09.2024
+C00100;Nathan Ružička - Elektro;Electrician;Malokarpatské námest 47;010 05;Žilina;SK;customer00100@example.com;ZA;17.09.2023
+C00101;Lukáš Kocian - Elektro;Electrician;Lamačská cesta 2;040 05;Košice;SK;customer00101@example.com;KE;05.09.2025
+C00102;Zdeněk Jaroš - Elektro;Electrician;Pod Kesnerkou 20;612 08;Brno;CZ;customer00102@example.com;BRN;14.09.2024
+C00103;Alfonz Pavelko - Elektro;Electrician;Borekova 37;040 08;Košice;SK;customer00103@example.com;KE;29.09.2024
+C00104;Inštalservis spol. s r.o.;Construction;Hvězdonická 87;779 05;Olomouc;CZ;customer00104@example.com;BRN;09.10.2024
+C00105;Oldřich Hrubý - Elektro;Electrician;Vítězná 65;612 05;Brno;CZ;customer00105@example.com;BRN;25.01.2025
+C00106;Ondřej Kovář - Elektro;Electrician;Svojsíkova 8;779 08;Olomouc;CZ;customer00106@example.com;BRN;30.08.2025
+C00107;Montatrade s.r.o.;Construction;Dúbravčická 525;040 08;Košice;SK;customer00107@example.com;KE;24.07.2026
+C00108;Boleslav Jakuba - Elektro;Electrician;Matúšova 40;911 08;Trenčín;SK;customer00108@example.com;ZA;02.04.2025
+C00109;Bořivoj Bednář - Elektro;Electrician;Pod Spiritkou 8;623 08;Brno;CZ;customer00109@example.com;BRN;14.07.2023
+C00110;Josef Sedlák - Elektro;Electrician;Nám. Barikád 90;602 01;Brno;CZ;customer00110@example.com;BRN;20.02.2025
+C00111;Elektro Prúd Trenčín;Retail shop;Rozvodná 8;911 01;Trenčín;SK;customer00111@example.com;ZA;10.06.2024
+C00112;Milan Ryša - Elektro;Electrician;Husova 562;831 08;Bratislava;SK;customer00112@example.com;BA;12.11.2023
+C00113;Stavtech s.r.o.;Construction;Slovienska 5;974 01;Banská Bystrica;SK;customer00113@example.com;ZA;18.08.2025
+C00114;Bohuslav Skutecký - Elektro;Electrician;Výhonská 50;080 01;Prešov;SK;customer00114@example.com;KE;17.06.2025
+C00115;Elektro Prúd Žilina;Retail shop;Rímska 7;010 05;Žilina;SK;customer00115@example.com;ZA;30.07.2025
+C00116;Elektro Zásuvka Košice;Retail shop;Dražická 794;040 01;Košice;SK;customer00116@example.com;KE;11.08.2025
+C00117;Elektro Obvod Trnava;Retail shop;Račianska 773;917 08;Trnava;SK;customer00117@example.com;BA;23.07.2023
+C00118;Jindřich Jaroš - Elektro;Electrician;Nad Zátiším 717;760 08;Zlín;CZ;customer00118@example.com;BRN;09.02.2024
+C00119;Elektro Iskra Nitra;Retail shop;Železničiarska 621;949 04;Nitra;SK;customer00119@example.com;BA;18.10.2024
+C00120;Elektrotech s.r.o.;Construction;Terchovská 9;036 05;Martin;SK;customer00120@example.com;ZA;17.06.2023
+C00121;Ferdinand Krajčír - Elektro;Electrician;Chalupkova 350;831 08;Bratislava;SK;customer00121@example.com;BA;14.09.2023
+C00122;Marek Záborský - Elektro;Electrician;Krakovská 17;811 05;Bratislava;SK;customer00122@example.com;BA;20.05.2026
+C00123;Mário Hrmo - Elektro;Electrician;Ferienčíkova 741;949 01;Nitra;SK;customer00123@example.com;BA;19.07.2024
+C00124;Elektro Iskra Trenčín;Retail shop;Buzalkova 2;911 04;Trenčín;SK;customer00124@example.com;ZA;16.05.2024
+C00125;Eder Achberger - Elektro;Electrician;Šášovská 76;080 05;Prešov;SK;customer00125@example.com;KE;10.05.2024
+C00126;Václav Vydarený - Elektro;Electrician;Rybničná 952;811 04;Bratislava;SK;customer00126@example.com;BA;22.11.2024
+C00127;Miloš Slavík - Elektro;Electrician;Jasná I 38;615 04;Brno;CZ;customer00127@example.com;BRN;31.10.2024
+C00128;Elektro Iskra Olomouc;Retail shop;Na Příčné Mezi 339;779 08;Olomouc;CZ;customer00128@example.com;BRN;27.06.2025
+C00129;Elektrotech spol. s r.o.;Construction;Mezi Sklady 6;779 05;Olomouc;CZ;customer00129@example.com;BRN;10.08.2025
+C00130;Matej Holiček - Elektro;Electrician;Teslova 5;949 01;Nitra;SK;customer00130@example.com;BA;01.12.2024
+C00131;Melichar Hablák - Elektro;Electrician;Radvanská 529;821 01;Bratislava;SK;customer00131@example.com;BA;15.06.2023
+C00132;Montaplus s.r.o.;Construction;Magnezitová 9;831 08;Bratislava;SK;customer00132@example.com;BA;16.03.2026
+C00133;Bernard Líška - Elektro;Electrician;Dvojkrížna 80;080 01;Prešov;SK;customer00133@example.com;KE;16.04.2025
+C00134;Miloslav Kaliňák - Elektro;Electrician;Pod Krásnou hôrkou 25;040 08;Košice;SK;customer00134@example.com;KE;20.08.2023
+C00135;Jaromír Skokan - Elektro;Electrician;Lopenícka 790;911 05;Trenčín;SK;customer00135@example.com;ZA;17.07.2025
+C00136;Techtrade s.r.o.;Construction;Vápenná 6;058 08;Poprad;SK;customer00136@example.com;KE;23.11.2025
+C00137;Bruno Roháček - Elektro;Electrician;Mládežnícka 422;841 04;Bratislava;SK;customer00137@example.com;BA;08.12.2025
+C00138;Montaplus s.r.o.;Construction;Jesenná 445;080 01;Prešov;SK;customer00138@example.com;KE;24.08.2024
+C00139;Ján Vasko - Elektro;Electrician;Cablkova 15;040 08;Košice;SK;customer00139@example.com;KE;03.05.2023
+C00140;Vladimír Pavlovič - Elektro;Electrician;Mlynarovičova 17;080 04;Prešov;SK;customer00140@example.com;KE;29.06.2025
+C00141;Jozef Matoušek - Elektro;Electrician;V Poli 321;779 05;Olomouc;CZ;customer00141@example.com;BRN;16.04.2024
+C00142;Róbert Macho - Elektro;Electrician;Plachého 1;010 08;Žilina;SK;customer00142@example.com;ZA;30.05.2024
+C00143;Juraj Janík - Elektro;Electrician;Klincová 245;911 08;Trenčín;SK;customer00143@example.com;ZA;02.10.2024
+C00144;Arnošt Moravec - Elektro;Electrician;Hněvkovského 49;760 01;Zlín;CZ;customer00144@example.com;BRN;17.05.2024
+C00145;Blažej Krúpa - Elektro;Electrician;Kysucká 5;821 04;Bratislava;SK;customer00145@example.com;BA;06.01.2025
+C00146;Arnold Mrázka - Elektro;Electrician;Laskomerského 74;036 05;Martin;SK;customer00146@example.com;ZA;19.10.2023
+C00147;Elektro Zásuvka Trnava;Retail shop;Hrušková 76;917 01;Trnava;SK;customer00147@example.com;BA;16.06.2025
+C00148;Inštalplus s.r.o.;Construction;Gallova 612;974 05;Banská Bystrica;SK;customer00148@example.com;ZA;15.12.2023
+C00149;Kazimír Cibuľka - Elektro;Electrician;Kyjevská 4;974 05;Banská Bystrica;SK;customer00149@example.com;ZA;20.07.2024
+C00150;Teodor Dančiak - Elektro;Electrician;Lieskovec 6;040 04;Košice;SK;customer00150@example.com;KE;16.06.2026
+C00151;Patrik Kubíček - Elektro;Electrician;Josefa Šimůnka 6;602 04;Brno;CZ;customer00151@example.com;BRN;10.10.2024
+C00152;Anton Dzurjanin - Elektro;Electrician;Lesná 48;010 05;Žilina;SK;customer00152@example.com;ZA;20.07.2025
+C00153;Stavplus s.r.o.;Construction;Mandľová 564;080 01;Prešov;SK;customer00153@example.com;KE;11.07.2023
+C00154;Radúz Ďurovský - Elektro;Electrician;Hlavné námestie 75;040 01;Košice;SK;customer00154@example.com;KE;21.05.2023
+C00155;Elektro Iskra Bratislava;Retail shop;Lodná 116;851 04;Bratislava;SK;customer00155@example.com;BA;18.01.2026
+C00156;Belo Pavlo - Elektro;Electrician;Delená cesta 21;811 04;Bratislava;SK;customer00156@example.com;BA;28.06.2023
+C00157;Norbert Říha - Elektro;Electrician;Plynární 413;760 08;Zlín;CZ;customer00157@example.com;BRN;11.07.2025
+C00158;Felix Čermák - Elektro;Electrician;Nábřeží Ludvíka Svobody 8;612 05;Brno;CZ;customer00158@example.com;BRN;03.10.2023
+C00159;Ludolf Kríž - Elektro;Electrician;Poľnohospodárska 95;821 01;Bratislava;SK;customer00159@example.com;BA;25.07.2023
+C00160;Vincent Nižnánsky - Elektro;Electrician;Podzáhradná 92;811 05;Bratislava;SK;customer00160@example.com;BA;21.03.2024
+C00161;Elektro Zásuvka Poprad;Retail shop;Parenicová 126;058 01;Poprad;SK;customer00161@example.com;KE;05.03.2025
+C00162;Ľudovít Marta - Elektro;Electrician;Považská 91;811 01;Bratislava;SK;customer00162@example.com;BA;23.01.2024
+C00163;Techservis s.r.o.;Construction;Dudova 4;851 08;Bratislava;SK;customer00163@example.com;BA;11.12.2025
+C00164;Dobroslav Lajčiak - Elektro;Electrician;Holubyho 71;949 04;Nitra;SK;customer00164@example.com;BA;05.06.2024
+C00165;Elektroservis s.r.o.;Construction;Hroboňova 5;974 01;Banská Bystrica;SK;customer00165@example.com;ZA;03.01.2024
+C00166;Ernest Haluška - Elektro;Electrician;Kováčska 7;080 01;Prešov;SK;customer00166@example.com;KE;07.05.2025
+C00167;Elektro Obvod Bratislava;Retail shop;Rybné námestie 2;851 01;Bratislava;SK;customer00167@example.com;BA;03.12.2024
+C00168;Inštaltrade spol. s r.o.;Construction;K Háječku 962;779 05;Olomouc;CZ;customer00168@example.com;BRN;28.09.2024
+C00169;Imrich Ľupták - Elektro;Electrician;Drieňová 376;949 05;Nitra;SK;customer00169@example.com;BA;29.10.2023
+C00170;Elektro Iskra Žilina;Retail shop;Záhradná 44;010 08;Žilina;SK;customer00170@example.com;ZA;20.05.2024
+C00171;Hugo Kubička - Elektro;Electrician;Monardová 36;080 08;Prešov;SK;customer00171@example.com;KE;09.03.2024
+C00172;Elektro Zásuvka Trnava;Retail shop;Ulica 29. augusta 28;917 04;Trnava;SK;customer00172@example.com;BA;08.03.2026
+C00173;Elektro Obvod Košice;Retail shop;Brodná 4;040 01;Košice;SK;customer00173@example.com;KE;30.03.2026
+C00174;Timotej Lipa - Elektro;Electrician;Mlynarovičova 337;080 04;Prešov;SK;customer00174@example.com;KE;25.02.2024
+C00175;Kristián Ďaďo - Elektro;Electrician;Laborecká 30;949 08;Nitra;SK;customer00175@example.com;BA;05.06.2023
+C00176;Peter Melichárek - Elektro;Electrician;Nové záhrady IV 591;080 01;Prešov;SK;customer00176@example.com;KE;05.06.2025
+C00177;Radomír Matějka - Elektro;Electrician;Náměstí Prezidenta Masaryka 78;760 01;Zlín;CZ;customer00177@example.com;BRN;16.12.2024
+C00178;Elektro Svetlo Bratislava;Retail shop;Zavadilová 69;811 04;Bratislava;SK;customer00178@example.com;BA;31.07.2024
+C00179;Elektro Zásuvka Bratislava;Retail shop;Domkárska 8;851 05;Bratislava;SK;customer00179@example.com;BA;26.09.2025
+C00180;Volttrade s.r.o.;Construction;Pasienky 43;821 08;Bratislava;SK;customer00180@example.com;BA;03.07.2025
+C00181;Igor Danek - Elektro;Electrician;Sedlárska 16;040 01;Košice;SK;customer00181@example.com;KE;07.04.2024
+C00182;Ján Bernolák - Elektro;Electrician;Dostojevského rad 65;974 08;Banská Bystrica;SK;customer00182@example.com;ZA;09.07.2023
+C00183;Frederik Mokroš - Elektro;Electrician;Jelačičova 636;851 08;Bratislava;SK;customer00183@example.com;BA;27.02.2025
+C00184;Mojmír Kunda - Elektro;Electrician;Vietnamská 1;841 05;Bratislava;SK;customer00184@example.com;BA;30.01.2025
+C00185;Elektro Kontakt Bratislava;Retail shop;Ambrova 24;811 01;Bratislava;SK;customer00185@example.com;BA;01.08.2023
+C00186;Stavpro spol. s r.o.;Construction;Nad Rohatci 60;623 01;Brno;CZ;customer00186@example.com;BRN;24.12.2023
+C00187;Petr Sedláček - Elektro;Electrician;Brixiho 826;612 05;Brno;CZ;customer00187@example.com;BRN;10.09.2023
+C00188;Ervín Lesný - Elektro;Electrician;Gabčíkova 8;974 01;Banská Bystrica;SK;customer00188@example.com;ZA;16.11.2023
+C00189;Eugen Martinec - Elektro;Electrician;Kapitulský dvor 5;811 04;Bratislava;SK;customer00189@example.com;BA;05.06.2023
+C00190;Daniel Timko - Elektro;Electrician;Strážny dom 6;911 04;Trenčín;SK;customer00190@example.com;ZA;18.04.2023
+C00191;Augustín Plch - Elektro;Electrician;Kutlíkova 646;080 05;Prešov;SK;customer00191@example.com;KE;10.12.2023
+C00192;Dobroslav Beránek - Elektro;Electrician;U Štěpu 88;760 04;Zlín;CZ;customer00192@example.com;BRN;26.06.2024
+C00193;Techservis s.r.o.;Construction;Šintavská 36;010 04;Žilina;SK;customer00193@example.com;ZA;04.12.2023
+C00194;René Čapkovič - Elektro;Electrician;Štvrtá 768;821 08;Bratislava;SK;customer00194@example.com;BA;07.06.2024
+C00195;Elektro Zásuvka Brno;Retail shop;Bazovského 65;623 08;Brno;CZ;customer00195@example.com;BRN;18.07.2023
+C00196;Leopold Jakuba - Elektro;Electrician;Bencúrova 76;821 05;Bratislava;SK;customer00196@example.com;BA;16.06.2025
+C00197;Montaservis s.r.o.;Construction;Beskydská 681;949 08;Nitra;SK;customer00197@example.com;BA;16.10.2024
+C00198;Volttrade s.r.o.;Construction;Jiskrova 637;841 05;Bratislava;SK;customer00198@example.com;BA;18.09.2024
+C00199;Aurel Janík - Elektro;Electrician;Piesočná 59;010 08;Žilina;SK;customer00199@example.com;ZA;12.10.2023
+C00200;Kábeltech s.r.o.;Construction;Pankúchova 276;917 01;Trnava;SK;customer00200@example.com;BA;17.11.2024
+C00201;Arpád Paľka - Elektro;Electrician;Parcelná 19;911 01;Trenčín;SK;customer00201@example.com;ZA;06.03.2025
+C00202;Bohdan Špilár - Elektro;Electrician;Kostlivého 9;080 04;Prešov;SK;customer00202@example.com;KE;19.06.2025
+C00203;Leonard Kočka - Elektro;Electrician;Dlhá 46;036 05;Martin;SK;customer00203@example.com;ZA;17.09.2024
+C00204;Rostislav Pavlíček - Elektro;Electrician;Doubravická 51;602 04;Brno;CZ;customer00204@example.com;BRN;11.11.2025
+C00205;Zoltán Borík - Elektro;Electrician;Jedľová 13;949 08;Nitra;SK;customer00205@example.com;BA;19.06.2025
+C00206;Robin Toman - Elektro;Electrician;Novákovo Náměstí 777;623 08;Brno;CZ;customer00206@example.com;BRN;08.04.2025
+C00207;Ondrej Duša - Elektro;Electrician;Žitavská 61;080 04;Prešov;SK;customer00207@example.com;KE;15.07.2023
+C00208;Šimon Kraus - Elektro;Electrician;Za Pivovarem 644;612 04;Brno;CZ;customer00208@example.com;BRN;23.06.2023
+C00209;Levoslav Hanka - Elektro;Electrician;Pečnianska 33;974 04;Banská Bystrica;SK;customer00209@example.com;ZA;28.01.2026
+C00210;Elektro Obvod Bratislava;Retail shop;Na Grunte 32;851 08;Bratislava;SK;customer00210@example.com;BA;27.07.2025
+C00211;Elektro Iskra Bratislava;Retail shop;Srnčia 6;821 01;Bratislava;SK;customer00211@example.com;BA;19.01.2026
+C00212;Elektro Zásuvka Bratislava;Retail shop;Ílová 63;851 04;Bratislava;SK;customer00212@example.com;BA;17.03.2026
+C00213;Sebastián Bielik - Elektro;Electrician;Tretia 91;821 01;Bratislava;SK;customer00213@example.com;BA;30.05.2025
+C00214;Adam Novotný - Elektro;Electrician;Lebeděvova 1;615 04;Brno;CZ;customer00214@example.com;BRN;21.08.2023
+C00215;Lumír Kolář - Elektro;Electrician;Podlešínská 9;623 05;Brno;CZ;customer00215@example.com;BRN;18.06.2024
+C00216;Henrich Králik - Elektro;Electrician;Smetanova 9;841 08;Bratislava;SK;customer00216@example.com;BA;17.10.2025
+C00217;Zdenko Štefan - Elektro;Electrician;Vysoká 48;831 04;Bratislava;SK;customer00217@example.com;BA;28.11.2024
+C00218;Kábelinvest s.r.o.;Construction;Na Slanci 28;040 04;Košice;SK;customer00218@example.com;KE;02.04.2025
+C00219;Elektro Obvod Bratislava;Retail shop;Lamanského 150;811 04;Bratislava;SK;customer00219@example.com;BA;01.07.2024
+C00220;Ľubor Paulík - Elektro;Electrician;Sabinovská 731;841 08;Bratislava;SK;customer00220@example.com;BA;01.03.2024
+C00221;Elektro Iskra Bratislava;Retail shop;Filiálne nádražie 638;851 04;Bratislava;SK;customer00221@example.com;BA;14.12.2023
+C00222;Inštalplus s.r.o.;Construction;Maková 4;040 01;Košice;SK;customer00222@example.com;KE;31.12.2023
+C00223;Tadeáš Murín - Elektro;Electrician;Donnerova 170;058 01;Poprad;SK;customer00223@example.com;KE;14.01.2026
+C00224;Elektro Zásuvka Nitra;Retail shop;Bodvianska 57;949 08;Nitra;SK;customer00224@example.com;BA;31.10.2023
+C00225;Mário Kiseľ - Elektro;Electrician;Pankúchova 761;010 08;Žilina;SK;customer00225@example.com;ZA;24.06.2023
+C00226;Radovan Kučera - Elektro;Electrician;Šůrova 709;602 01;Brno;CZ;customer00226@example.com;BRN;21.09.2023
+C00227;Elektro Zásuvka Košice;Retail shop;Vetvová 23;040 08;Košice;SK;customer00227@example.com;KE;22.04.2025
+C00228;Beňadik Višňovský - Elektro;Electrician;Cablkova 8;974 01;Banská Bystrica;SK;customer00228@example.com;ZA;08.11.2025
+C00229;Juraj Makovica - Elektro;Electrician;Prokopa Veľkého 89;080 01;Prešov;SK;customer00229@example.com;KE;16.04.2023
+C00230;Emil Matějka - Elektro;Electrician;V Hájkách 85;615 08;Brno;CZ;customer00230@example.com;BRN;11.07.2023
+C00231;Jerguš Senko - Elektro;Electrician;Na Sitine 2;080 08;Prešov;SK;customer00231@example.com;KE;25.02.2026
+C00232;Sergej Dorko - Elektro;Electrician;Mánesovo námestie 281;851 08;Bratislava;SK;customer00232@example.com;BA;25.08.2023
+C00233;Vít Janák - Elektro;Electrician;Novodvorská 8;851 05;Bratislava;SK;customer00233@example.com;BA;20.11.2024
+C00234;Richard Farkašovský - Elektro;Electrician;Úradnícka 4;949 05;Nitra;SK;customer00234@example.com;BA;08.01.2026
+C00235;Kábelservis s.r.o.;Construction;Hlboká cesta 8;040 01;Košice;SK;customer00235@example.com;KE;31.03.2024
+C00236;Techpro s.r.o.;Construction;Dlhá 911;040 01;Košice;SK;customer00236@example.com;KE;15.05.2026
+C00237;Elektro Svetlo Košice;Retail shop;Priama cesta 52;040 05;Košice;SK;customer00237@example.com;KE;07.09.2024
+C00238;René Musil - Elektro;Electrician;Vlasákova 6;623 04;Brno;CZ;customer00238@example.com;BRN;29.06.2024
+C00239;Elektro Obvod Košice;Retail shop;Ambrova 604;040 01;Košice;SK;customer00239@example.com;KE;17.08.2025
+C00240;Zdeněk Sedlák - Elektro;Electrician;Pod Letištěm 724;615 08;Brno;CZ;customer00240@example.com;BRN;26.12.2024
+C00241;Ivan Kázik - Elektro;Electrician;J.C.Hronského 4;080 01;Prešov;SK;customer00241@example.com;KE;29.05.2025
+C00242;Aurel Cigánik - Elektro;Electrician;Pernecká 710;974 04;Banská Bystrica;SK;customer00242@example.com;ZA;14.02.2025
+C00243;Elektro Zásuvka Trnava;Retail shop;Kvetná 8;917 08;Trnava;SK;customer00243@example.com;BA;27.06.2024
+C00244;Leonard Kotian - Elektro;Electrician;Radvanská 99;040 05;Košice;SK;customer00244@example.com;KE;22.01.2026
+C00245;Kvetoslav Šimík - Elektro;Electrician;Cyrilova 150;831 04;Bratislava;SK;customer00245@example.com;BA;10.08.2025
+C00246;Lukáš Čapkovič - Elektro;Electrician;Wattova 279;040 05;Košice;SK;customer00246@example.com;KE;16.06.2024
+C00247;Elektro Svetlo Martin;Retail shop;Harmincova 495;036 04;Martin;SK;customer00247@example.com;ZA;11.06.2023
+C00248;Radúz Janoš - Elektro;Electrician;Černyševského 65;036 08;Martin;SK;customer00248@example.com;ZA;19.06.2026
+C00249;Techpro s.r.o.;Construction;Gondova 131;831 01;Bratislava;SK;customer00249@example.com;BA;14.03.2026
+C00250;Elektro Prúd Bratislava;Retail shop;Šípová 7;831 01;Bratislava;SK;customer00250@example.com;BA;03.09.2025
+C00251;Elektro Svetlo Nitra;Retail shop;Rajecká 45;949 04;Nitra;SK;customer00251@example.com;BA;22.07.2026
+C00252;Elektro Prúd Brno;Retail shop;Horní Stromky 512;623 01;Brno;CZ;customer00252@example.com;BRN;24.02.2026
+C00253;Elektro Zásuvka Žilina;Retail shop;Delená 889;010 01;Žilina;SK;customer00253@example.com;ZA;24.01.2026
+C00254;Inštaltech s.r.o.;Construction;Múzejná 49;080 04;Prešov;SK;customer00254@example.com;KE;09.02.2024
+C00255;Slavomír Bárta - Elektro;Electrician;Panuškova 4;615 05;Brno;CZ;customer00255@example.com;BRN;02.01.2024
+C00256;Alexander Vlachovič - Elektro;Electrician;Na pažiti 963;949 05;Nitra;SK;customer00256@example.com;BA;24.11.2025
+C00257;Ivo Toman - Elektro;Electrician;Kostková 66;602 08;Brno;CZ;customer00257@example.com;BRN;29.05.2025
+C00258;František Čiernik - Elektro;Electrician;Hečkova 617;036 01;Martin;SK;customer00258@example.com;ZA;12.01.2026
+C00259;Elektro Kontakt Banská Bystrica;Retail shop;Havlíčkova 35;974 08;Banská Bystrica;SK;customer00259@example.com;ZA;09.03.2025
+C00260;Rudolf Sklenica - Elektro;Electrician;Gagarinova 4;831 04;Bratislava;SK;customer00260@example.com;BA;03.08.2025
+C00261;Volttech s.r.o.;Construction;Vranovská 520;974 01;Banská Bystrica;SK;customer00261@example.com;ZA;25.06.2025
+C00262;Marek Hudec - Elektro;Electrician;Jegeneš 22;917 01;Trnava;SK;customer00262@example.com;BA;10.01.2026
+C00263;Elektro Zásuvka Banská Bystrica;Retail shop;Lamačská cesta 2;974 01;Banská Bystrica;SK;customer00263@example.com;ZA;28.05.2024
+C00264;Severín Bobuľa - Elektro;Electrician;Floriánske námestie 9;821 04;Bratislava;SK;customer00264@example.com;BA;04.08.2023
+C00265;Žigmund Hušek - Elektro;Electrician;Zimná 3;949 01;Nitra;SK;customer00265@example.com;BA;13.12.2025
+C00266;Elektro Kontakt Martin;Retail shop;Trnavská cesta 86;036 05;Martin;SK;customer00266@example.com;ZA;12.12.2025
+C00267;Elektro Zásuvka Bratislava;Retail shop;Na Štyridsiatku 96;851 04;Bratislava;SK;customer00267@example.com;BA;25.06.2024
+C00268;Teodor Havlíček - Elektro;Electrician;Heydukova 2;760 01;Zlín;CZ;customer00268@example.com;BRN;27.12.2025
+C00269;Elektro Prúd Trnava;Retail shop;Fibichova 677;917 04;Trnava;SK;customer00269@example.com;BA;28.01.2025
+C00270;Medard Červeň - Elektro;Electrician;Estónska 43;841 08;Bratislava;SK;customer00270@example.com;BA;06.05.2024
+C00271;Elektro Prúd Martin;Retail shop;Ražná 81;036 08;Martin;SK;customer00271@example.com;ZA;16.09.2023
+C00272;Július Dančiak - Elektro;Electrician;Belinského 140;036 04;Martin;SK;customer00272@example.com;ZA;19.10.2024
+C00273;Elektro Obvod Zlín;Retail shop;Nad Plynovodem 4;760 08;Zlín;CZ;customer00273@example.com;BRN;06.12.2023
+C00274;Kazimír Dušek - Elektro;Electrician;Pod lipami 639;080 05;Prešov;SK;customer00274@example.com;KE;14.07.2024
+C00275;Florián Ondrušek - Elektro;Electrician;Devínska cesta - kam 98;040 04;Košice;SK;customer00275@example.com;KE;07.01.2025
+C00276;Antonín Vávra - Elektro;Electrician;Tylišovská 5;602 05;Brno;CZ;customer00276@example.com;BRN;21.06.2024
+C00277;Elektro Obvod Košice;Retail shop;Moyšova 810;040 01;Košice;SK;customer00277@example.com;KE;28.11.2024
+C00278;Elektro Kontakt Zlín;Retail shop;Kozácká 7;760 01;Zlín;CZ;customer00278@example.com;BRN;11.02.2025
+C00279;Štefan Bašo - Elektro;Electrician;Petržalská 64;911 01;Trenčín;SK;customer00279@example.com;ZA;19.01.2024
+C00280;Karel Pokorný - Elektro;Electrician;Budčická 2;779 04;Olomouc;CZ;customer00280@example.com;BRN;02.07.2025
+C00281;Elektro Prúd Bratislava;Retail shop;Šafránová 562;841 04;Bratislava;SK;customer00281@example.com;BA;29.06.2025
+C00282;Elektro Obvod Košice;Retail shop;Ulica Pri Vápeníckom 6;040 05;Košice;SK;customer00282@example.com;KE;14.08.2023
+C00283;Vilém Prokop - Elektro;Electrician;Slivenecká 64;615 04;Brno;CZ;customer00283@example.com;BRN;23.04.2026
+C00284;Montainvest s.r.o.;Construction;Heydukova 385;010 05;Žilina;SK;customer00284@example.com;ZA;23.03.2025
+C00285;Aleš Mašek - Elektro;Electrician;Pod Velkým Hájem 8;602 01;Brno;CZ;customer00285@example.com;BRN;28.06.2023
+C00286;Ladislav Štefan - Elektro;Electrician;Septimiova 2;949 05;Nitra;SK;customer00286@example.com;BA;21.10.2025
+C00287;Tibor Mackovič - Elektro;Electrician;Červeňákova 4;080 04;Prešov;SK;customer00287@example.com;KE;22.07.2023
+C00288;Izidor Vozár - Elektro;Electrician;Lehotského 722;831 05;Bratislava;SK;customer00288@example.com;BA;22.06.2023
+C00289;Alojz Ondrášek - Elektro;Electrician;Kupeckého 876;974 04;Banská Bystrica;SK;customer00289@example.com;ZA;15.04.2023
+C00290;Elektro Prúd Nitra;Retail shop;Bodvianska 1;949 08;Nitra;SK;customer00290@example.com;BA;05.12.2023
+C00291;Elektro Kontakt Bratislava;Retail shop;Prístav 479;831 04;Bratislava;SK;customer00291@example.com;BA;17.02.2025
+C00292;Elektro Kontakt Brno;Retail shop;Na Vartě 356;623 05;Brno;CZ;customer00292@example.com;BRN;05.01.2025
+C00293;Elektro Obvod Bratislava;Retail shop;Hrdličkova 269;831 05;Bratislava;SK;customer00293@example.com;BA;08.05.2024
+C00294;Albert Vlček - Elektro;Electrician;Komenského 653;602 08;Brno;CZ;customer00294@example.com;BRN;16.07.2023
+C00295;Leonard Kazík - Elektro;Electrician;Prievozská 21;821 08;Bratislava;SK;customer00295@example.com;BA;21.06.2024
+C00296;Gustáv Kubičko - Elektro;Electrician;Ulica J. Valašťana D 801;917 01;Trnava;SK;customer00296@example.com;BA;20.01.2025
+C00297;Benedikt Tomeček - Elektro;Electrician;Gaštanová 309;058 04;Poprad;SK;customer00297@example.com;KE;09.12.2025
+C00298;Alfonz Paulovič - Elektro;Electrician;Brumovická 4;851 04;Bratislava;SK;customer00298@example.com;BA;17.03.2025
+C00299;Milan Kočiš - Elektro;Electrician;Podlesná 9;080 04;Prešov;SK;customer00299@example.com;KE;08.06.2023
+C00300;Šimon Filc - Elektro;Electrician;Egrešová 8;040 08;Košice;SK;customer00300@example.com;KE;26.11.2025
+C00301;Elektro Kontakt Žilina;Retail shop;Mojmírova 89;010 08;Žilina;SK;customer00301@example.com;ZA;08.12.2024
+C00302;Zoltán Kus - Elektro;Electrician;Lipského 50;010 05;Žilina;SK;customer00302@example.com;ZA;09.06.2024
+C00303;Inštalservis s.r.o.;Construction;Za Stanicou 62;949 01;Nitra;SK;customer00303@example.com;BA;30.10.2024
+C00304;Gejza Mauréry - Elektro;Electrician;Hálkova 70;811 05;Bratislava;SK;customer00304@example.com;BA;16.02.2024
+C00305;Inštalinvest s.r.o.;Construction;Krásna 35;010 05;Žilina;SK;customer00305@example.com;ZA;24.02.2024
+C00306;Sebastián Vajcik - Elektro;Electrician;Hontianska 8;811 05;Bratislava;SK;customer00306@example.com;BA;23.04.2026
+C00307;Emil Ježek - Elektro;Electrician;Mezi Sklady 31;612 01;Brno;CZ;customer00307@example.com;BRN;16.10.2025
+C00308;Miloslav Hutta - Elektro;Electrician;Imelová 313;040 08;Košice;SK;customer00308@example.com;KE;16.03.2025
+C00309;Elektro Svetlo Olomouc;Retail shop;Lednická 9;779 08;Olomouc;CZ;customer00309@example.com;BRN;28.05.2025
+C00310;Vlasta Kratochvíl - Elektro;Electrician;Ingrišova 694;760 08;Zlín;CZ;customer00310@example.com;BRN;28.10.2025
+C00311;Ľuboš Bilko - Elektro;Electrician;Hadia cesta 3;917 08;Trnava;SK;customer00311@example.com;BA;31.10.2025
+C00312;Viliam Dvorský - Elektro;Electrician;Česká 8;080 04;Prešov;SK;customer00312@example.com;KE;10.05.2024
+C00313;Tomáš Čech - Elektro;Electrician;Mistřínská 4;760 01;Zlín;CZ;customer00313@example.com;BRN;18.04.2024
+C00314;Elektro Kontakt Banská Bystrica;Retail shop;Kubániho 838;974 08;Banská Bystrica;SK;customer00314@example.com;ZA;04.11.2024
+C00315;Milan Blažek - Elektro;Electrician;Vlašimská 92;760 04;Zlín;CZ;customer00315@example.com;BRN;03.05.2024
+C00316;Elektro Zásuvka Poprad;Retail shop;Maďarská 3;058 04;Poprad;SK;customer00316@example.com;KE;13.05.2023
+C00317;Bořivoj Černý - Elektro;Electrician;U Mlýnského Rybníka 99;602 01;Brno;CZ;customer00317@example.com;BRN;17.12.2023
+C00318;Bohumil Němeček - Elektro;Electrician;Šermířská 446;602 08;Brno;CZ;customer00318@example.com;BRN;15.04.2026
+C00319;Prokop Kocák - Elektro;Electrician;Hroznová 6;831 01;Bratislava;SK;customer00319@example.com;BA;16.05.2025
+C00320;Inštalplus s.r.o.;Construction;Dohnányho 131;841 05;Bratislava;SK;customer00320@example.com;BA;02.10.2024
+C00321;Elektro Prúd Košice;Retail shop;Trnavská cesta 7;040 08;Košice;SK;customer00321@example.com;KE;30.07.2024
+C00322;Vincent Kello - Elektro;Electrician;Smrečianska 8;036 08;Martin;SK;customer00322@example.com;ZA;05.03.2024
+C00323;Kábelinvest s.r.o.;Construction;Mramorová 5;040 01;Košice;SK;customer00323@example.com;KE;01.10.2025
+C00324;Techplus s.r.o.;Construction;Sokolská 42;974 01;Banská Bystrica;SK;customer00324@example.com;ZA;25.01.2024
+C00325;Otakar Kraus - Elektro;Electrician;Písnická 98;612 08;Brno;CZ;customer00325@example.com;BRN;16.11.2025
+C00326;Zdenko Marcinko - Elektro;Electrician;Koziarka 950;010 08;Žilina;SK;customer00326@example.com;ZA;10.09.2023
+C00327;Žigmund Rybníček - Elektro;Electrician;Makovického 389;040 01;Košice;SK;customer00327@example.com;KE;10.09.2025
+C00328;Viliam Palovčík - Elektro;Electrician;Svätého Vincenta 85;040 01;Košice;SK;customer00328@example.com;KE;19.06.2024
+C00329;Ferdinand Kovář - Elektro;Electrician;Medlovská 8;779 05;Olomouc;CZ;customer00329@example.com;BRN;22.05.2025
+C00330;Vladimír Mikuš - Elektro;Electrician;Cesta na Senec 35;851 01;Bratislava;SK;customer00330@example.com;BA;16.07.2023
+C00331;Elektro Kontakt Bratislava;Retail shop;Ľudové námestie 184;851 01;Bratislava;SK;customer00331@example.com;BA;26.01.2026
+C00332;Elektro Obvod Bratislava;Retail shop;Tománkova 12;831 05;Bratislava;SK;customer00332@example.com;BA;27.06.2023
+C00333;Elektro Kontakt Košice;Retail shop;Janotova 8;040 01;Košice;SK;customer00333@example.com;KE;14.02.2024
+C00334;Bystrík Ondrášek - Elektro;Electrician;Harmincova 168;841 08;Bratislava;SK;customer00334@example.com;BA;28.08.2024
+C00335;Matúš Rosa - Elektro;Electrician;Údolná 78;010 01;Žilina;SK;customer00335@example.com;ZA;27.11.2024
+C00336;Elektro Zásuvka Banská Bystrica;Retail shop;Litovská 628;974 04;Banská Bystrica;SK;customer00336@example.com;ZA;24.12.2025
+C00337;Elektro Prúd Trnava;Retail shop;Plánky 1;917 01;Trnava;SK;customer00337@example.com;BA;06.07.2025
+C00338;Elektro Prúd Košice;Retail shop;Podkerepušky 391;040 05;Košice;SK;customer00338@example.com;KE;18.06.2026
+C00339;Elektro Svetlo Košice;Retail shop;Slavín 951;040 08;Košice;SK;customer00339@example.com;KE;14.12.2024
+C00340;Elektrosystem s.r.o.;Construction;Bodliaková 78;917 05;Trnava;SK;customer00340@example.com;BA;01.01.2024
+C00341;Bohuslav Fišer - Elektro;Electrician;Na Svahu 94;760 05;Zlín;CZ;customer00341@example.com;BRN;02.08.2024
+C00342;Elektro Zásuvka Bratislava;Retail shop;Petúniová 66;841 01;Bratislava;SK;customer00342@example.com;BA;21.10.2024
+C00343;Gustáv Štefanovič - Elektro;Electrician;Irkutská 2;841 04;Bratislava;SK;customer00343@example.com;BA;03.10.2023
+C00344;Pravoslav Sýkora - Elektro;Electrician;Haburská 71;974 08;Banská Bystrica;SK;customer00344@example.com;ZA;04.03.2026
+C00345;Inštalservis s.r.o.;Construction;Máchova 64;811 01;Bratislava;SK;customer00345@example.com;BA;01.10.2024
+C00346;Elektro Iskra Bratislava;Retail shop;Cyklámenová 389;831 08;Bratislava;SK;customer00346@example.com;BA;01.03.2026
+C00347;Albert Koza - Elektro;Electrician;Francisciho 93;811 04;Bratislava;SK;customer00347@example.com;BA;14.01.2026
+C00348;Montainvest spol. s r.o.;Construction;Křimická 494;760 08;Zlín;CZ;customer00348@example.com;BRN;30.04.2026
+C00349;Pavol Vrablec - Elektro;Electrician;Trojičné námestie 5;080 01;Prešov;SK;customer00349@example.com;KE;15.01.2024
+C00350;Kábelservis s.r.o.;Construction;Modranská 61;811 08;Bratislava;SK;customer00350@example.com;BA;21.05.2025
+C00351;Mojmír Konečný - Elektro;Electrician;Budějovická 80;760 01;Zlín;CZ;customer00351@example.com;BRN;29.12.2023
+C00352;Patrik Húska - Elektro;Electrician;Mierová 28;974 04;Banská Bystrica;SK;customer00352@example.com;ZA;28.06.2023
+C00353;Elektro Iskra Trenčín;Retail shop;Kúpeľná 11;911 08;Trenčín;SK;customer00353@example.com;ZA;06.12.2023
+C00354;Elektro Kontakt Bratislava;Retail shop;Hadia cesta 1;821 04;Bratislava;SK;customer00354@example.com;BA;09.10.2025
+C00355;Radim Čermák - Elektro;Electrician;Záluské 5;602 04;Brno;CZ;customer00355@example.com;BRN;01.10.2023
+C00356;Inštalinvest s.r.o.;Construction;Bratislava-Vinohrady 71;040 04;Košice;SK;customer00356@example.com;KE;05.05.2023
+C00357;Elektro Prúd Zlín;Retail shop;Nad Popelkou 5;760 04;Zlín;CZ;customer00357@example.com;BRN;09.05.2026
+C00358;Jiří Holub - Elektro;Electrician;Mírová 890;760 01;Zlín;CZ;customer00358@example.com;BRN;10.09.2024
+C00359;Milan Franka - Elektro;Electrician;Pekná cesta 5;010 05;Žilina;SK;customer00359@example.com;ZA;15.01.2024
+C00360;Voltplus s.r.o.;Construction;Galaktická 809;811 05;Bratislava;SK;customer00360@example.com;BA;07.06.2025
+C00361;Horymír Tesař - Elektro;Electrician;Komenského 399;612 04;Brno;CZ;customer00361@example.com;BRN;06.03.2025
+C00362;Elektro Iskra Zlín;Retail shop;Čelakovského Sady 88;760 08;Zlín;CZ;customer00362@example.com;BRN;01.11.2023
+C00363;Elektro Iskra Brno;Retail shop;Panuškova 594;612 05;Brno;CZ;customer00363@example.com;BRN;23.11.2023
+C00364;Martin Tatárka - Elektro;Electrician;Röntgenova 6;851 04;Bratislava;SK;customer00364@example.com;BA;17.11.2024
+C00365;Elektro Iskra Zlín;Retail shop;Čankovská 83;760 04;Zlín;CZ;customer00365@example.com;BRN;23.01.2025
+C00366;Anton Lipko - Elektro;Electrician;Kadnárova 36;080 04;Prešov;SK;customer00366@example.com;KE;23.02.2025
+C00367;Elektro Obvod Poprad;Retail shop;Iršajská 6;058 01;Poprad;SK;customer00367@example.com;KE;07.02.2025
+C00368;Kornel Mrázka - Elektro;Electrician;Tramínová 3;040 01;Košice;SK;customer00368@example.com;KE;09.11.2023
+C00369;Oto Strnad - Elektro;Electrician;Pikovická 9;623 04;Brno;CZ;customer00369@example.com;BRN;18.05.2026
+C00370;Cyril Rusňák - Elektro;Electrician;Panská 96;917 08;Trnava;SK;customer00370@example.com;BA;14.11.2025
+C00371;Elektro Svetlo Brno;Retail shop;Kováříkova 98;602 04;Brno;CZ;customer00371@example.com;BRN;07.11.2023
+C00372;Elektro Zásuvka Prešov;Retail shop;Palárikova 80;080 05;Prešov;SK;customer00372@example.com;KE;01.04.2025
+C00373;Montapro s.r.o.;Construction;Dúbravčická 983;040 05;Košice;SK;customer00373@example.com;KE;09.01.2026
+C00374;Mojmír Bartoš - Elektro;Electrician;Jasná I 5;602 04;Brno;CZ;customer00374@example.com;BRN;23.12.2024
+C00375;Jakub Marek - Elektro;Electrician;Liškova 10;760 01;Zlín;CZ;customer00375@example.com;BRN;21.04.2023
+C00376;Libor Kubec - Elektro;Electrician;Poloreckého 42;851 05;Bratislava;SK;customer00376@example.com;BA;13.07.2026
+C00377;Elektro Svetlo Bratislava;Retail shop;Liptovská 4;831 01;Bratislava;SK;customer00377@example.com;BA;22.03.2026
+C00378;Bernard Hečko - Elektro;Electrician;Záhradnícka 8;080 01;Prešov;SK;customer00378@example.com;KE;17.06.2026
+C00379;Ľuboš Grňa - Elektro;Electrician;Cyprichova 5;040 01;Košice;SK;customer00379@example.com;KE;09.07.2023
+C00380;Aurel Kello - Elektro;Electrician;Kĺzavá 48;949 01;Nitra;SK;customer00380@example.com;BA;01.06.2024
+C00381;Bohumil Marko - Elektro;Electrician;Parenicová 73;058 05;Poprad;SK;customer00381@example.com;KE;30.12.2023
+C00382;Ariel Plekanec - Elektro;Electrician;Zelinárska 6;036 04;Martin;SK;customer00382@example.com;ZA;31.07.2024
+C00383;Elektro Prúd Trenčín;Retail shop;Krasinského 1;911 01;Trenčín;SK;customer00383@example.com;ZA;30.11.2023
+C00384;Elektro Kontakt Bratislava;Retail shop;Pekná cesta 589;821 01;Bratislava;SK;customer00384@example.com;BA;30.01.2026
+C00385;Elektro Prúd Poprad;Retail shop;Guothova 575;058 05;Poprad;SK;customer00385@example.com;KE;29.06.2024
+C00386;Elektro Svetlo Brno;Retail shop;Nám. Barikád 15;602 08;Brno;CZ;customer00386@example.com;BRN;12.01.2024
+C00387;Stanislav Kysela - Elektro;Electrician;Koniarkova 90;821 05;Bratislava;SK;customer00387@example.com;BA;26.01.2025
+C00388;Richard Liška - Elektro;Electrician;Klecanská 32;602 05;Brno;CZ;customer00388@example.com;BRN;20.05.2025
+C00389;Techservis s.r.o.;Construction;Klatovská 182;080 04;Prešov;SK;customer00389@example.com;KE;04.07.2026
+C00390;Elektroinvest s.r.o.;Construction;F. Kostku 31;831 05;Bratislava;SK;customer00390@example.com;BA;30.06.2023
+C00391;Silvester Štefánek - Elektro;Electrician;Tranovského 707;831 04;Bratislava;SK;customer00391@example.com;BA;30.06.2025
+C00392;Belo Kazik - Elektro;Electrician;Bullova 70;911 04;Trenčín;SK;customer00392@example.com;ZA;10.04.2024
+C00393;Elektro Zásuvka Košice;Retail shop;Žiacka 34;040 08;Košice;SK;customer00393@example.com;KE;06.01.2026
+C00394;Ludolf Hošták - Elektro;Electrician;Ružová dolina 24;911 08;Trenčín;SK;customer00394@example.com;ZA;08.12.2024
+C00395;Inštaltrade s.r.o.;Construction;Odborárske námestie 3;841 04;Bratislava;SK;customer00395@example.com;BA;28.01.2025
+C00396;Hugo Paška - Elektro;Electrician;Na varte 83;949 01;Nitra;SK;customer00396@example.com;BA;19.06.2023
+C00397;Frederik Porubjak - Elektro;Electrician;Ráztočná 541;974 05;Banská Bystrica;SK;customer00397@example.com;ZA;09.05.2025
+C00398;Leopold Vajcík - Elektro;Electrician;Uhorková 26;841 05;Bratislava;SK;customer00398@example.com;BA;11.07.2023
+C00399;Elektro Kontakt Žilina;Retail shop;Donská 667;010 01;Žilina;SK;customer00399@example.com;ZA;21.04.2025
+C00400;Vratko Halák - Elektro;Electrician;Morušova 31;080 08;Prešov;SK;customer00400@example.com;KE;22.10.2024

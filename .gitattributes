@@ -4,3 +4,6 @@
 # Windows scripts need Windows line endings.
 *.ps1 text eol=crlf
 *.bat text eol=crlf
+
+# Sample ERP exports must stay byte-for-byte as generated (CRLF, cp1250...).
+sample_data/** -text

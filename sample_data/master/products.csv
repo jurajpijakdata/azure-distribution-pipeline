@@ -1,0 +1,206 @@
+﻿sku;product_name;category;unit;is_consumable;cost_eur;list_price_eur
+CAB-CYKYJ-3x1.5;Kábel CYKY-J 3x1,5;Cables;m;0;0,60;0,84
+CAB-CYKYJ-3x2.5;Kábel CYKY-J 3x2,5;Cables;m;0;0,98;1,48
+CAB-CYKYJ-5x1.5;Kábel CYKY-J 5x1,5;Cables;m;0;1,01;1,33
+CAB-CYKYJ-5x2.5;Kábel CYKY-J 5x2,5;Cables;m;0;1,64;2,32
+CAB-CYKYJ-5x4;Kábel CYKY-J 5x4;Cables;m;0;2,93;4,14
+CAB-CYKYJ-5x6;Kábel CYKY-J 5x6;Cables;m;0;4,19;6,20
+CAB-CYKYJ-5x10;Kábel CYKY-J 5x10;Cables;m;0;7,07;10,08
+CAB-CYKYO-2x1.5;Kábel CYKY-O 2x1,5;Cables;m;0;0,44;0,63
+CAB-CYKYO-3x1.5;Kábel CYKY-O 3x1,5;Cables;m;0;0,58;0,87
+CAB-CGSG-3x1.5;Kábel gumový CGSG 3x1,5;Cables;m;0;0,85;1,27
+CAB-CGSG-3x2.5;Kábel gumový CGSG 3x2,5;Cables;m;0;1,32;1,92
+CAB-CYA-1.5-BU;Vodič CYA 1,5 modrý;Cables;m;0;0,17;0,23
+CAB-CYA-1.5-BK;Vodič CYA 1,5 čierny;Cables;m;0;0,19;0,29
+CAB-CYA-1.5-BN;Vodič CYA 1,5 hnedý;Cables;m;0;0,19;0,29
+CAB-CYA-1.5-GNYE;Vodič CYA 1,5 zeleno-žltý;Cables;m;0;0,18;0,23
+CAB-CYA-2.5-BU;Vodič CYA 2,5 modrý;Cables;m;0;0,27;0,38
+CAB-CYA-2.5-BK;Vodič CYA 2,5 čierny;Cables;m;0;0,26;0,36
+CAB-CYA-2.5-BN;Vodič CYA 2,5 hnedý;Cables;m;0;0,28;0,41
+CAB-CYA-2.5-GNYE;Vodič CYA 2,5 zeleno-žltý;Cables;m;0;0,27;0,34
+CAB-CYA-4-BU;Vodič CYA 4 modrý;Cables;m;0;0,43;0,58
+CAB-CYA-4-BK;Vodič CYA 4 čierny;Cables;m;0;0,42;0,58
+CAB-CYA-4-BN;Vodič CYA 4 hnedý;Cables;m;0;0,42;0,59
+CAB-CYA-4-GNYE;Vodič CYA 4 zeleno-žltý;Cables;m;0;0,40;0,56
+CAB-CYA-6-BU;Vodič CYA 6 modrý;Cables;m;0;0,73;1,04
+CAB-CYA-6-BK;Vodič CYA 6 čierny;Cables;m;0;0,71;1,08
+CAB-CYA-6-BN;Vodič CYA 6 hnedý;Cables;m;0;0,69;0,95
+CAB-CYA-6-GNYE;Vodič CYA 6 zeleno-žltý;Cables;m;0;0,74;1,03
+CAB-CYA-10-BU;Vodič CYA 10 modrý;Cables;m;0;1,15;1,45
+CAB-CYA-10-BK;Vodič CYA 10 čierny;Cables;m;0;1,12;1,44
+CAB-CYA-10-BN;Vodič CYA 10 hnedý;Cables;m;0;1,10;1,61
+CAB-CYA-10-GNYE;Vodič CYA 10 zeleno-žltý;Cables;m;0;1,19;1,52
+CAB-UTP-C6;Dátový kábel UTP Cat6;Cables;m;0;0,38;0,53
+CON-FLEX-16;Elektroinštalačná rúrka ohybná 16 mm;Installation material;m;0;0,22;0,29
+CON-FLEX-20;Elektroinštalačná rúrka ohybná 20 mm;Installation material;m;0;0,30;0,43
+CON-FLEX-25;Elektroinštalačná rúrka ohybná 25 mm;Installation material;m;0;0,41;0,57
+CON-FLEX-32;Elektroinštalačná rúrka ohybná 32 mm;Installation material;m;0;0,65;1,01
+BRK-B6-1P;Istič B6 1-pól;Circuit breakers;pcs;0;3,44;4,88
+BRK-B6-3P;Istič B6 3-pól;Circuit breakers;pcs;0;13,85;18,59
+BRK-B10-1P;Istič B10 1-pól;Circuit breakers;pcs;0;3,60;5,04
+BRK-B10-3P;Istič B10 3-pól;Circuit breakers;pcs;0;13,67;20,71
+BRK-B13-1P;Istič B13 1-pól;Circuit breakers;pcs;0;3,54;4,74
+BRK-B13-3P;Istič B13 3-pól;Circuit breakers;pcs;0;13,44;16,93
+BRK-B16-1P;Istič B16 1-pól;Circuit breakers;pcs;0;3,68;5,26
+BRK-B16-3P;Istič B16 3-pól;Circuit breakers;pcs;0;13,76;19,36
+BRK-B20-1P;Istič B20 1-pól;Circuit breakers;pcs;0;3,70;5,65
+BRK-B20-3P;Istič B20 3-pól;Circuit breakers;pcs;0;13,57;18,94
+BRK-B25-1P;Istič B25 1-pól;Circuit breakers;pcs;0;3,80;5,69
+BRK-B25-3P;Istič B25 3-pól;Circuit breakers;pcs;0;14,43;20,45
+BRK-B32-1P;Istič B32 1-pól;Circuit breakers;pcs;0;4,10;6,15
+BRK-B32-3P;Istič B32 3-pól;Circuit breakers;pcs;0;13,88;21,17
+BRK-B40-1P;Istič B40 1-pól;Circuit breakers;pcs;0;3,94;5,74
+BRK-B40-3P;Istič B40 3-pól;Circuit breakers;pcs;0;14,71;20,66
+BRK-C6-1P;Istič C6 1-pól;Circuit breakers;pcs;0;3,40;5,23
+BRK-C6-3P;Istič C6 3-pól;Circuit breakers;pcs;0;14,26;21,43
+BRK-C10-1P;Istič C10 1-pól;Circuit breakers;pcs;0;3,49;4,43
+BRK-C10-3P;Istič C10 3-pól;Circuit breakers;pcs;0;13,38;18,73
+BRK-C13-1P;Istič C13 1-pól;Circuit breakers;pcs;0;3,42;5,04
+BRK-C13-3P;Istič C13 3-pól;Circuit breakers;pcs;0;13,64;18,89
+BRK-C16-1P;Istič C16 1-pól;Circuit breakers;pcs;0;3,44;4,30
+BRK-C16-3P;Istič C16 3-pól;Circuit breakers;pcs;0;13,93;21,31
+BRK-C20-1P;Istič C20 1-pól;Circuit breakers;pcs;0;3,55;5,28
+BRK-C20-3P;Istič C20 3-pól;Circuit breakers;pcs;0;13,55;19,46
+BRK-C25-1P;Istič C25 1-pól;Circuit breakers;pcs;0;3,90;5,99
+BRK-C25-3P;Istič C25 3-pól;Circuit breakers;pcs;0;14,24;20,51
+BRK-C32-1P;Istič C32 1-pól;Circuit breakers;pcs;0;3,80;5,11
+BRK-C32-3P;Istič C32 3-pól;Circuit breakers;pcs;0;14,26;21,12
+BRK-C40-1P;Istič C40 1-pól;Circuit breakers;pcs;0;4,28;5,98
+BRK-C40-3P;Istič C40 3-pól;Circuit breakers;pcs;0;14,62;18,87
+RCD-25-30-2P;Prúdový chránič 25A/30mA 2-pól;Circuit breakers;pcs;0;19,69;28,09
+RCD-25-30-4P;Prúdový chránič 25A/30mA 4-pól;Circuit breakers;pcs;0;29,54;44,69
+RCD-40-30-2P;Prúdový chránič 40A/30mA 2-pól;Circuit breakers;pcs;0;21,01;26,79
+RCD-40-30-4P;Prúdový chránič 40A/30mA 4-pól;Circuit breakers;pcs;0;29,49;45,13
+RCD-63-30-2P;Prúdový chránič 63A/30mA 2-pól;Circuit breakers;pcs;0;22,78;34,73
+RCD-63-30-4P;Prúdový chránič 63A/30mA 4-pól;Circuit breakers;pcs;0;29,57;40,62
+RCBO-B10-30;Istič s chráničom B10/30mA;Circuit breakers;pcs;0;25,25;35,50
+RCBO-B16-30;Istič s chráničom B16/30mA;Circuit breakers;pcs;0;23,76;29,80
+RCBO-C16-30;Istič s chráničom C16/30mA;Circuit breakers;pcs;0;23,54;35,69
+WD-CLS-SW1-WH;Vypínač č.1 Classic biela;Switches & sockets;pcs;0;2,01;2,72
+WD-CLS-SW1-IV;Vypínač č.1 Classic slonová kosť;Switches & sockets;pcs;0;2,07;3,07
+WD-CLS-SW1-AN;Vypínač č.1 Classic antracit;Switches & sockets;pcs;0;2,00;2,81
+WD-CLS-SW5-WH;Prepínač sériový č.5 Classic biela;Switches & sockets;pcs;0;2,75;3,69
+WD-CLS-SW5-IV;Prepínač sériový č.5 Classic slonová kosť;Switches & sockets;pcs;0;2,75;3,54
+WD-CLS-SW5-AN;Prepínač sériový č.5 Classic antracit;Switches & sockets;pcs;0;2,93;4,16
+WD-CLS-SW6-WH;Prepínač striedavý č.6 Classic biela;Switches & sockets;pcs;0;2,68;3,47
+WD-CLS-SW6-IV;Prepínač striedavý č.6 Classic slonová kosť;Switches & sockets;pcs;0;2,61;3,60
+WD-CLS-SW6-AN;Prepínač striedavý č.6 Classic antracit;Switches & sockets;pcs;0;2,56;3,66
+WD-CLS-SW7-WH;Prepínač krížový č.7 Classic biela;Switches & sockets;pcs;0;3,97;5,05
+WD-CLS-SW7-IV;Prepínač krížový č.7 Classic slonová kosť;Switches & sockets;pcs;0;3,86;5,05
+WD-CLS-SW7-AN;Prepínač krížový č.7 Classic antracit;Switches & sockets;pcs;0;4,06;5,13
+WD-CLS-SOC1-WH;Zásuvka jednoduchá Classic biela;Switches & sockets;pcs;0;2,21;3,32
+WD-CLS-SOC1-IV;Zásuvka jednoduchá Classic slonová kosť;Switches & sockets;pcs;0;2,19;3,23
+WD-CLS-SOC1-AN;Zásuvka jednoduchá Classic antracit;Switches & sockets;pcs;0;2,13;3,12
+WD-CLS-SOC2-WH;Zásuvka dvojitá Classic biela;Switches & sockets;pcs;0;4,05;5,22
+WD-CLS-SOC2-IV;Zásuvka dvojitá Classic slonová kosť;Switches & sockets;pcs;0;3,91;5,81
+WD-CLS-SOC2-AN;Zásuvka dvojitá Classic antracit;Switches & sockets;pcs;0;3,91;6,01
+WD-CLS-FR1-WH;Rámik 1-násobný Classic biela;Switches & sockets;pcs;0;0,87;1,31
+WD-CLS-FR1-IV;Rámik 1-násobný Classic slonová kosť;Switches & sockets;pcs;0;0,89;1,23
+WD-CLS-FR1-AN;Rámik 1-násobný Classic antracit;Switches & sockets;pcs;0;0,89;1,13
+WD-CLS-FR2-WH;Rámik 2-násobný Classic biela;Switches & sockets;pcs;0;1,57;2,12
+WD-CLS-FR2-IV;Rámik 2-násobný Classic slonová kosť;Switches & sockets;pcs;0;1,56;2,18
+WD-CLS-FR2-AN;Rámik 2-násobný Classic antracit;Switches & sockets;pcs;0;1,64;2,25
+WD-CLS-FR3-WH;Rámik 3-násobný Classic biela;Switches & sockets;pcs;0;2,29;3,09
+WD-CLS-FR3-IV;Rámik 3-násobný Classic slonová kosť;Switches & sockets;pcs;0;2,30;2,96
+WD-CLS-FR3-AN;Rámik 3-násobný Classic antracit;Switches & sockets;pcs;0;2,37;3,53
+WD-NOV-SW1-WH;Vypínač č.1 Nova biela;Switches & sockets;pcs;0;2,92;4,39
+WD-NOV-SW1-IV;Vypínač č.1 Nova slonová kosť;Switches & sockets;pcs;0;2,76;4,24
+WD-NOV-SW1-AN;Vypínač č.1 Nova antracit;Switches & sockets;pcs;0;2,94;4,24
+WD-NOV-SW5-WH;Prepínač sériový č.5 Nova biela;Switches & sockets;pcs;0;3,75;5,57
+WD-NOV-SW5-IV;Prepínač sériový č.5 Nova slonová kosť;Switches & sockets;pcs;0;3,91;5,67
+WD-NOV-SW5-AN;Prepínač sériový č.5 Nova antracit;Switches & sockets;pcs;0;3,95;5,35
+WD-NOV-SW6-WH;Prepínač striedavý č.6 Nova biela;Switches & sockets;pcs;0;3,39;4,81
+WD-NOV-SW6-IV;Prepínač striedavý č.6 Nova slonová kosť;Switches & sockets;pcs;0;3,54;5,00
+WD-NOV-SW6-AN;Prepínač striedavý č.6 Nova antracit;Switches & sockets;pcs;0;3,37;4,94
+WD-NOV-SW7-WH;Prepínač krížový č.7 Nova biela;Switches & sockets;pcs;0;5,29;7,51
+WD-NOV-SW7-IV;Prepínač krížový č.7 Nova slonová kosť;Switches & sockets;pcs;0;5,11;6,84
+WD-NOV-SW7-AN;Prepínač krížový č.7 Nova antracit;Switches & sockets;pcs;0;5,14;7,28
+WD-NOV-SOC1-WH;Zásuvka jednoduchá Nova biela;Switches & sockets;pcs;0;2,85;3,79
+WD-NOV-SOC1-IV;Zásuvka jednoduchá Nova slonová kosť;Switches & sockets;pcs;0;3,11;4,05
+WD-NOV-SOC1-AN;Zásuvka jednoduchá Nova antracit;Switches & sockets;pcs;0;3,02;4,46
+WD-NOV-SOC2-WH;Zásuvka dvojitá Nova biela;Switches & sockets;pcs;0;5,38;7,02
+WD-NOV-SOC2-IV;Zásuvka dvojitá Nova slonová kosť;Switches & sockets;pcs;0;5,33;7,47
+WD-NOV-SOC2-AN;Zásuvka dvojitá Nova antracit;Switches & sockets;pcs;0;5,15;7,73
+WD-NOV-FR1-WH;Rámik 1-násobný Nova biela;Switches & sockets;pcs;0;1,19;1,60
+WD-NOV-FR1-IV;Rámik 1-násobný Nova slonová kosť;Switches & sockets;pcs;0;1,19;1,51
+WD-NOV-FR1-AN;Rámik 1-násobný Nova antracit;Switches & sockets;pcs;0;1,20;1,82
+WD-NOV-FR2-WH;Rámik 2-násobný Nova biela;Switches & sockets;pcs;0;2,22;3,05
+WD-NOV-FR2-IV;Rámik 2-násobný Nova slonová kosť;Switches & sockets;pcs;0;2,06;2,63
+WD-NOV-FR2-AN;Rámik 2-násobný Nova antracit;Switches & sockets;pcs;0;2,06;2,65
+WD-NOV-FR3-WH;Rámik 3-násobný Nova biela;Switches & sockets;pcs;0;3,16;4,50
+WD-NOV-FR3-IV;Rámik 3-násobný Nova slonová kosť;Switches & sockets;pcs;0;3,24;4,39
+WD-NOV-FR3-AN;Rámik 3-násobný Nova antracit;Switches & sockets;pcs;0;3,19;4,57
+WD-ELG-SW1-WH;Vypínač č.1 Elegant biela;Switches & sockets;pcs;0;4,05;5,81
+WD-ELG-SW1-IV;Vypínač č.1 Elegant slonová kosť;Switches & sockets;pcs;0;4,16;5,59
+WD-ELG-SW1-AN;Vypínač č.1 Elegant antracit;Switches & sockets;pcs;0;3,88;5,39
+WD-ELG-SW5-WH;Prepínač sériový č.5 Elegant biela;Switches & sockets;pcs;0;5,57;8,43
+WD-ELG-SW5-IV;Prepínač sériový č.5 Elegant slonová kosť;Switches & sockets;pcs;0;5,42;8,18
+WD-ELG-SW5-AN;Prepínač sériový č.5 Elegant antracit;Switches & sockets;pcs;0;5,42;8,28
+WD-ELG-SW6-WH;Prepínač striedavý č.6 Elegant biela;Switches & sockets;pcs;0;4,89;7,50
+WD-ELG-SW6-IV;Prepínač striedavý č.6 Elegant slonová kosť;Switches & sockets;pcs;0;4,87;7,16
+WD-ELG-SW6-AN;Prepínač striedavý č.6 Elegant antracit;Switches & sockets;pcs;0;4,91;6,17
+WD-ELG-SW7-WH;Prepínač krížový č.7 Elegant biela;Switches & sockets;pcs;0;7,55;10,09
+WD-ELG-SW7-IV;Prepínač krížový č.7 Elegant slonová kosť;Switches & sockets;pcs;0;7,75;11,55
+WD-ELG-SW7-AN;Prepínač krížový č.7 Elegant antracit;Switches & sockets;pcs;0;7,13;10,56
+WD-ELG-SOC1-WH;Zásuvka jednoduchá Elegant biela;Switches & sockets;pcs;0;4,10;6,24
+WD-ELG-SOC1-IV;Zásuvka jednoduchá Elegant slonová kosť;Switches & sockets;pcs;0;4,20;5,68
+WD-ELG-SOC1-AN;Zásuvka jednoduchá Elegant antracit;Switches & sockets;pcs;0;4,21;6,17
+WD-ELG-SOC2-WH;Zásuvka dvojitá Elegant biela;Switches & sockets;pcs;0;7,12;10,22
+WD-ELG-SOC2-IV;Zásuvka dvojitá Elegant slonová kosť;Switches & sockets;pcs;0;7,13;9,18
+WD-ELG-SOC2-AN;Zásuvka dvojitá Elegant antracit;Switches & sockets;pcs;0;7,30;10,54
+WD-ELG-FR1-WH;Rámik 1-násobný Elegant biela;Switches & sockets;pcs;0;1,74;2,19
+WD-ELG-FR1-IV;Rámik 1-násobný Elegant slonová kosť;Switches & sockets;pcs;0;1,72;2,33
+WD-ELG-FR1-AN;Rámik 1-násobný Elegant antracit;Switches & sockets;pcs;0;1,69;2,23
+WD-ELG-FR2-WH;Rámik 2-násobný Elegant biela;Switches & sockets;pcs;0;3,02;3,97
+WD-ELG-FR2-IV;Rámik 2-násobný Elegant slonová kosť;Switches & sockets;pcs;0;2,93;4,14
+WD-ELG-FR2-AN;Rámik 2-násobný Elegant antracit;Switches & sockets;pcs;0;3,09;4,73
+WD-ELG-FR3-WH;Rámik 3-násobný Elegant biela;Switches & sockets;pcs;0;4,45;6,09
+WD-ELG-FR3-IV;Rámik 3-násobný Elegant slonová kosť;Switches & sockets;pcs;0;4,26;5,51
+WD-ELG-FR3-AN;Rámik 3-násobný Elegant antracit;Switches & sockets;pcs;0;4,16;5,55
+BOX-KU68-1;Krabica prístrojová KU 68;Installation material;pcs;1;0,18;0,24
+BOX-KU68-2;Krabica prístrojová KU 68 dvojitá;Installation material;pcs;1;0,44;0,67
+BOX-KO8;Krabica odbočná KO 8;Installation material;pcs;1;0,56;0,84
+BOX-KU68-HW;Krabica do dutých stien KU 68;Installation material;pcs;1;0,32;0,46
+TRM-2X25;Svorka bezskrutková 2x2,5;Installation material;pcs;1;0,09;0,13
+TRM-3X25;Svorka bezskrutková 3x2,5;Installation material;pcs;1;0,11;0,16
+TRM-5X25;Svorka bezskrutková 5x2,5;Installation material;pcs;1;0,16;0,22
+CLP-CAB-5-8;Príchytka káblová 5-8 mm;Installation material;pcs;1;0,03;0,04
+CLP-CAB-9-12;Príchytka káblová 9-12 mm;Installation material;pcs;1;0,04;0,06
+DWL-8;Hmoždinka 8 mm;Installation material;pcs;1;0,02;0,03
+TAP-PVC-BK;Izolačná páska PVC čierna;Installation material;pcs;1;0,41;0,63
+LED-E27-6W;LED žiarovka E27 6W;Lighting;pcs;0;1,44;1,97
+LED-E27-9W;LED žiarovka E27 9W;Lighting;pcs;0;1,70;2,61
+LED-E27-10W;LED žiarovka E27 10W;Lighting;pcs;0;1,65;2,47
+LED-E27-13W;LED žiarovka E27 13W;Lighting;pcs;0;1,91;2,50
+LED-E14-5W;LED žiarovka E14 5W;Lighting;pcs;0;1,28;1,84
+LED-E14-7W;LED žiarovka E14 7W;Lighting;pcs;0;1,47;2,05
+LED-GU10-5W;LED žiarovka GU10 5W;Lighting;pcs;0;1,34;1,91
+LED-GU10-7W;LED žiarovka GU10 7W;Lighting;pcs;0;1,41;2,03
+LED-PNL-30x30-24W;LED panel 30x30 24W;Lighting;pcs;0;13,52;20,53
+LED-PNL-60x60-36W;LED panel 60x60 36W;Lighting;pcs;0;17,77;26,55
+LED-PNL-60x60-40W;LED panel 60x60 40W;Lighting;pcs;0;18,60;27,17
+LED-FLD-20W;LED reflektor 20W IP65;Lighting;pcs;0;8,03;11,58
+LED-FLD-30W;LED reflektor 30W IP65;Lighting;pcs;0;8,82;12,01
+LED-FLD-50W;LED reflektor 50W IP65;Lighting;pcs;0;12,28;15,86
+LED-FLD-100W;LED reflektor 100W IP65;Lighting;pcs;0;19,46;30,16
+LED-STRIP-5M;LED pásik 5 m teplá biela;Lighting;pcs;0;6,19;8,14
+DB-12-FL;Rozvodnica 12 modulov pod omietku;Distribution boards;pcs;0;15,73;22,41
+DB-12-SF;Rozvodnica 12 modulov na omietku;Distribution boards;pcs;0;13,70;21,05
+DB-24-FL;Rozvodnica 24 modulov pod omietku;Distribution boards;pcs;0;22,13;34,06
+DB-24-SF;Rozvodnica 24 modulov na omietku;Distribution boards;pcs;0;20,23;29,20
+DB-36-FL;Rozvodnica 36 modulov pod omietku;Distribution boards;pcs;0;28,59;40,10
+DB-36-SF;Rozvodnica 36 modulov na omietku;Distribution boards;pcs;0;25,69;37,76
+DB-48-FL;Rozvodnica 48 modulov pod omietku;Distribution boards;pcs;0;36,19;48,08
+DB-48-SF;Rozvodnica 48 modulov na omietku;Distribution boards;pcs;0;31,87;45,50
+DB-72-FL;Rozvodnica 72 modulov pod omietku;Distribution boards;pcs;0;52,67;68,40
+DB-72-SF;Rozvodnica 72 modulov na omietku;Distribution boards;pcs;0;45,63;64,45
+TL-STRIP;Odizolovacie kliešte;Tools;pcs;0;9,46;14,59
+TL-CRIMP;Lisovacie kliešte na dutinky;Tools;pcs;0;16,28;24,00
+TL-PLIERS;Kombinované kliešte VDE;Tools;pcs;0;10,65;15,25
+TL-CUTTER;Štípacie kliešte VDE;Tools;pcs;0;10,38;14,29
+TL-SCRW-SET;Sada skrutkovačov VDE 6 ks;Tools;pcs;0;21,66;32,94
+TL-TESTER;Skúšačka napätia dvojpólová;Tools;pcs;0;19,39;30,04
+TL-MULTI;Multimeter digitálny;Tools;pcs;0;23,21;32,61
+TL-KNIFE;Nôž na odizolovanie káblov;Tools;pcs;0;11,91;16,81
+TL-LEVEL;Vodováha 60 cm;Tools;pcs;0;7,63;11,57
+TL-DRILL-68;Vykružovačka 68 mm;Tools;pcs;0;13,52;20,48

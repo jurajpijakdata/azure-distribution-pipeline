@@ -5,9 +5,12 @@ date format, language of column names and code values. This is where the
 "four different ERP setups" of the scenario come from. The data itself is
 clean here - planted problems are added in a separate step.
 """
+import io
 import logging
+import re
+import zipfile
 from dataclasses import dataclass, field, replace
-from datetime import date
+from datetime import date, datetime
 from decimal import Decimal
 from pathlib import Path
 
@@ -171,6 +174,28 @@ def _prepare(df: pd.DataFrame, table: str, style: ExportStyle) -> pd.DataFrame:
     return out
 
 
+FIXED_TIMESTAMP = (2026, 1, 1, 0, 0, 0)
+
+
+def _make_xlsx_reproducible(path: Path) -> None:
+    """Remove save-time timestamps so the same data gives byte-identical files.
+
+    An .xlsx is a zip archive; openpyxl stamps the save time into the zip
+    entries and into docProps/core.xml. Without this, every run changes the
+    committed sample files even when the data is the same.
+    """
+    out = io.BytesIO()
+    with zipfile.ZipFile(path) as zin, zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zout:
+        for item in zin.infolist():
+            data = zin.read(item.filename)
+            if item.filename == "docProps/core.xml":
+                data = re.sub(rb"(<dcterms:modified[^>]*>)[^<]*", rb"\g<1>2026-01-01T00:00:00Z", data)
+            info = zipfile.ZipInfo(item.filename, date_time=FIXED_TIMESTAMP)
+            info.compress_type = zipfile.ZIP_DEFLATED
+            zout.writestr(info, data)
+    path.write_bytes(out.getvalue())
+
+
 def write_table(df: pd.DataFrame, path: Path, style: ExportStyle) -> None:
     """Write a prepared table as CSV text or as an Excel report."""
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -186,7 +211,9 @@ def write_table(df: pd.DataFrame, path: Path, style: ExportStyle) -> None:
             ws.append([float(v) if isinstance(v, Decimal)
                        else None if not isinstance(v, (str, date)) and pd.isna(v)
                        else v for v in row])
+        wb.properties.created = wb.properties.modified = datetime(*FIXED_TIMESTAMP)
         wb.save(path)
+        _make_xlsx_reproducible(path)
     else:
         text = df.map(lambda v: format_value(v, style))
         text.to_csv(path, sep=style.sep, index=False, encoding=style.encoding, lineterminator="\r\n")

@@ -156,3 +156,26 @@ SUPPLIER_LEAD_DAYS: tuple[int, int] = (3, 7)  # reorder -> goods arrive
 SAFETY_DAYS: int = 7                          # extra days of demand kept as buffer
 ORDER_UP_TO_DAYS: int = 30                    # replenish up to 30 days of demand
 MIN_STOCK: dict[str, int] = {"m": 100, "pcs": 5}   # slow movers still stocked
+
+# --- Planted data problems ("mess") -------------------------------------------
+# Every planted problem is recorded in data/manifest/injected_issues.csv so the
+# pipeline can later be proven to catch all of them. Rates are shares of rows.
+MESS_RATES: dict[str, float] = {
+    "duplicate_row": 0.003,
+    "sku_typo": 0.003,
+    "unknown_sku": 0.001,
+    "missing_customer": 0.002,
+    "missing_price": 0.002,
+    "qty_as_text": 0.002,
+    "negative_sale_qty": 0.001,
+    "impossible_date": 0.0005,
+    "delivered_before_shipped": 0.002,
+    "carrier_variant": 0.01,
+    "negative_stock": 0.001,
+}
+# One warehouse exports one month twice (tests "run twice, no duplicates").
+REEXPORT: tuple[str, str] = ("BA", "2026-02")
+# One inventory week missing in one warehouse (tests completeness checks).
+MISSING_INVENTORY_WEEK: tuple[str, date] = ("KE", date(2026, 5, 15))
+# ERP update: from this month Žilina renames qty -> quantity and adds vat_rate.
+SCHEMA_CHANGE: tuple[str, str] = ("ZA", "2026-03")

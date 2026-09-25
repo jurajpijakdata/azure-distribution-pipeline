@@ -6,13 +6,15 @@ date format, language of column names and code values. This is where the
 clean here - planted problems are added in a separate step.
 """
 import logging
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
 import pandas as pd
 from openpyxl import Workbook
+
+import config
 
 logger = logging.getLogger(__name__)
 
@@ -30,6 +32,7 @@ class ExportStyle:
     columns: dict[str, dict[str, str]] = field(default_factory=dict)   # table -> {internal: exported}
     values: dict[str, dict[str, str]] = field(default_factory=dict)    # internal column -> {value: exported}
     title_rows: tuple[str, ...] = ()  # xlsx only: report title lines above the header
+    extra_columns: dict[str, dict[str, str]] = field(default_factory=dict)  # table -> {column: constant}
 
 
 ORDER_COLS = ["order_no", "line_no", "order_type", "original_order_no", "order_date",
@@ -114,13 +117,35 @@ STYLES: dict[str, ExportStyle] = {
     ),
 }
 
+
+
+def style_for(warehouse: str, month: str) -> ExportStyle:
+    """Export style of a warehouse in a given month (YYYY-MM).
+
+    Models an ERP update: from config.SCHEMA_CHANGE the warehouse renames
+    one column and appends a new one.
+    """
+    style = STYLES[warehouse]
+    changed_wh, from_month = config.SCHEMA_CHANGE
+    if warehouse != changed_wh or month < from_month:
+        return style
+    columns = dict(style.columns)
+    columns["orders"] = {**columns["orders"], "quantity": "quantity"}
+    return replace(style, columns=columns, extra_columns={"orders": {"vat_rate": "23"}})
+
+
+def file_name(warehouse: str, table: str, month: str) -> str:
+    """Relative path of one export file, e.g. BA/orders_2025-10.csv."""
+    return f"{warehouse}/{table}_{month}.{STYLES[warehouse].file_format}"
+
+
 # Master data comes from the central (HQ) ERP in Bratislava style.
 MASTER_STYLE = ExportStyle(file_format="csv", encoding="utf-8-sig")
 
 
 def format_value(value: object, style: ExportStyle) -> str:
     """Turn one cell into text exactly as the ERP would write it."""
-    if value is None or (isinstance(value, float) and pd.isna(value)):
+    if value is None or (not isinstance(value, (str, Decimal, date)) and pd.isna(value)):
         return ""
     if isinstance(value, bool):
         return "1" if value else "0"
@@ -140,7 +165,10 @@ def _prepare(df: pd.DataFrame, table: str, style: ExportStyle) -> pd.DataFrame:
     for col, codes in style.values.items():
         if col in out.columns:
             out[col] = out[col].map(lambda v, c=codes: c.get(v, v))
-    return out.rename(columns=mapping)
+    out = out.rename(columns=mapping)
+    for col, constant in style.extra_columns.get(table, {}).items():
+        out[col] = constant
+    return out
 
 
 def write_table(df: pd.DataFrame, path: Path, style: ExportStyle) -> None:
@@ -155,7 +183,9 @@ def write_table(df: pd.DataFrame, path: Path, style: ExportStyle) -> None:
         ws.append(list(df.columns))
         for row in df.itertuples(index=False):
             # Excel stores numbers as numbers and dates as dates.
-            ws.append([float(v) if isinstance(v, Decimal) else v for v in row])
+            ws.append([float(v) if isinstance(v, Decimal)
+                       else None if not isinstance(v, (str, date)) and pd.isna(v)
+                       else v for v in row])
         wb.save(path)
     else:
         text = df.map(lambda v: format_value(v, style))
@@ -163,14 +193,16 @@ def write_table(df: pd.DataFrame, path: Path, style: ExportStyle) -> None:
     logger.debug("Wrote %s (%d rows)", path, len(df))
 
 
-def export_monthly(df: pd.DataFrame, table: str, date_col: str, out_dir: Path) -> int:
-    """Write one file per warehouse per month. Returns the number of files."""
+def export_monthly(df: pd.DataFrame, table: str, out_dir: Path) -> int:
+    """Write one file per warehouse per month. Returns the number of files.
+
+    Uses the internal `_month` column, because the visible date column may
+    contain planted invalid dates.
+    """
     n_files = 0
-    months = pd.to_datetime(df[date_col]).dt.strftime("%Y-%m")
-    for (wh, month), part in df.groupby([df["warehouse_code"], months]):
-        style = STYLES[wh]
-        path = out_dir / wh / f"{table}_{month}.{style.file_format}"
-        write_table(_prepare(part, table, style), path, style)
+    for (wh, month), part in df.groupby(["warehouse_code", "_month"]):
+        style = style_for(wh, month)
+        write_table(_prepare(part, table, style), out_dir / file_name(wh, table, month), style)
         n_files += 1
     return n_files
 

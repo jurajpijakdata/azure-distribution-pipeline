@@ -1,0 +1,25 @@
+# Secrets - passwords and keys never go into git
+.env
+*.env
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Generated data - only small files in sample_data/ are committed
+data/
+
+# dbt
+target/
+dbt_packages/
+logs/
+
+# Editor / system files
+.vscode/
+.ipynb_checkpoints/
+Thumbs.db
+.DS_Store

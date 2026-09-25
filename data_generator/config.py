@@ -86,3 +86,44 @@ MONTH_SEASONALITY: dict[int, float] = {
 # --- Money -------------------------------------------------------------------
 # Sale price = cost price * random markup in this range.
 MARKUP_RANGE: tuple[float, float] = (1.25, 1.55)
+
+# CZ branch sells from its own CZK price list, set once at this rate.
+# (Reporting later converts CZK -> EUR with real daily ECB rates.)
+CZK_PRICE_LIST_RATE: float = 25.0
+
+# Customer discount off list price, per customer type (min, max).
+DISCOUNT_RANGE: dict[str, tuple[float, float]] = {
+    "Electrician": (0.03, 0.08),
+    "Construction": (0.08, 0.15),
+    "Retail shop": (0.05, 0.10),
+}
+
+# How much each customer type prefers each product category (relative weight).
+CATEGORY_PREFERENCE: dict[str, dict[str, float]] = {
+    "Electrician": {"Cables": 3, "Circuit breakers": 3, "Switches & sockets": 3,
+                    "Installation material": 3, "Lighting": 2,
+                    "Distribution boards": 1, "Tools": 1},
+    "Construction": {"Cables": 5, "Circuit breakers": 3, "Switches & sockets": 2,
+                     "Installation material": 3, "Lighting": 2,
+                     "Distribution boards": 2, "Tools": 0.5},
+    "Retail shop": {"Cables": 1, "Circuit breakers": 1, "Switches & sockets": 5,
+                    "Installation material": 3, "Lighting": 5,
+                    "Distribution boards": 0.3, "Tools": 2},
+}
+
+# Upper limit on pieces per line for categories nobody buys in bulk.
+QTY_CAP_BY_CATEGORY: dict[str, int] = {"Tools": 5, "Distribution boards": 30}
+
+# Share of order lines that are later returned (credit note, negative quantity).
+RETURN_RATE: float = 0.015
+RETURN_DELAY_DAYS: tuple[int, int] = (3, 30)
+
+# Simplified list of main public holidays in the data range (no deliveries).
+HOLIDAYS: dict[str, set[date]] = {
+    "SK": {date(2025, 11, 1), date(2025, 12, 24), date(2025, 12, 25), date(2025, 12, 26),
+           date(2026, 1, 1), date(2026, 1, 6), date(2026, 4, 3), date(2026, 4, 6),
+           date(2026, 5, 1), date(2026, 7, 5), date(2026, 8, 29)},
+    "CZ": {date(2025, 10, 28), date(2025, 11, 17), date(2025, 12, 24), date(2025, 12, 25),
+           date(2025, 12, 26), date(2026, 1, 1), date(2026, 4, 3), date(2026, 4, 6),
+           date(2026, 5, 1), date(2026, 5, 8), date(2026, 7, 6)},
+}

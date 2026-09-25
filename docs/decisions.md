@@ -32,3 +32,11 @@ instead of turning refunds into charges.
 carriers are slower in winter (Dec–Feb). Carriers are fictional.
 **Why:** This is a planted, known pattern. The dashboard is validated by
 detecting it. It must never be presented as a finding about real carriers.
+
+## 006 — Planted data problems with a manifest
+**Date:** 2026-09-25
+**Decision:** The generator plants 14 known problem types (duplicates, typos,
+missing values, invalid dates, a re-exported month, a schema change...) into
+under 1 % of rows, and records every one in data/manifest/injected_issues.csv.
+**Why:** The manifest is the answer key. Pipeline quality is proven by
+detecting every planted problem, not by claiming the data is "clean".

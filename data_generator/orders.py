@@ -6,25 +6,16 @@ negative quantities that point back to the original order.
 """
 import logging
 import random
-from datetime import date, timedelta
+from datetime import timedelta
 from decimal import Decimal
 
 import pandas as pd
 
 import config
+from calendar_utils import next_workday, workdays
 from products import to_money
 
 logger = logging.getLogger(__name__)
-
-
-def workdays(start: date, end: date, country: str) -> list[date]:
-    """Return all Monday-Friday dates in [start, end] that are not holidays."""
-    days, d = [], start
-    while d <= end:
-        if d.weekday() < 5 and d not in config.HOLIDAYS[country]:
-            days.append(d)
-        d += timedelta(days=1)
-    return days
 
 
 def _quantity(product: pd.Series, ctype: str, rng: random.Random) -> int:
@@ -113,13 +104,6 @@ def generate_orders(rng: random.Random, products: pd.DataFrame,
     return result
 
 
-def _next_workday(d: date, country: str) -> date:
-    """Move a date forward to the next Monday-Friday non-holiday."""
-    while d.weekday() >= 5 or d in config.HOLIDAYS[country]:
-        d += timedelta(days=1)
-    return d
-
-
 def _generate_returns(orders: pd.DataFrame, rng: random.Random) -> pd.DataFrame:
     """Create return documents (negative quantities) for a share of sale lines.
 
@@ -130,7 +114,7 @@ def _generate_returns(orders: pd.DataFrame, rng: random.Random) -> pd.DataFrame:
     for line in orders.to_dict("records"):
         if rng.random() >= config.RETURN_RATE:
             continue
-        ret_date = _next_workday(
+        ret_date = next_workday(
             line["order_date"] + timedelta(days=rng.randint(*config.RETURN_DELAY_DAYS)),
             country[line["warehouse_code"]])
         if ret_date > config.END_DATE:

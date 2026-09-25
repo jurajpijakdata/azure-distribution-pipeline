@@ -127,3 +127,32 @@ HOLIDAYS: dict[str, set[date]] = {
            date(2025, 12, 26), date(2026, 1, 1), date(2026, 4, 3), date(2026, 4, 6),
            date(2026, 5, 1), date(2026, 5, 8), date(2026, 7, 6)},
 }
+
+# --- Shipments ---------------------------------------------------------------
+# Fictional carriers only - never real company names.
+# INJECTED PATTERN (documented in docs/decisions.md): Courier Beta is late
+# more often and all carriers are slower in winter. This exists so the
+# pipeline and dashboard can be shown to detect it - it is not a finding.
+CARRIER_LATE_PROB: dict[str, float] = {
+    "Own fleet": 0.04,
+    "Courier Alpha": 0.06,
+    "Courier Beta": 0.15,
+}
+COURIER_SHARE: dict[str, float] = {"Courier Alpha": 0.6, "Courier Beta": 0.4}
+WINTER_MONTHS: set[int] = {12, 1, 2}
+WINTER_LATE_MULTIPLIER: float = 1.8
+LATE_EXTRA_DAYS: tuple[int, int] = (1, 4)
+PICKING_DAYS: tuple[int, int] = (0, 1)       # order -> ship, in workdays
+# Transit (ship -> delivered) and promise (order -> promised), in workdays.
+# Promise = max picking + max transit, so shipments are late only when a
+# delay event happens - which keeps the injected pattern controlled.
+TRANSIT_DAYS: dict[str, tuple[int, int]] = {
+    "Own fleet": (1, 1), "Courier Alpha": (1, 2), "Courier Beta": (1, 2),
+}
+PROMISE_DAYS: dict[str, int] = {"Own fleet": 2, "Courier Alpha": 3, "Courier Beta": 3}
+
+# --- Inventory ---------------------------------------------------------------
+SUPPLIER_LEAD_DAYS: tuple[int, int] = (3, 7)  # reorder -> goods arrive
+SAFETY_DAYS: int = 7                          # extra days of demand kept as buffer
+ORDER_UP_TO_DAYS: int = 30                    # replenish up to 30 days of demand
+MIN_STOCK: dict[str, int] = {"m": 100, "pcs": 5}   # slow movers still stocked

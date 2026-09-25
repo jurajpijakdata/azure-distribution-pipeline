@@ -25,3 +25,10 @@ instead of turning refunds into charges.
 **Date:** 2026-09-25
 - Street names are not matched to cities (Faker uses a national list).
 - Quantity ranges, discounts and category preferences are assumptions.
+
+## 005 — Injected shipment delay pattern
+**Date:** 2026-09-25
+**Decision:** Courier Beta is late more often than the other carriers, and all
+carriers are slower in winter (Dec–Feb). Carriers are fictional.
+**Why:** This is a planted, known pattern. The dashboard is validated by
+detecting it. It must never be presented as a finding about real carriers.

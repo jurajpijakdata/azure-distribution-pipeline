@@ -1,0 +1,16 @@
+[project]
+name = "azure-distribution-pipeline"
+version = "0.1.0"
+description = "Portfolio project: SK/CZ distribution data pipeline on Azure (synthetic data)"
+requires-python = ">=3.12,<3.13"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["data_generator"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]

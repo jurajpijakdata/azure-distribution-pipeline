@@ -80,11 +80,13 @@ def _schema_change_note(manifest: pd.DataFrame) -> pd.DataFrame:
     return pd.concat([manifest, pd.DataFrame([row])], ignore_index=True)
 
 
-def main() -> int:
-    logging.basicConfig(level=logging.INFO,
-                        format="%(asctime)s | %(levelname)s | %(name)s | %(message)s")
-    rng = random.Random(config.SEED)
+def build_tables(seed: int = config.SEED) -> tuple[dict, dict, pd.DataFrame]:
+    """Generate clean tables, then messy copies plus the manifest (no files written).
 
+    Returns:
+        (clean tables, messy tables, manifest). Used by main() and by the tests.
+    """
+    rng = random.Random(seed)
     products = generate_products(rng)
     customers = generate_customers(rng)
     orders = generate_orders(rng, products, customers)
@@ -92,14 +94,21 @@ def main() -> int:
     shipments = generate_shipments(rng, orders, customers)
     inventory = generate_inventory(rng, orders, products)
 
-    tables = {
+    clean = {
         "products": products,
         "customers": customers,
         "orders": _add_internal_dates(orders, "order_date"),
         "shipments": _add_internal_dates(shipments, "promised_date"),
         "inventory": _add_internal_dates(inventory, "snapshot_date"),
     }
-    messy, manifest = inject_mess(tables, rng)
+    messy, manifest = inject_mess(clean, rng)
+    return clean, messy, manifest
+
+
+def main() -> int:
+    logging.basicConfig(level=logging.INFO,
+                        format="%(asctime)s | %(levelname)s | %(name)s | %(message)s")
+    _, messy, manifest = build_tables()
 
     _reset_dir(config.OUTPUT_DIR)
     n_files = _export_all(messy, config.OUTPUT_DIR)

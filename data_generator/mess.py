@@ -73,6 +73,11 @@ def _impossible_date(d: date, style_warehouse: str) -> str:
 def mess_orders(orders: pd.DataFrame, rng: random.Random, m: Manifest) -> pd.DataFrame:
     """Plant row-level problems into order lines."""
     df = orders.copy()
+
+    def record(issue: str, i: int, column: str, new: object) -> None:
+        m.add(issue, "orders", df.at[i, "warehouse_code"], _order_key(df.loc[i]),
+              column, df.at[i, column] if column in df.columns else "", new)
+
     for col in ("quantity", "order_date", "sku", "customer_id", "unit_price"):
         df[col] = df[col].astype(object)
     r, used = config.MESS_RATES, set()
@@ -80,39 +85,38 @@ def mess_orders(orders: pd.DataFrame, rng: random.Random, m: Manifest) -> pd.Dat
 
     for i in _pick(df, r["sku_typo"], rng, used):
         new = _sku_typo(df.at[i, "sku"], rng)
-        m.add("sku_typo", "orders", df.at[i, "warehouse_code"], _order_key(df.loc[i]), "sku", df.at[i, "sku"], new)
+        record("sku_typo", i, "sku", new)
         df.at[i, "sku"] = new
     for i in _pick(df, r["unknown_sku"], rng, used):
         new = df.at[i, "sku"] + "-OLD"          # discontinued code still used by a clerk
-        m.add("unknown_sku", "orders", df.at[i, "warehouse_code"], _order_key(df.loc[i]), "sku", df.at[i, "sku"], new)
+        record("unknown_sku", i, "sku", new)
         df.at[i, "sku"] = new
     for i in _pick(df, r["missing_customer"], rng, used):
-        m.add("missing_customer", "orders", df.at[i, "warehouse_code"], _order_key(df.loc[i]),
-              "customer_id", df.at[i, "customer_id"], None)
+        record("missing_customer", i, "customer_id", None)
         df.at[i, "customer_id"] = None
     for i in _pick(df, r["missing_price"], rng, used):
-        m.add("missing_price", "orders", df.at[i, "warehouse_code"], _order_key(df.loc[i]),
-              "unit_price", df.at[i, "unit_price"], None)
+        record("missing_price", i, "unit_price", None)
         df.at[i, "unit_price"] = None
     for i in _pick(df, r["qty_as_text"], rng, used, mask=sale):
         unit = "ks" if df.at[i, "unit"] == "pcs" else "m"
         new = f"{df.at[i, 'quantity']} {unit}"
-        m.add("qty_as_text", "orders", df.at[i, "warehouse_code"], _order_key(df.loc[i]), "quantity", df.at[i, "quantity"], new)
+        record("qty_as_text", i, "quantity", new)
         df.at[i, "quantity"] = new
     for i in _pick(df, r["negative_sale_qty"], rng, used, mask=sale):
         new = -df.at[i, "quantity"]              # sign error: line_total stays positive
-        m.add("negative_sale_qty", "orders", df.at[i, "warehouse_code"], _order_key(df.loc[i]), "quantity", df.at[i, "quantity"], new)
+        record("negative_sale_qty", i, "quantity", new)
         df.at[i, "quantity"] = new
     dd_mm = df["warehouse_code"].isin(["BA", "BRN", "ZA"])
     for i in _pick(df, r["impossible_date"], rng, used, mask=dd_mm):
         new = _impossible_date(df.at[i, "order_date"], df.at[i, "warehouse_code"])
-        m.add("impossible_date", "orders", df.at[i, "warehouse_code"], _order_key(df.loc[i]), "order_date", df.at[i, "order_date"], new)
+        record("impossible_date", i, "order_date", new)
         df.at[i, "order_date"] = new
 
     # Exact duplicates of untouched rows, inserted right after the original.
     dup_idx = _pick(df, r["duplicate_row"], rng, used)
     for i in dup_idx:
-        m.add("duplicate_row", "orders", df.at[i, "warehouse_code"], _order_key(df.loc[i]), "*", "", "exact copy")
+        m.add("duplicate_row", "orders", df.at[i, "warehouse_code"], _order_key(df.loc[i]),
+              "*", "", "exact copy")
     df = pd.concat([df, df.loc[dup_idx]]).sort_index(kind="stable").reset_index(drop=True)
     return df
 
@@ -144,7 +148,8 @@ def mess_inventory(inventory: pd.DataFrame, rng: random.Random, m: Manifest) -> 
     for i in _pick(df, config.MESS_RATES["negative_stock"], rng, used):
         new = -rng.randint(1, 50)                # booking error in the ERP
         key = f"{df.at[i, 'snapshot_date']}/{df.at[i, 'sku']}"
-        m.add("negative_stock", "inventory", df.at[i, "warehouse_code"], key, "qty_on_hand", df.at[i, "qty_on_hand"], new)
+        m.add("negative_stock", "inventory", df.at[i, "warehouse_code"], key,
+              "qty_on_hand", df.at[i, "qty_on_hand"], new)
         df.at[i, "qty_on_hand"] = new
     wh, day = config.MISSING_INVENTORY_WEEK
     gone = (df["warehouse_code"] == wh) & (df["_date"] == day)

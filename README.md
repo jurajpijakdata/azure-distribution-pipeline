@@ -23,7 +23,21 @@ verified from this repository.*
 
 ## How to run
 Requirements: Python 3.12, Git.
-*Steps will be added as the project is built.*
+
+```powershell
+git clone <repo-url>
+cd azure-distribution-pipeline
+py -3.12 -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+python data_generator/generate.py   # creates data/raw/ + data/manifest/
+pytest                              # 39 tests
+ruff check .                        # code style
+```
+
+The generator is deterministic (fixed seed): every run produces
+byte-identical files.
 
 ## Project structure
 | Folder | Purpose |

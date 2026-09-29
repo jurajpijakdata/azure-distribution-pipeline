@@ -40,3 +40,12 @@ missing values, invalid dates, a re-exported month, a schema change...) into
 under 1 % of rows, and records every one in data/manifest/injected_issues.csv.
 **Why:** The manifest is the answer key. Pipeline quality is proven by
 detecting every planted problem, not by claiming the data is "clean".
+
+## 007 — Azure setup: EU region, budget alert first
+**Date:** 2026-09-29
+**Decision:** All resources live in one resource group
+(`rg-distribution-pipeline`, Germany West Central). A €1 monthly budget
+alert was created before any other resource.
+**Why:** EU region keeps data in the EU (GDPR). One resource group means the
+whole project can be removed in one step. The budget alert only warns — it
+does not stop services — so the limit is set very low.

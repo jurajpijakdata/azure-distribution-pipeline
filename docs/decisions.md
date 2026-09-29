@@ -57,3 +57,13 @@ Standard LRS storage account. Uploads use `az login` + the "Storage Blob Data
 Contributor" role on this one account (`--auth-mode login`), never access keys.
 **Why:** Originals stay available for reprocessing; no secrets in code;
 least privilege. Hierarchical namespace (ADLS Gen2) not needed at this size.
+
+## 009 — Azure SQL Database: free offer, Entra-only authentication
+**Date:** 2026-09-29
+**Decision:** Free-offer serverless database `sqldb-distribution` on server
+`sql-distpipeline-jp`, auto-pause when the free monthly limit is reached.
+Only Microsoft Entra authentication (no SQL logins). Firewall allows Azure
+services and the developer's current IP only.
+**Why:** Zero cost, no passwords to leak; Data Factory will connect with its
+managed identity. Trade-off: the database may pause until next month if the
+free compute is used up.

@@ -49,3 +49,11 @@ alert was created before any other resource.
 **Why:** EU region keeps data in the EU (GDPR). One resource group means the
 whole project can be removed in one step. The budget alert only warns — it
 does not stop services — so the limit is set very low.
+
+## 008 — Landing zone: private Blob container, keyless upload
+**Date:** 2026-09-29
+**Decision:** Raw files land unchanged in the private `raw` container of a
+Standard LRS storage account. Uploads use `az login` + the "Storage Blob Data
+Contributor" role on this one account (`--auth-mode login`), never access keys.
+**Why:** Originals stay available for reprocessing; no secrets in code;
+least privilege. Hierarchical namespace (ADLS Gen2) not needed at this size.

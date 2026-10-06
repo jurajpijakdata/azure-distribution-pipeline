@@ -60,7 +60,7 @@ least privilege. Hierarchical namespace (ADLS Gen2) not needed at this size.
 
 ## 009 — Azure SQL Database: free offer, Entra-only authentication
 **Date:** 2026-09-29
-**Decision:** Free-offer serverless database `sqldb-distribution` on server
+**Decision:** Free-offer serverless database `free-sql-db-8791495` on server
 `sql-distpipeline-jp`, auto-pause when the free monthly limit is reached.
 Only Microsoft Entra authentication (no SQL logins). Firewall allows Azure
 services and the developer's current IP only.

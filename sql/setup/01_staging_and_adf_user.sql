@@ -1,14 +1,16 @@
 -- One-time database setup. Run as the Microsoft Entra admin.
--- Creates the staging schema and the Data Factory user with
--- the smallest permissions it needs (read/insert/delete in staging only).
+-- Safe to run more than once: each step checks if it is already done.
 
-CREATE SCHEMA staging;
+IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'staging')
+    EXEC('CREATE SCHEMA staging');
 GO
 
 -- Managed identity of the Data Factory (no password).
-CREATE USER [adf-distpipeline-jp] FROM EXTERNAL PROVIDER;
+IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'adf-distpipeline-jp')
+    CREATE USER [adf-distpipeline-jp] FROM EXTERNAL PROVIDER;
 GO
 
 -- DELETE is needed to reload a file without creating duplicates.
+-- GRANT is naturally safe to repeat.
 GRANT SELECT, INSERT, DELETE ON SCHEMA::staging TO [adf-distpipeline-jp];
 GO

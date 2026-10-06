@@ -17,3 +17,10 @@ the Microsoft Entra tenant is "Default Directory".
 ## SQL: "Database ... is not currently available"
 **Cause:** the serverless database is waking up from auto-pause.
 **Fix:** wait 1–2 minutes and connect again. Not an error.
+
+## Data Factory: "Debug" does nothing / "Validation of model(s) failed"
+**Cause:** an object has a validation error (seen: a mapping row with an
+empty source). Debug silently refuses to start.
+**Fix:** click "Validate all" in the top bar, read the error, fix it.
+Columns filled by a database DEFAULT must be removed from the mapping,
+not left with an empty source.

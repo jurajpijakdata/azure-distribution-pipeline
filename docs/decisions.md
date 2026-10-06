@@ -76,3 +76,11 @@ only. Database: SELECT/INSERT/DELETE on schema `staging` only; staging tables
 are created by scripts in `sql/`, not by Data Factory.
 **Why:** No passwords; the pipeline cannot change raw files or the table
 structure; everything in the database is defined in Git.
+
+## 011 — ELT: Data Factory copies as text, reloads are idempotent
+**Date:** 2026-10-06
+**Decision:** Data Factory copies files unchanged into `staging` tables where
+all business columns are NVARCHAR, adding `_source_file` and `_loaded_at`.
+A pre-copy script deletes the rows of the same file before loading.
+**Why:** Nothing is lost or silently converted; dbt does the cleaning.
+Running the same load twice gives the same result (tested: 205 rows twice).

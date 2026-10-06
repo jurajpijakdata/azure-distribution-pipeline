@@ -95,3 +95,11 @@ idempotent per file.
 schema change (qty → quantity + vat_rate from 2026-03) was silently hidden:
 values shifted one column and `_source_file` was overwritten with "23".
 Found by reconciliation (row counts) and lineage columns; fixed by per-file loads.
+
+## 013 — Weekly schedule for the staging load
+**Date:** 2026-10-06
+**Decision:** Trigger `tr_weekly_staging_load` runs `pl_load_staging` every
+Monday at 03:00 (Central Europe time, follows summer/winter time).
+**Why:** Each run wakes the free serverless database for about an hour; weekly
+runs stay well within the free monthly compute. A real client would run it
+nightly after the ERP exports are complete.

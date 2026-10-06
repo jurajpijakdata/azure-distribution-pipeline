@@ -66,4 +66,4 @@ Only Microsoft Entra authentication (no SQL logins). Firewall allows Azure
 services and the developer's current IP only.
 **Why:** Zero cost, no passwords to leak; Data Factory will connect with its
 managed identity. Trade-off: the database may pause until next month if the
-free compute is used up.
+free compute is used up.git add docs/decisions.md

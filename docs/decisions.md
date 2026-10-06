@@ -84,3 +84,14 @@ all business columns are NVARCHAR, adding `_source_file` and `_loaded_at`.
 A pre-copy script deletes the rows of the same file before loading.
 **Why:** Nothing is lost or silently converted; dbt does the cleaning.
 Running the same load twice gives the same result (tested: 205 rows twice).
+
+## 012 — Load one file per copy (schema drift found in testing)
+**Date:** 2026-10-06
+**Decision:** The staging load lists each folder and copies files one by one
+(parent `pl_load_staging` → child `pl_load_folder_csv` / `pl_load_folder_excel`).
+Each copy first deletes the rows of that file (`_source_file`), so reloads are
+idempotent per file.
+**Why:** A wildcard copy used the first file's header for all files. Žilina's
+schema change (qty → quantity + vat_rate from 2026-03) was silently hidden:
+values shifted one column and `_source_file` was overwritten with "23".
+Found by reconciliation (row counts) and lineage columns; fixed by per-file loads.

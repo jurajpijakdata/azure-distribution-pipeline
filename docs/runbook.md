@@ -24,3 +24,8 @@ empty source). Debug silently refuses to start.
 **Fix:** click "Validate all" in the top bar, read the error, fix it.
 Columns filled by a database DEFAULT must be removed from the mapping,
 not left with an empty source.
+
+## Staging: row count higher than the files contain
+**Check:** group by `_source_file` and `_loaded_at` to see which rows are extra.
+**Seen once:** leftovers from an old wildcard load with a corrupted
+`_source_file` value ("23"). Delete those rows; current loads are per file.

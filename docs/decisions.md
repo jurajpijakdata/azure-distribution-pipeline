@@ -67,3 +67,12 @@ services and the developer's current IP only.
 **Why:** Zero cost, no passwords to leak; Data Factory will connect with its
 managed identity. Trade-off: the database may pause until next month if the
 free compute is used up.git add docs/decisions.md
+
+## 010 — Data Factory with managed identity, least privilege
+**Date:** 2026-10-06
+**Decision:** Data Factory `adf-distpipeline-jp` uses its system-assigned
+managed identity. Storage: "Storage Blob Data Reader" on the storage account
+only. Database: SELECT/INSERT/DELETE on schema `staging` only; staging tables
+are created by scripts in `sql/`, not by Data Factory.
+**Why:** No passwords; the pipeline cannot change raw files or the table
+structure; everything in the database is defined in Git.

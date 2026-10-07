@@ -95,6 +95,7 @@ idempotent per file.
 schema change (qty → quantity + vat_rate from 2026-03) was silently hidden:
 values shifted one column and `_source_file` was overwritten with "23".
 Found by reconciliation (row counts) and lineage columns; fixed by per-file loads.
+**Status:** partly superseded by 014 (per-file loading kept only for Žilina orders).
 
 ## 013 — Weekly schedule for the staging load
 **Date:** 2026-10-06
@@ -103,3 +104,17 @@ Monday at 03:00 (Central Europe time, follows summer/winter time).
 **Why:** Each run wakes the free serverless database for about an hour; weekly
 runs stay well within the free monthly compute. A real client would run it
 nightly after the ERP exports are complete.
+**Status:** superseded by 014 (trigger stopped to avoid costs).
+
+## 014 — Cost optimization: per-file loading only where needed
+**Date:** 2026-10-07
+**Decision:** Wildcard copies (one per source) for all sources with a stable
+schema; per-file loading only for Žilina orders (known schema change).
+Data integration units fixed at 4 (minimum). The schedule trigger is stopped;
+runs are started manually.
+**Why:** A €1 budget alert fired after testing (€4.41, all Data Factory):
+every copy is billed for at least one minute, so ~150 per-file copies per run
+were expensive. Now ~25 copies per run with identical results (reconciled).
+The synthetic data does not change, so a running schedule adds cost, no value.
+**Trade-off:** a future schema change in another source would not be handled
+by wildcard copies; reconciliation counts and dbt tests must catch it.

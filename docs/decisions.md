@@ -133,3 +133,14 @@ dbt authenticates with `authentication: CLI` (the developer's `az login`) and
 builds into the schema `dbt_dev`. `profiles.yml` lives in the repo.
 **Why:** No passwords, so the profile is safe to commit; staging stays untouched
 because dbt writes into its own schema.
+
+## 017 — dbt staging layer: one model per source, nothing hidden
+**Date:** 2026-10-08
+**Decision:** One staging view per source table (`stg_erp__<table>`): standard
+English names, safe type conversion with `try_convert` (bad values become NULL),
+raw text kept in `*_raw` columns, codes translated to standard values.
+No rows are filtered or deduplicated in staging.
+**Why:** Bad values stay visible and countable instead of becoming plausible
+numbers (unlike `fillna(0)`). Profiling showed traps that a naive approach would
+create: uppercasing SKUs would break 2,735 valid codes; Czech thousands
+separators would turn 322 valid quantities into NULL.

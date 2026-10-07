@@ -7,25 +7,58 @@
 ## Business problem
 *(Simulated scenario)* A mid-sized SK/CZ wholesaler of electrical installation
 material runs 4 warehouses (Bratislava, Žilina, Košice, Brno). Each warehouse
-exports data differently — CSV and Excel files, different column names,
-EUR and CZK, broken Slovak/Czech characters, duplicates and typos.
+ERP exports data differently — CSV and Excel files, different column names and
+languages, EUR and CZK, UTF-8 and Windows-1250, duplicates and typos. One
+warehouse changed its export format in the middle of the year.
 Management cannot answer simple questions like *"which warehouse delivers late?"*
 or *"which products sit on the shelf?"*
 
 ## Solution
-Planned architecture:
+```
+ERP exports (CSV / Excel)
+   → Azure Blob Storage (landing zone, files kept unchanged)
+   → Azure Data Factory (loads every file into staging tables, as text)
+   → Azure SQL Database (staging schema)
+   → dbt (cleaning, star schema, data tests)        ← in progress
+   → Power BI dashboard                             ← planned
+```
 
-CSV/Excel exports → Azure Blob Storage → Azure Data Factory → Azure SQL Database → dbt (star schema + tests) → Power BI
+## What is built so far
+- **Data generator** — one year of data for 4 warehouses in 4 export styles,
+  with 14 types of planted data problems recorded in a manifest
+  (`data/manifest/injected_issues.csv`). Deterministic: every run produces
+  byte-identical files. 39 tests.
+- **Landing zone** — private Blob container `raw` with 151 files.
+- **Staging load (Azure Data Factory)** — a metadata-driven pipeline:
+  one list describes every source (folder, file pattern, delimiter, encoding,
+  target table). 14 staging tables, all rows reconciled against the files.
+  Lineage columns `_source_file` and `_loaded_at` on every row.
+- **Schema change handled** — Žilina's export changed in March 2026
+  (`qty` → `quantity` + new `vat_rate`). It was found in testing: a wildcard
+  load silently shifted columns. Žilina orders are now loaded file by file.
+- **Pipeline definitions in Git** — see `adf/`.
 
-## Outcome
-*To be filled in when the project is finished — only results that can be
-verified from this repository.*
+## Security
+- No passwords or keys anywhere: Data Factory uses its managed identity,
+  people log in with Microsoft Entra ID.
+- Least privilege: Data Factory can only read the landing zone and
+  read/insert/delete in the `staging` schema.
+- Storage has no anonymous access; the database firewall allows only Azure
+  services and listed IP addresses.
+
+## Costs
+- Everything runs in one resource group with a €1 monthly budget alert.
+- Azure SQL uses the free offer with auto-pause (cannot create charges).
+- A full Data Factory run costs about €0.40–0.50. The weekly schedule
+  (`tr_weekly_staging_load`) is set up and tested, but **stopped** in this
+  portfolio environment, because the synthetic data does not change.
+  For a real client it would run nightly.
 
 ## How to run
 Requirements: Python 3.12, Git.
 
 ```powershell
-git clone <repo-url>
+git clone https://github.com/jurajpijakdata/azure-distribution-pipeline.git
 cd azure-distribution-pipeline
 py -3.12 -m venv .venv
 .venv\Scripts\Activate.ps1
@@ -36,17 +69,22 @@ pytest                              # 39 tests
 ruff check .                        # code style
 ```
 
-The generator is deterministic (fixed seed): every run produces
-byte-identical files.
+Azure setup scripts: `sql/setup/` (schema and permissions) and `sql/staging/`
+(staging tables).
+
+## Documentation
+- [`docs/decisions.md`](docs/decisions.md) — every design decision and why
+- [`docs/runbook.md`](docs/runbook.md) — known problems and how to fix them
 
 ## Project structure
 | Folder | Purpose |
 |---|---|
 | `data_generator/` | Simulates the client's ERP exports (synthetic, messy data) |
-| `sample_data/` | Small sample files for a quick look |
-| `pipeline/` | The actual solution: ADF, dbt, alerting |
-| `docs/` | Decision log and documentation |
+| `sample_data/` | One-week sample of the exports |
+| `adf/` | Azure Data Factory pipelines, datasets, linked services (from ADF Git integration) |
+| `sql/` | Database setup and staging table scripts |
+| `docs/` | Decision log and runbook |
 | `tests/` | Python unit tests |
 
 ## Status
-🚧 In progress
+🚧 In progress — ingestion done; dbt modelling, CI, alerts and Power BI next.

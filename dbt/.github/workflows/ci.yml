@@ -1,0 +1,33 @@
+# Runs on every push to main and on every pull request.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Install Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Code style (ruff)
+        run: ruff check .
+
+      - name: Generator tests (pytest)
+        run: pytest
+
+      - name: dbt project is valid (dbt parse)
+        working-directory: dbt
+        run: dbt parse

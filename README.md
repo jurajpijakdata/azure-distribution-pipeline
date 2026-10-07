@@ -19,32 +19,67 @@ ERP exports (CSV / Excel)
    → Azure Blob Storage (landing zone, files kept unchanged)
    → Azure Data Factory (loads every file into staging tables, as text)
    → Azure SQL Database (staging schema)
-   → dbt (cleaning, star schema, data tests)        ← in progress
+   → dbt (cleaning, validation, star schema, 49 data tests)
    → Power BI dashboard                             ← planned
 ```
 
 ## What is built so far
 - **Data generator** — one year of data for 4 warehouses in 4 export styles,
-  with 14 types of planted data problems recorded in a manifest
+  with 15 types of planted data problems recorded in a manifest
   (`data/manifest/injected_issues.csv`). Deterministic: every run produces
-  byte-identical files. 39 tests.
+  byte-identical files. 49 tests.
 - **Landing zone** — private Blob container `raw` with 151 files.
 - **Staging load (Azure Data Factory)** — a metadata-driven pipeline:
   one list describes every source (folder, file pattern, delimiter, encoding,
   target table). 14 staging tables, all rows reconciled against the files.
   Lineage columns `_source_file` and `_loaded_at` on every row.
-- **Schema change handled** — Žilina's export changed in March 2026
-  (`qty` → `quantity` + new `vat_rate`). It was found in testing: a wildcard
-  load silently shifted columns. Žilina orders are now loaded file by file.
-- **Pipeline definitions in Git** — see `adf/`.
+- **dbt transformation** in three layers:
+  - **staging** — one model per source: standard English names, safe type
+    conversion (bad values become NULL, raw text is kept), codes translated
+  - **intermediate** — the 4 warehouses combined, 2,588 duplicate rows removed
+    (including a re-exported month), SKU typos matched to the product list,
+    CZK converted to EUR with **official ECB daily rates**, every row validated
+    with a written reason; rejected rows go to a quarantine model
+  - **marts** — star schema: `fact_orders`, `fact_shipments`, `fact_inventory`,
+    `dim_date`, `dim_product`, `dim_customer`, `dim_warehouse`, plus a data
+    quality summary
+- **Pipeline definitions in Git** — see `adf/` and `dbt/`.
+
+## Data quality: every detectable problem caught
+| Area | Problem | Rows rejected |
+|---|---|---|
+| orders | missing customer | 206 |
+| orders | invalid quantity (e.g. `"125 ks"`) | 206 |
+| orders | missing price | 206 |
+| orders | unknown product (discontinued codes, `O` instead of `0`) | 115 |
+| orders | sale with negative quantity | 103 |
+| orders | invalid order date (e.g. `31.11.2025`) | 21 |
+| shipments | delivered before shipped | 47 |
+| inventory | negative stock | 43 |
+
+Fixed automatically instead of rejected: exact duplicates, a re-exported
+month, SKU case and spacing typos, carrier name variants, the schema change,
+three encodings. A missing inventory week is reported as a warning.
+
+**Not detectable by rules:** 30 planted dates are wrong but real (e.g. a day
+moved to 31 July). No format check can catch them; that needs a business rule.
+This was found when dbt's numbers did not match the manifest — see decision 019.
+
+## Notes on the numbers
+The data is synthetic, so **patterns in it come from the generator, not from
+a real business.** Example: Brno shows a higher margin because the simulated
+CZK price list uses 25.0 CZK/EUR while the real ECB rate was 24.08–24.56
+(decision 018). The project demonstrates correct and traceable numbers, not
+business insights.
 
 ## Security
-- No passwords or keys anywhere: Data Factory uses its managed identity,
-  people log in with Microsoft Entra ID.
+- No passwords or keys anywhere: Data Factory uses its managed identity;
+  people and dbt log in with Microsoft Entra ID (`az login`).
 - Least privilege: Data Factory can only read the landing zone and
   read/insert/delete in the `staging` schema.
 - Storage has no anonymous access; the database firewall allows only Azure
   services and listed IP addresses.
+- `dim_customer` leaves out street and e-mail (data minimisation).
 
 ## Costs
 - Everything runs in one resource group with a €1 monthly budget alert.
@@ -55,7 +90,7 @@ ERP exports (CSV / Excel)
   For a real client it would run nightly.
 
 ## How to run
-Requirements: Python 3.12, Git.
+Requirements: Python 3.12, Git, Azure CLI, ODBC Driver 18 for SQL Server.
 
 ```powershell
 git clone https://github.com/jurajpijakdata/azure-distribution-pipeline.git
@@ -65,12 +100,16 @@ py -3.12 -m venv .venv
 pip install -r requirements.txt
 
 python data_generator/generate.py   # creates data/raw/ + data/manifest/
-pytest                              # 39 tests
+pytest                              # 49 generator tests
 ruff check .                        # code style
+
+az login
+cd dbt
+dbt build                           # models + 49 data tests
 ```
 
 Azure setup scripts: `sql/setup/` (schema and permissions) and `sql/staging/`
-(staging tables).
+(staging tables). Exchange rates: `scripts/download_ecb_rates.py`.
 
 ## Documentation
 - [`docs/decisions.md`](docs/decisions.md) — every design decision and why
@@ -83,8 +122,10 @@ Azure setup scripts: `sql/setup/` (schema and permissions) and `sql/staging/`
 | `sample_data/` | One-week sample of the exports |
 | `adf/` | Azure Data Factory pipelines, datasets, linked services (from ADF Git integration) |
 | `sql/` | Database setup and staging table scripts |
+| `dbt/` | dbt project: staging, intermediate, marts, tests, seeds |
+| `scripts/` | One-off helper scripts (ECB rates download) |
 | `docs/` | Decision log and runbook |
-| `tests/` | Python unit tests |
+| `tests/` | Python unit tests for the generator |
 
 ## Status
-🚧 In progress — ingestion done; dbt modelling, CI, alerts and Power BI next.
+🚧 In progress — ingestion and modelling done; CI, alerts and Power BI next.

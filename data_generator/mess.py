@@ -4,6 +4,7 @@ Each planted problem gets a row in the manifest (issue type, table, key,
 column, original and new value). The manifest is the answer key: later
 tests prove the pipeline detects every issue listed there.
 """
+import calendar
 import logging
 import random
 from datetime import date, timedelta
@@ -62,12 +63,22 @@ def _sku_typo(sku: str, rng: random.Random) -> str:
     return sku.replace("0", "O", 1) if "0" in sku else sku.lower()
 
 
-def _impossible_date(d: date, style_warehouse: str) -> str:
-    """A calendar day that does not exist, written in the warehouse's format."""
+def _day_out_of_range(d: date, style_warehouse: str) -> str:
+    """Replace the day with the 31st (30th in February), in the warehouse's format.
+
+    For months with fewer days this gives a date that does not exist
+    (impossible_date). For months that have 31 days it gives a real but
+    wrong date (plausible_wrong_date) - see _is_real_date().
+    """
     day = 30 if d.month == 2 else 31
     if style_warehouse == "ZA":
         return f"{d.year}-{d.month:02d}-{day}"
     return f"{day:02d}.{d.month:02d}.{d.year}"
+
+
+def _is_real_date(d: date) -> bool:
+    """True if _day_out_of_range() produces a calendar day that exists."""
+    return d.month != 2 and calendar.monthrange(d.year, d.month)[1] == 31
 
 
 def mess_orders(orders: pd.DataFrame, rng: random.Random, m: Manifest) -> pd.DataFrame:
@@ -108,8 +119,11 @@ def mess_orders(orders: pd.DataFrame, rng: random.Random, m: Manifest) -> pd.Dat
         df.at[i, "quantity"] = new
     dd_mm = df["warehouse_code"].isin(["BA", "BRN", "ZA"])
     for i in _pick(df, r["impossible_date"], rng, used, mask=dd_mm):
-        new = _impossible_date(df.at[i, "order_date"], df.at[i, "warehouse_code"])
-        record("impossible_date", i, "order_date", new)
+        original = df.at[i, "order_date"]
+        new = _day_out_of_range(original, df.at[i, "warehouse_code"])
+        # Day 31 in a 31-day month is a real date: wrong, but not detectable by format.
+        issue = "plausible_wrong_date" if _is_real_date(original) else "impossible_date"
+        record(issue, i, "order_date", new)
         df.at[i, "order_date"] = new
 
     # Exact duplicates of untouched rows, inserted right after the original.

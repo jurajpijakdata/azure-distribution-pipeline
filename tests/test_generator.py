@@ -14,7 +14,7 @@ import config
 from calendar_utils import add_workdays, is_workday, next_workday
 from export import STYLES, format_value, style_for, write_table
 from generate import build_tables
-from mess import _impossible_date
+from mess import _day_out_of_range, _is_real_date
 from products import to_money
 
 
@@ -63,11 +63,17 @@ def test_country_specific_holidays():
     assert is_workday(date(2025, 10, 28), "SK")
 
 
-@pytest.mark.parametrize("d", [date(2026, 2, 10), date(2025, 11, 5), date(2026, 4, 20)])
-def test_impossible_date_really_does_not_exist(d):
-    text = _impossible_date(d, "BA")
-    with pytest.raises(ValueError):
+@pytest.mark.parametrize("month", range(1, 13))
+def test_day_out_of_range_is_labelled_correctly_for_every_month(month):
+    """The label must match reality in ALL months (a 3-month test missed a bug once)."""
+    d = date(2026, month, 10)
+    text = _day_out_of_range(d, "BA")
+    try:
         pd.to_datetime(text, format="%d.%m.%Y")
+        parses = True
+    except ValueError:
+        parses = False
+    assert parses == _is_real_date(d)
 
 
 def test_schema_change_only_from_configured_month():
@@ -192,6 +198,21 @@ def test_manifest_values_are_really_in_messy_data(data):
     lookup = dict(zip(o["order_no"] + "/" + o["line_no"].astype(str), o["sku"]))
     typos = manifest[manifest["issue_type"] == "sku_typo"]
     assert all(lookup[k] == v for k, v in zip(typos["record_key"], typos["injected_value"]))
+
+
+def test_planted_date_labels_match_reality(data):
+    _, _, manifest = data
+    for issue, should_parse in (("impossible_date", False), ("plausible_wrong_date", True)):
+        values = manifest.loc[manifest["issue_type"] == issue, "injected_value"]
+        assert len(values) > 0
+        for v in values:
+            fmt = "%Y-%m-%d" if "-" in v else "%d.%m.%Y"
+            try:
+                pd.to_datetime(v, format=fmt)
+                parsed = True
+            except ValueError:
+                parsed = False
+            assert parsed == should_parse, f"{issue}: {v}"
 
 
 def test_missing_inventory_week_is_removed(data):

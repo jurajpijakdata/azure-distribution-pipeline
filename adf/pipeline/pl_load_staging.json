@@ -1,0 +1,368 @@
+{
+	"name": "pl_load_staging",
+	"properties": {
+		"activities": [
+			{
+				"name": "foreach_per_file_sources",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "foreach_wildcard_sources",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.per_file_sources",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "run_load_folder",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "pl_load_folder_csv",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"folder": {
+										"value": "@item().folder",
+										"type": "Expression"
+									},
+									"prefix": {
+										"value": "@item().prefix",
+										"type": "Expression"
+									},
+									"table": {
+										"value": "@item().table",
+										"type": "Expression"
+									},
+									"delimiter": {
+										"value": "@item().delimiter",
+										"type": "Expression"
+									},
+									"encoding": {
+										"value": "@item().encoding",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "foreach_excel_sources",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "foreach_per_file_sources",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.excel_sources",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "copy_excel_source",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "ExcelSource",
+									"additionalColumns": [
+										{
+											"name": "_source_file",
+											"value": "$$FILEPATH"
+										}
+									],
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"wildcardFolderPath": {
+											"value": "@item().folder",
+											"type": "Expression"
+										},
+										"wildcardFileName": {
+											"value": "@item().pattern",
+											"type": "Expression"
+										},
+										"enablePartitionDiscovery": false
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"preCopyScript": {
+										"value": "DELETE FROM staging.@{item().table};",
+										"type": "Expression"
+									},
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"dataIntegrationUnits": 4,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_blob_excel_ke",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_sql_staging",
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": "@item().table"
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "foreach_wildcard_sources",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.wildcard_sources",
+						"type": "Expression"
+					},
+					"batchCount": 4,
+					"activities": [
+						{
+							"name": "copy_wildcard_source",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"additionalColumns": [
+										{
+											"name": "_source_file",
+											"value": "$$FILEPATH"
+										}
+									],
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"wildcardFolderPath": {
+											"value": "@item().folder",
+											"type": "Expression"
+										},
+										"wildcardFileName": {
+											"value": "@item().pattern",
+											"type": "Expression"
+										},
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"preCopyScript": {
+										"value": "DELETE FROM staging.@{item().table};",
+										"type": "Expression"
+									},
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"dataIntegrationUnits": 4,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_blob_csv",
+									"type": "DatasetReference",
+									"parameters": {
+										"folder": "@item().folder",
+										"delimiter": "@item().delimiter",
+										"encoding": "@item().encoding"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_sql_staging",
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": "@item().table"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"per_file_sources": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"folder": "ZA",
+						"prefix": "orders_",
+						"table": "orders_za",
+						"delimiter": ",",
+						"encoding": "UTF-8"
+					}
+				]
+			},
+			"excel_sources": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"folder": "KE",
+						"pattern": "orders_*.xlsx",
+						"table": "orders_ke"
+					},
+					{
+						"folder": "KE",
+						"pattern": "shipments_*.xlsx",
+						"table": "shipments_ke"
+					},
+					{
+						"folder": "KE",
+						"pattern": "inventory_*.xlsx",
+						"table": "inventory_ke"
+					}
+				]
+			},
+			"wildcard_sources": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"folder": "BA",
+						"pattern": "orders_*.csv",
+						"table": "orders_ba",
+						"delimiter": ";",
+						"encoding": "UTF-8"
+					},
+					{
+						"folder": "BA",
+						"pattern": "shipments_*.csv",
+						"table": "shipments_ba",
+						"delimiter": ";",
+						"encoding": "UTF-8"
+					},
+					{
+						"folder": "BA",
+						"pattern": "inventory_*.csv",
+						"table": "inventory_ba",
+						"delimiter": ";",
+						"encoding": "UTF-8"
+					},
+					{
+						"folder": "ZA",
+						"pattern": "shipments_*.csv",
+						"table": "shipments_za",
+						"delimiter": ",",
+						"encoding": "UTF-8"
+					},
+					{
+						"folder": "ZA",
+						"pattern": "inventory_*.csv",
+						"table": "inventory_za",
+						"delimiter": ",",
+						"encoding": "UTF-8"
+					},
+					{
+						"folder": "BRN",
+						"pattern": "orders_*.csv",
+						"table": "orders_brn",
+						"delimiter": ";",
+						"encoding": "WINDOWS-1250"
+					},
+					{
+						"folder": "BRN",
+						"pattern": "shipments_*.csv",
+						"table": "shipments_brn",
+						"delimiter": ";",
+						"encoding": "WINDOWS-1250"
+					},
+					{
+						"folder": "BRN",
+						"pattern": "inventory_*.csv",
+						"table": "inventory_brn",
+						"delimiter": ";",
+						"encoding": "WINDOWS-1250"
+					},
+					{
+						"folder": "master",
+						"pattern": "customers.csv",
+						"table": "customers",
+						"delimiter": ";",
+						"encoding": "UTF-8"
+					},
+					{
+						"folder": "master",
+						"pattern": "products.csv",
+						"table": "products",
+						"delimiter": ";",
+						"encoding": "UTF-8"
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-10-07T05:12:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

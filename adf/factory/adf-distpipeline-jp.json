@@ -1,0 +1,15 @@
+{
+	"name": "adf-distpipeline-jp",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "germanywestcentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d7c12322-5865-46f1-a1f7-30f2b04bf520",
+		"tenantId": "e7745818-0702-499c-b1f5-93feb993948d"
+	}
+}

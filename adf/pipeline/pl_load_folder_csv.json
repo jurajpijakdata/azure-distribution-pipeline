@@ -1,0 +1,186 @@
+{
+	"name": "pl_load_folder_csv",
+	"properties": {
+		"activities": [
+			{
+				"name": "get_files",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_blob_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": "@pipeline().parameters.folder",
+							"delimiter": "@pipeline().parameters.delimiter",
+							"encoding": "@pipeline().parameters.encoding"
+						}
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "filter_files",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "get_files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('get_files').output.childItems",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@and(equals(item().type, 'File'), startsWith(item().name, pipeline().parameters.prefix))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "foreach_file",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "filter_files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('filter_files').output.Value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "copy_file",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"additionalColumns": [
+										{
+											"name": "_source_file",
+											"value": "$$FILEPATH"
+										}
+									],
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"wildcardFolderPath": {
+											"value": "@pipeline().parameters.folder",
+											"type": "Expression"
+										},
+										"wildcardFileName": {
+											"value": "@item().name",
+											"type": "Expression"
+										},
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"preCopyScript": {
+										"value": "   DELETE FROM staging.@{pipeline().parameters.table} WHERE _source_file = '@{item().name}';",
+										"type": "Expression"
+									},
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"dataIntegrationUnits": 4,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_blob_csv",
+									"type": "DatasetReference",
+									"parameters": {
+										"folder": "@pipeline().parameters.folder",
+										"delimiter": "@pipeline().parameters.delimiter",
+										"encoding": "@pipeline().parameters.encoding"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_sql_staging",
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": "@pipeline().parameters.table"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"folder": {
+				"type": "string"
+			},
+			"prefix": {
+				"type": "string"
+			},
+			"table": {
+				"type": "string"
+			},
+			"delimiter": {
+				"type": "string"
+			},
+			"encoding": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-10-07T05:12:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

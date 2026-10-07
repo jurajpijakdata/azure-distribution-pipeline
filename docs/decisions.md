@@ -176,3 +176,12 @@ Only rows without rejection reasons enter the facts.
 every fact row joins to its dimensions. `dim_customer` leaves out street and
 e-mail (data minimisation).
 **Limits:** one fixed product price list (no price history / SCD Type 2).
+
+## 021 — CI with GitHub Actions
+**Date:** 2026-10-08
+**Decision:** Every push and pull request runs `ruff check`, `pytest` and
+`dbt parse` on a fresh Ubuntu runner (`.github/workflows/ci.yml`).
+**Why:** Checks run even when nobody remembers to run them locally.
+**Limit:** the full `dbt build` against Azure SQL is not in CI yet; it would
+need a GitHub-to-Azure login (OIDC) and a firewall rule for runner IPs.
+Listed as a future improvement.

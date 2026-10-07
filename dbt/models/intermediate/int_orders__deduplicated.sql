@@ -20,4 +20,4 @@ with numbered as (
 
 select *
 from numbered
-where copy_number = 1
+where copy_number =1

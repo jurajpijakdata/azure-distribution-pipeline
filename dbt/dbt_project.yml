@@ -35,10 +35,16 @@ models:
       +materialized: view
     intermediate:
       +materialized: view
-      
+    marts:
+      +materialized: table
+
 seeds:
   distribution:
     ecb_eur_czk:
       +column_types:
         rate_date: date
         czk_per_eur: decimal(10, 4)
+    warehouses:
+      +column_types:
+        warehouse_name: nvarchar(100)
+        city: nvarchar(100)

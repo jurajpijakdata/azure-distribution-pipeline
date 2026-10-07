@@ -1,0 +1,108 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: One row per calendar day (2025-09-01 to 2026-12-31).
+    columns:
+      - name: date_day
+        data_tests: [unique, not_null]
+
+  - name: dim_warehouse
+    description: One row per warehouse.
+    columns:
+      - name: warehouse_code
+        data_tests: [unique, not_null]
+
+  - name: dim_product
+    description: One row per product, with cost and list price (EUR).
+    columns:
+      - name: sku
+        data_tests: [unique, not_null]
+
+  - name: dim_customer
+    description: One row per customer (no street or e-mail - data minimisation).
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+
+  - name: fact_orders
+    description: >
+      Grain: one row per valid order line (order_no + line_no).
+      Returns are negative. Amounts in EUR.
+    columns:
+      - name: order_date
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_day
+      - name: warehouse_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_warehouse')
+                field: warehouse_code
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customer')
+                field: customer_id
+      - name: sku
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_product')
+                field: sku
+      - name: revenue_eur
+        data_tests: [not_null]
+      - name: margin_eur
+        data_tests: [not_null]
+
+  - name: fact_shipments
+    description: >
+      Grain: one row per valid shipment. delivery_delay_days is negative when early.
+    columns:
+      - name: shipment_id
+        data_tests: [unique, not_null]
+      - name: warehouse_code
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_warehouse')
+                field: warehouse_code
+      - name: promised_date
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_day
+
+  - name: fact_inventory
+    description: >
+      Grain: one row per product per warehouse per weekly snapshot (Friday).
+    columns:
+      - name: snapshot_date
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_day
+      - name: warehouse_code
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_warehouse')
+                field: warehouse_code
+      - name: sku
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_product')
+                field: sku

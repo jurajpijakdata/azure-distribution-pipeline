@@ -154,3 +154,25 @@ Days without a rate use the latest earlier rate.
 25.0 CZK/EUR, while the real rate was 24.08-24.56. Brno amounts in EUR are
 therefore ~2-4 % higher than the same items sold in EUR. This is an artifact
 of the simulated price list, not a finding.
+
+## 019 — Generator bug found by dbt: "impossible" dates that were real
+**Date:** 2026-10-08
+**Finding:** dbt rejected 21 invalid order dates, but the manifest listed 51.
+The generator set the day to 31 in every month except February, so in 31-day
+months it created real (but wrong) dates. Its test covered only 3 months.
+**Decision:** Data files unchanged (byte-identical). The manifest now labels
+21 `impossible_date` and 30 `plausible_wrong_date`; tests cover all 12 months.
+**Lesson:** format checks can only catch values that are impossible. A wrong
+but plausible date needs a business rule (e.g. order date vs shipment date).
+
+## 020 — Star schema with stated grain
+**Date:** 2026-10-08
+**Decision:** Marts are tables. Facts: `fact_orders` (one row per valid order
+line), `fact_shipments` (one row per valid shipment), `fact_inventory` (one row
+per product, warehouse and Friday snapshot). Dimensions: date, warehouse
+(seed), product, customer. Natural keys (codes) are used as join keys.
+Only rows without rejection reasons enter the facts.
+**Why:** Stated grain makes every number traceable; relationship tests ensure
+every fact row joins to its dimensions. `dim_customer` leaves out street and
+e-mail (data minimisation).
+**Limits:** one fixed product price list (no price history / SCD Type 2).

@@ -144,3 +144,13 @@ No rows are filtered or deduplicated in staging.
 numbers (unlike `fillna(0)`). Profiling showed traps that a naive approach would
 create: uppercasing SKUs would break 2,735 valid codes; Czech thousands
 separators would turn 322 valid quantities into NULL.
+
+## 018 — Real ECB rates for CZK -> EUR (and a known side effect)
+**Date:** 2026-10-08
+**Decision:** CZK amounts are converted with official ECB daily reference rates
+(seed `ecb_eur_czk`, 277 days, downloaded by `scripts/download_ecb_rates.py`).
+Days without a rate use the latest earlier rate.
+**Known side effect:** the generator priced Brno from a fixed price list at
+25.0 CZK/EUR, while the real rate was 24.08-24.56. Brno amounts in EUR are
+therefore ~2-4 % higher than the same items sold in EUR. This is an artifact
+of the simulated price list, not a finding.

@@ -33,6 +33,8 @@ models:
   distribution:
     staging:
       +materialized: view
+    intermediate:
+      +materialized: view
       
 seeds:
   distribution:

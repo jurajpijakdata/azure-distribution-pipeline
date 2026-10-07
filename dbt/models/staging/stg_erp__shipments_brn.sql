@@ -19,7 +19,7 @@ renamed as (
         try_convert(date, [Slíbený termín], 104)                                              as promised_date,
         try_convert(date, [Datum doručení], 104)                                              as delivered_date,
         [Datum doručení]                                                                      as delivered_date_raw,
-        case [Stav] when 'Doručeno' then 'DELIVERED' when 'V přepravě' then 'IN_TRANSIT' end  as status,
+        case [Stav] when N'Doručeno' then 'DELIVERED' when N'V přepravě' then 'IN_TRANSIT' end as status,
         _source_file,
         _loaded_at
     from source

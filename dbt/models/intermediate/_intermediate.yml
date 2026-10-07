@@ -36,3 +36,24 @@ models:
                 field: sku
               config:
                 where: "rejection_reasons is null"
+
+  - name: int_shipments__validated
+    description: >
+      All shipments with unified carrier names and validation.
+      Valid shipments have rejection_reasons = NULL.
+    columns:
+      - name: shipment_id
+        data_tests: [unique, not_null]
+      - name: carrier_standard
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Own fleet', 'Courier Alpha', 'Courier Beta']
+      - name: status
+        description: DELIVERED or IN_TRANSIT; NULL means an unknown status code
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['DELIVERED', 'IN_TRANSIT']

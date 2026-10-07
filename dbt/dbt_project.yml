@@ -33,3 +33,10 @@ models:
   distribution:
     staging:
       +materialized: view
+      
+seeds:
+  distribution:
+    ecb_eur_czk:
+      +column_types:
+        rate_date: date
+        czk_per_eur: decimal(10, 4)

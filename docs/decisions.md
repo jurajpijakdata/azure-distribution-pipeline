@@ -125,3 +125,11 @@ by wildcard copies; reconciliation counts and dbt tests must catch it.
 root folder `/adf`, publish branch `adf_publish`).
 **Why:** Pipelines are versioned and reviewable; the factory can be rebuilt
 from the repo. Linked services use managed identity, so no secrets are stored.
+
+## 016 — dbt Core with the sqlserver adapter and Azure CLI login
+**Date:** 2026-10-08
+**Decision:** dbt Core 1.12 + dbt-sqlserver 1.12 (pyodbc backend, ODBC Driver 18).
+dbt authenticates with `authentication: CLI` (the developer's `az login`) and
+builds into the schema `dbt_dev`. `profiles.yml` lives in the repo.
+**Why:** No passwords, so the profile is safe to commit; staging stays untouched
+because dbt writes into its own schema.

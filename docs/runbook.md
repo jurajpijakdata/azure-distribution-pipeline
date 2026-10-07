@@ -29,3 +29,7 @@ not left with an empty source.
 **Check:** group by `_source_file` and `_loaded_at` to see which rows are extra.
 **Seen once:** leftovers from an old wildcard load with a corrupted
 `_source_file` value ("23"). Delete those rows; current loads are per file.
+
+## dbt debug: "Azure authentication requires the optional dependency 'azure-identity'"
+**Fix:** `pip install azure-identity` (already in requirements.txt).
+If it then asks to log in: run `az login` and try again.

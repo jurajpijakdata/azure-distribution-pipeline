@@ -118,3 +118,10 @@ were expensive. Now ~25 copies per run with identical results (reconciled).
 The synthetic data does not change, so a running schedule adds cost, no value.
 **Trade-off:** a future schema change in another source would not be handled
 by wildcard copies; reconciliation counts and dbt tests must catch it.
+
+## 015 — Data Factory definitions stored in Git
+**Date:** 2026-10-07
+**Decision:** ADF is connected to the GitHub repo (collaboration branch `main`,
+root folder `/adf`, publish branch `adf_publish`).
+**Why:** Pipelines are versioned and reviewable; the factory can be rebuilt
+from the repo. Linked services use managed identity, so no secrets are stored.

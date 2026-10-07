@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+  - name: erp
+    description: >
+      Raw ERP exports of the 4 warehouses and the HQ master data, loaded unchanged
+      by Azure Data Factory. All business columns are text; column names are the
+      original ones from each ERP.
+    schema: staging
+    loaded_at_field: _loaded_at
+    freshness:
+      warn_after: {count: 8, period: day}
+      error_after: {count: 35, period: day}
+
+    tables:
+      - name: orders_ba
+        description: Order lines, Bratislava (Slovak ERP, CSV ;, UTF-8)
+      - name: orders_za
+        description: Order lines, Žilina (English ERP, CSV ,). Schema change from 2026-03 (qty -> quantity, new vat_rate)
+      - name: orders_ke
+        description: Order lines, Košice (Excel export)
+      - name: orders_brn
+        description: Order lines, Brno (Czech ERP, Windows-1250, prices in CZK)
+      - name: shipments_ba
+        description: Shipments, Bratislava
+      - name: shipments_za
+        description: Shipments, Žilina
+      - name: shipments_ke
+        description: Shipments, Košice
+      - name: shipments_brn
+        description: Shipments, Brno
+      - name: inventory_ba
+        description: Weekly stock snapshots, Bratislava
+      - name: inventory_za
+        description: Weekly stock snapshots, Žilina
+      - name: inventory_ke
+        description: Weekly stock snapshots, Košice (one week missing)
+      - name: inventory_brn
+        description: Weekly stock snapshots, Brno
+      - name: customers
+        description: Customer master data from the HQ ERP
+      - name: products
+        description: Product master data with cost and list price (EUR)

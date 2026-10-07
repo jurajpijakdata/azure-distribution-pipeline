@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: int_orders__validated
+    description: >
+      All unique order lines with product match, EUR amounts and validation.
+      Valid lines have rejection_reasons = NULL.
+    columns:
+      - name: warehouse_code
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['BA', 'ZA', 'KE', 'BRN']
+      - name: currency
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['EUR', 'CZK']
+      - name: order_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['SALE', 'RETURN']
+      - name: unit_price_eur
+        description: Unit price in EUR (CZK converted with the ECB rate of the order day)
+        data_tests:
+          - not_null:
+              config:
+                where: "rejection_reasons is null"
+      - name: sku_standard
+        description: Official product code from the product master
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_erp__products')
+                field: sku
+              config:
+                where: "rejection_reasons is null"

@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_erp__products
+    columns:
+      - name: sku
+        data_tests: [unique, not_null]
+  - name: stg_erp__customers
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]

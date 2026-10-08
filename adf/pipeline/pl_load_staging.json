@@ -87,8 +87,8 @@
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
+								"retry": 2,
+								"retryIntervalInSeconds": 60,
 								"secureOutput": false,
 								"secureInput": false
 							},
@@ -174,8 +174,8 @@
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
+								"retry": 2,
+								"retryIntervalInSeconds": 60,
 								"secureOutput": false,
 								"secureInput": false
 							},
@@ -249,6 +249,83 @@
 							]
 						}
 					]
+				}
+			},
+			{
+				"name": "get_webhook_url",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "foreach_excel_sources",
+						"dependencyConditions": [
+							"Skipped",
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": "https://kv-distpipeline-jp.vault.azure.net/secrets/discord-webhook-url?api-version=7.4",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://vault.azure.net"
+					}
+				}
+			},
+			{
+				"name": "send_discord_alert",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "get_webhook_url",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": true
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"url": {
+						"value": "@activity('get_webhook_url').output.value",
+						"type": "Expression"
+					},
+					"body": "@concat('{\"content\":\"🔴 Data Factory pipeline ', pipeline().Pipeline, ' failed. Run ID: ', pipeline().RunId, '\"}')"
+				}
+			},
+			{
+				"name": "fail_pipeline",
+				"type": "Fail",
+				"dependsOn": [
+					{
+						"activity": "send_discord_alert",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"message": "Staging load failed. See the failed activity in Monitor.",
+					"errorCode": "StagingLoadFailed"
 				}
 			}
 		],

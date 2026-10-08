@@ -31,8 +31,8 @@ jobs:
       - name: dbt project is valid (dbt parse)
         working-directory: dbt
         run: dbt parse
-      
-            - name: Alert Discord if anything failed
+
+      - name: Alert Discord if anything failed
         if: failure()
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}

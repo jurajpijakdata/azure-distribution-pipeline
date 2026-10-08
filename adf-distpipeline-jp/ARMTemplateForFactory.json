@@ -1,0 +1,850 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-distpipeline-jp"
+		},
+		"ls_blob_raw_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "https://stdistpipelinejp.blob.core.windows.net/"
+		},
+		"ls_sql_distribution_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sql-distpipeline-jp.database.windows.net"
+		},
+		"ls_sql_distribution_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "free-sql-db-8791495"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_load_folder_csv')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "get_files",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "ds_blob_csv",
+								"type": "DatasetReference",
+								"parameters": {
+									"folder": "@pipeline().parameters.folder",
+									"delimiter": "@pipeline().parameters.delimiter",
+									"encoding": "@pipeline().parameters.encoding"
+								}
+							},
+							"fieldList": [
+								"childItems"
+							],
+							"storeSettings": {
+								"type": "AzureBlobStorageReadSettings",
+								"recursive": true,
+								"enablePartitionDiscovery": false
+							},
+							"formatSettings": {
+								"type": "DelimitedTextReadSettings"
+							}
+						}
+					},
+					{
+						"name": "filter_files",
+						"type": "Filter",
+						"dependsOn": [
+							{
+								"activity": "get_files",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('get_files').output.childItems",
+								"type": "Expression"
+							},
+							"condition": {
+								"value": "@and(equals(item().type, 'File'), startsWith(item().name, pipeline().parameters.prefix))",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "foreach_file",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "filter_files",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('filter_files').output.Value",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "copy_file",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 2,
+										"retryIntervalInSeconds": 60,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"additionalColumns": [
+												{
+													"name": "_source_file",
+													"value": "$$FILEPATH"
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"wildcardFolderPath": {
+													"value": "@pipeline().parameters.folder",
+													"type": "Expression"
+												},
+												"wildcardFileName": {
+													"value": "@item().name",
+													"type": "Expression"
+												},
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"preCopyScript": {
+												"value": "   DELETE FROM staging.@{pipeline().parameters.table} WHERE _source_file = '@{item().name}';",
+												"type": "Expression"
+											},
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false,
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"dataIntegrationUnits": 4,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_blob_csv",
+											"type": "DatasetReference",
+											"parameters": {
+												"folder": "@pipeline().parameters.folder",
+												"delimiter": "@pipeline().parameters.delimiter",
+												"encoding": "@pipeline().parameters.encoding"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_sql_staging",
+											"type": "DatasetReference",
+											"parameters": {
+												"table_name": "@pipeline().parameters.table"
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"folder": {
+						"type": "string"
+					},
+					"prefix": {
+						"type": "string"
+					},
+					"table": {
+						"type": "string"
+					},
+					"delimiter": {
+						"type": "string"
+					},
+					"encoding": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"lastPublishTime": "2026-10-07T05:12:02Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_blob_csv')]",
+				"[concat(variables('factoryId'), '/datasets/ds_sql_staging')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_load_staging')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "foreach_per_file_sources",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "foreach_wildcard_sources",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@pipeline().parameters.per_file_sources",
+								"type": "Expression"
+							},
+							"isSequential": true,
+							"activities": [
+								{
+									"name": "run_load_folder",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"policy": {
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "pl_load_folder_csv",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"folder": {
+												"value": "@item().folder",
+												"type": "Expression"
+											},
+											"prefix": {
+												"value": "@item().prefix",
+												"type": "Expression"
+											},
+											"table": {
+												"value": "@item().table",
+												"type": "Expression"
+											},
+											"delimiter": {
+												"value": "@item().delimiter",
+												"type": "Expression"
+											},
+											"encoding": {
+												"value": "@item().encoding",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "foreach_excel_sources",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "foreach_per_file_sources",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@pipeline().parameters.excel_sources",
+								"type": "Expression"
+							},
+							"isSequential": true,
+							"activities": [
+								{
+									"name": "copy_excel_source",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 2,
+										"retryIntervalInSeconds": 60,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "ExcelSource",
+											"additionalColumns": [
+												{
+													"name": "_source_file",
+													"value": "$$FILEPATH"
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"wildcardFolderPath": {
+													"value": "@item().folder",
+													"type": "Expression"
+												},
+												"wildcardFileName": {
+													"value": "@item().pattern",
+													"type": "Expression"
+												},
+												"enablePartitionDiscovery": false
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"preCopyScript": {
+												"value": "DELETE FROM staging.@{item().table};",
+												"type": "Expression"
+											},
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false,
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"dataIntegrationUnits": 4,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_blob_excel_ke",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_sql_staging",
+											"type": "DatasetReference",
+											"parameters": {
+												"table_name": "@item().table"
+											}
+										}
+									]
+								}
+							]
+						}
+					},
+					{
+						"name": "foreach_wildcard_sources",
+						"type": "ForEach",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@pipeline().parameters.wildcard_sources",
+								"type": "Expression"
+							},
+							"batchCount": 4,
+							"activities": [
+								{
+									"name": "copy_wildcard_source",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 2,
+										"retryIntervalInSeconds": 60,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"additionalColumns": [
+												{
+													"name": "_source_file",
+													"value": "$$FILEPATH"
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"wildcardFolderPath": {
+													"value": "@item().folder",
+													"type": "Expression"
+												},
+												"wildcardFileName": {
+													"value": "@item().pattern",
+													"type": "Expression"
+												},
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"preCopyScript": {
+												"value": "DELETE FROM staging.@{item().table};",
+												"type": "Expression"
+											},
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false,
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"dataIntegrationUnits": 4,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_blob_csv",
+											"type": "DatasetReference",
+											"parameters": {
+												"folder": "@item().folder",
+												"delimiter": "@item().delimiter",
+												"encoding": "@item().encoding"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_sql_staging",
+											"type": "DatasetReference",
+											"parameters": {
+												"table_name": "@item().table"
+											}
+										}
+									]
+								}
+							]
+						}
+					},
+					{
+						"name": "get_webhook_url",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "foreach_excel_sources",
+								"dependencyConditions": [
+									"Skipped",
+									"Failed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"method": "GET",
+							"headers": {},
+							"url": "https://kv-distpipeline-jp.vault.azure.net/secrets/discord-webhook-url?api-version=7.4",
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
+							}
+						}
+					},
+					{
+						"name": "send_discord_alert",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "get_webhook_url",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": true
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/json"
+							},
+							"url": {
+								"value": "@activity('get_webhook_url').output.value",
+								"type": "Expression"
+							},
+							"body": "@concat('{\"content\":\"🔴 Data Factory pipeline ', pipeline().Pipeline, ' failed. Run ID: ', pipeline().RunId, '\"}')"
+						}
+					},
+					{
+						"name": "fail_pipeline",
+						"type": "Fail",
+						"dependsOn": [
+							{
+								"activity": "send_discord_alert",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"message": "Staging load failed. See the failed activity in Monitor.",
+							"errorCode": "StagingLoadFailed"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"per_file_sources": {
+						"type": "array",
+						"defaultValue": [
+							{
+								"folder": "ZA",
+								"prefix": "orders_",
+								"table": "orders_za",
+								"delimiter": ",",
+								"encoding": "UTF-8"
+							}
+						]
+					},
+					"excel_sources": {
+						"type": "array",
+						"defaultValue": [
+							{
+								"folder": "KE",
+								"pattern": "orders_*.xlsx",
+								"table": "orders_ke"
+							},
+							{
+								"folder": "KE",
+								"pattern": "shipments_*.xlsx",
+								"table": "shipments_ke"
+							},
+							{
+								"folder": "KE",
+								"pattern": "inventory_*.xlsx",
+								"table": "inventory_ke"
+							}
+						]
+					},
+					"wildcard_sources": {
+						"type": "array",
+						"defaultValue": [
+							{
+								"folder": "BA",
+								"pattern": "orders_*.csv",
+								"table": "orders_ba",
+								"delimiter": ";",
+								"encoding": "UTF-8"
+							},
+							{
+								"folder": "BA",
+								"pattern": "shipments_*.csv",
+								"table": "shipments_ba",
+								"delimiter": ";",
+								"encoding": "UTF-8"
+							},
+							{
+								"folder": "BA",
+								"pattern": "inventory_*.csv",
+								"table": "inventory_ba",
+								"delimiter": ";",
+								"encoding": "UTF-8"
+							},
+							{
+								"folder": "ZA",
+								"pattern": "shipments_*.csv",
+								"table": "shipments_za",
+								"delimiter": ",",
+								"encoding": "UTF-8"
+							},
+							{
+								"folder": "ZA",
+								"pattern": "inventory_*.csv",
+								"table": "inventory_za",
+								"delimiter": ",",
+								"encoding": "UTF-8"
+							},
+							{
+								"folder": "BRN",
+								"pattern": "orders_*.csv",
+								"table": "orders_brn",
+								"delimiter": ";",
+								"encoding": "WINDOWS-1250"
+							},
+							{
+								"folder": "BRN",
+								"pattern": "shipments_*.csv",
+								"table": "shipments_brn",
+								"delimiter": ";",
+								"encoding": "WINDOWS-1250"
+							},
+							{
+								"folder": "BRN",
+								"pattern": "inventory_*.csv",
+								"table": "inventory_brn",
+								"delimiter": ";",
+								"encoding": "WINDOWS-1250"
+							},
+							{
+								"folder": "master",
+								"pattern": "customers.csv",
+								"table": "customers",
+								"delimiter": ";",
+								"encoding": "UTF-8"
+							},
+							{
+								"folder": "master",
+								"pattern": "products.csv",
+								"table": "products",
+								"delimiter": ";",
+								"encoding": "UTF-8"
+							}
+						]
+					}
+				},
+				"annotations": [],
+				"lastPublishTime": "2026-10-07T05:12:02Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pl_load_folder_csv')]",
+				"[concat(variables('factoryId'), '/datasets/ds_blob_excel_ke')]",
+				"[concat(variables('factoryId'), '/datasets/ds_sql_staging')]",
+				"[concat(variables('factoryId'), '/datasets/ds_blob_csv')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_blob_csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_blob_raw",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"folder": {
+						"type": "string"
+					},
+					"delimiter": {
+						"type": "string"
+					},
+					"encoding": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": {
+							"value": "@dataset().folder",
+							"type": "Expression"
+						},
+						"container": "raw"
+					},
+					"columnDelimiter": {
+						"value": "@dataset().delimiter",
+						"type": "Expression"
+					},
+					"encodingName": {
+						"value": "@dataset().encoding",
+						"type": "Expression"
+					},
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_blob_raw')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_blob_excel_ke')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_blob_raw",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Export",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "KE",
+						"container": "raw"
+					},
+					"range": "A4",
+					"firstRowAsHeader": true
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_blob_raw')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_sql_staging')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_sql_distribution",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"table_name": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "staging",
+					"table": {
+						"value": "@dataset().table_name",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_sql_distribution')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_blob_raw')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"serviceEndpoint": "[parameters('ls_blob_raw_properties_typeProperties_serviceEndpoint')]",
+					"accountKind": "StorageV2"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_sql_distribution')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('ls_sql_distribution_properties_typeProperties_server')]",
+					"database": "[parameters('ls_sql_distribution_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SystemAssignedManagedIdentity"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tr_weekly_staging_load')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_load_staging",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2026-10-11T03:00:00",
+						"timeZone": "Central Europe Standard Time",
+						"schedule": {
+							"weekDays": [
+								"Monday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pl_load_staging')]"
+			]
+		}
+	]
+}

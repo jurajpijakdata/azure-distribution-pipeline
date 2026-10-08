@@ -31,3 +31,12 @@ jobs:
       - name: dbt project is valid (dbt parse)
         working-directory: dbt
         run: dbt parse
+      
+            - name: Alert Discord if anything failed
+        if: failure()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: >
+          python scripts/notify_discord.py
+          "🔴 CI failed on ${GITHUB_REF_NAME} (commit ${GITHUB_SHA::7}):
+          ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"

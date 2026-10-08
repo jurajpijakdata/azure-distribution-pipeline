@@ -33,3 +33,9 @@ not left with an empty source.
 ## dbt debug: "Azure authentication requires the optional dependency 'azure-identity'"
 **Fix:** `pip install azure-identity` (already in requirements.txt).
 If it then asks to log in: run `az login` and try again.
+
+## Data Factory: "SqlFailedToConnect ... timeout already expired"
+**Cause:** the serverless database was paused (auto-pause) and did not wake up
+in time for the first connection.
+**Fix:** copy activities have Retry = 2, interval 60 s. If it still fails,
+check the database status: `az sql db show ... --query status`.

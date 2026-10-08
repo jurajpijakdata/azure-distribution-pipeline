@@ -185,3 +185,15 @@ e-mail (data minimisation).
 **Limit:** the full `dbt build` against Azure SQL is not in CI yet; it would
 need a GitHub-to-Azure login (OIDC) and a firewall rule for runner IPs.
 Listed as a future improvement.
+
+## 022 — Alerts to Discord, secrets in three safe places
+**Date:** 2026-10-08
+**Decision:** Three alerts post to a Discord webhook:
+Data Factory (on failure: reads the webhook from Key Vault
+`kv-distpipeline-jp` with its managed identity, sends a message, then a Fail
+activity keeps the run marked as failed), dbt (`scripts/run_dbt_and_notify.py`
+on failures or warnings), and CI (GitHub Actions step on failure).
+Copy activities retry twice (60 s) to survive database wake-up.
+**Why:** The webhook is a secret: Key Vault for ADF, `.env` locally,
+GitHub Secrets for CI - never in Git (checked with `git grep`).
+All three alerts were tested by breaking something on purpose.

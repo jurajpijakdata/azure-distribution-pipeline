@@ -1,0 +1,40 @@
+relationship AutoDetected_3383939b-fc54-41db-be6d-5a317484dd32
+	fromColumn: 'dbt_dev fact_orders'.customer_id
+	toColumn: 'dbt_dev dim_customer'.customer_id
+
+relationship AutoDetected_351449d4-2811-44a8-b971-42e46d6fe4a5
+	fromColumn: 'dbt_dev fact_inventory'.sku
+	toColumn: 'dbt_dev dim_product'.sku
+
+relationship AutoDetected_9bd44b10-ab7b-4d2f-8309-454e0dbaa82d
+	fromColumn: 'dbt_dev fact_orders'.sku
+	toColumn: 'dbt_dev dim_product'.sku
+
+relationship AutoDetected_6d0b80b5-de4d-4ec1-816c-f90cce37b013
+	fromColumn: 'dbt_dev dq_rejections_summary'.warehouse_code
+	toColumn: 'dbt_dev dim_warehouse'.warehouse_code
+
+relationship AutoDetected_4ad6ccb2-ac91-42fc-850d-bc0fe1d473db
+	fromColumn: 'dbt_dev fact_inventory'.warehouse_code
+	toColumn: 'dbt_dev dim_warehouse'.warehouse_code
+
+relationship AutoDetected_d288e251-0b5e-451e-8a7c-d24487d947a6
+	fromColumn: 'dbt_dev fact_orders'.warehouse_code
+	toColumn: 'dbt_dev dim_warehouse'.warehouse_code
+
+relationship AutoDetected_606ede1e-0092-4217-a519-7c415ca4eaa7
+	fromColumn: 'dbt_dev fact_shipments'.warehouse_code
+	toColumn: 'dbt_dev dim_warehouse'.warehouse_code
+
+relationship 90523596-3766-8ada-5c32-706a2dd47283
+	fromColumn: 'dbt_dev fact_orders'.order_date
+	toColumn: 'dbt_dev dim_date'.date_day
+
+relationship ac362033-2f24-ef5d-4ad8-7795380f1d5a
+	fromColumn: 'dbt_dev fact_shipments'.promised_date
+	toColumn: 'dbt_dev dim_date'.date_day
+
+relationship 6a3f94ae-3bd7-1138-b7c1-a2fd8bd299c6
+	fromColumn: 'dbt_dev fact_inventory'.snapshot_date
+	toColumn: 'dbt_dev dim_date'.date_day
+

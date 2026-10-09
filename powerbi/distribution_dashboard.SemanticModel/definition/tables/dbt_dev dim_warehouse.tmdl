@@ -1,0 +1,54 @@
+table 'dbt_dev dim_warehouse'
+	lineageTag: 59156d9f-311e-482f-8df3-0d2cc5318360
+
+	column warehouse_code
+		dataType: string
+		lineageTag: 42919637-505e-4d15-8b38-bd525786a6dd
+		summarizeBy: none
+		sourceColumn: warehouse_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column warehouse_name
+		dataType: string
+		lineageTag: c5646c9d-bab1-4361-9556-9ebdd7a6c9a8
+		summarizeBy: none
+		sourceColumn: warehouse_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 2f4d22c4-68e0-4774-bd6e-2b7e38f8ac74
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 8bc3fbb6-4806-447e-9758-f23ea200aa66
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		lineageTag: 93e970b4-62d8-4cf7-8048-b7bfdd4f2d88
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dbt_dev dim_warehouse' = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("sql-distpipeline-jp.database.windows.net", "free-sql-db-8791495"),
+				  #"Navigation 1" = Source{[Schema = "dbt_dev", Item = "dim_warehouse"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

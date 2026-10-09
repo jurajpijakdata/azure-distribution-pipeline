@@ -26,3 +26,9 @@ Thumbs.db
 
 # Downloaded archives
 *.zip
+# Power BI binary file (the .pbip project is versioned instead)
+*.pbix
+
+# Power BI project: local cache and personal settings
+**/.pbi/cache.abf
+**/.pbi/localSettings.json

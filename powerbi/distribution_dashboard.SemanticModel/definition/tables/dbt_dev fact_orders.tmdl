@@ -1,0 +1,175 @@
+table 'dbt_dev fact_orders'
+	lineageTag: c42caa7e-119a-49ba-819b-e4cb41ac258c
+
+	column order_no
+		dataType: string
+		lineageTag: 580c21ac-5628-4abb-b241-62a05e954866
+		summarizeBy: none
+		sourceColumn: order_no
+
+		annotation SummarizationSetBy = Automatic
+
+	column line_no
+		dataType: int64
+		formatString: 0
+		lineageTag: 57e09fa2-e16c-4ed9-af83-be6d705c2649
+		summarizeBy: sum
+		sourceColumn: line_no
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_type
+		dataType: string
+		lineageTag: 8236e019-bfca-41b9-88ee-b229edd1976e
+		summarizeBy: none
+		sourceColumn: order_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column original_order_no
+		dataType: string
+		lineageTag: 331ed286-2c12-47d7-a379-fdc0a6fd7346
+		summarizeBy: none
+		sourceColumn: original_order_no
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4434a0e0-c3c3-493a-a74e-7a1630de5676
+		summarizeBy: none
+		sourceColumn: order_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column warehouse_code
+		dataType: string
+		lineageTag: a8b9f08d-273f-4d75-8cd1-168a245dd076
+		summarizeBy: none
+		sourceColumn: warehouse_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 0a4e641f-544d-4dc9-ba9c-ed6639ccd045
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column sku
+		dataType: string
+		lineageTag: b101d20d-65a9-4f77-a12b-c2aa713fc75b
+		summarizeBy: none
+		sourceColumn: sku
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: d7ebbac6-f006-4b15-a7f4-14e7565f6980
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit
+		dataType: string
+		lineageTag: b2f6fe70-17d6-47a6-bff8-865e9ef51e25
+		summarizeBy: none
+		sourceColumn: unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column original_currency
+		dataType: string
+		lineageTag: 1845250e-157d-4b19-99b0-b1e07baa1596
+		summarizeBy: none
+		sourceColumn: original_currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_price_original
+		dataType: double
+		lineageTag: 8a025b97-1a9d-4888-87a4-6ff63787c954
+		summarizeBy: sum
+		sourceColumn: unit_price_original
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column unit_price_eur
+		dataType: double
+		lineageTag: 14071196-cdc3-40fd-8318-4373a88f49ef
+		summarizeBy: sum
+		sourceColumn: unit_price_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column revenue_eur
+		dataType: double
+		lineageTag: 025391e8-850f-445d-8f26-ffe87c8d0c3a
+		summarizeBy: sum
+		sourceColumn: revenue_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cost_eur
+		dataType: double
+		lineageTag: b75cc7e8-e75c-4b1a-b4a3-ba2b7e3bf369
+		summarizeBy: sum
+		sourceColumn: cost_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column margin_eur
+		dataType: double
+		lineageTag: 989a6195-bd2f-4d08-8c0f-c3c7f792ff3e
+		summarizeBy: sum
+		sourceColumn: margin_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vat_rate
+		dataType: double
+		lineageTag: 2b7fcebf-2efa-463a-ab63-5c1eb57f21a1
+		summarizeBy: sum
+		sourceColumn: vat_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column source_file
+		dataType: string
+		lineageTag: 8318f636-06bc-49a5-af05-0756c7d5ec48
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dbt_dev fact_orders' = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("sql-distpipeline-jp.database.windows.net", "free-sql-db-8791495"),
+				  #"Navigation 1" = Source{[Schema = "dbt_dev", Item = "fact_orders"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

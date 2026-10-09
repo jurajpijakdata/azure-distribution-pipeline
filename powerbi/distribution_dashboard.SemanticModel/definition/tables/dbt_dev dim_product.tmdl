@@ -1,0 +1,75 @@
+table 'dbt_dev dim_product'
+	lineageTag: 6330592b-c975-44eb-bcb2-b8b90f454944
+
+	column sku
+		dataType: string
+		lineageTag: c5c7b008-8c14-4bb2-a24c-6f6692fb0309
+		summarizeBy: none
+		sourceColumn: sku
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: 68df6678-4332-4584-abee-02e7c90032dd
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 725ae326-1a57-4e26-9502-e192054c932f
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit
+		dataType: string
+		lineageTag: 8d5223e0-d50b-4c9e-bf6a-029be48cb45a
+		summarizeBy: none
+		sourceColumn: unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_consumable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 98747b2d-0f40-4281-a5c3-ca514640e9e1
+		summarizeBy: none
+		sourceColumn: is_consumable
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost_eur
+		dataType: double
+		lineageTag: 2f09df18-5eed-48ce-8b46-30fda1a0297c
+		summarizeBy: sum
+		sourceColumn: cost_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column list_price_eur
+		dataType: double
+		lineageTag: ca6f0c98-f642-40a7-8651-f7182c7d9271
+		summarizeBy: sum
+		sourceColumn: list_price_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'dbt_dev dim_product' = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("sql-distpipeline-jp.database.windows.net", "free-sql-db-8791495"),
+				  #"Navigation 1" = Source{[Schema = "dbt_dev", Item = "dim_product"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

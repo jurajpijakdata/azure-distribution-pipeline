@@ -1,0 +1,27 @@
+model Model
+	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["dbt_dev dim_customer","dbt_dev dim_date","dbt_dev dim_product","dbt_dev dim_warehouse","dbt_dev dq_rejections_summary","dbt_dev fact_inventory","dbt_dev fact_orders","dbt_dev fact_shipments","_Measures"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'dbt_dev dim_customer'
+ref table 'dbt_dev dim_date'
+ref table 'dbt_dev dim_product'
+ref table 'dbt_dev dim_warehouse'
+ref table 'dbt_dev dq_rejections_summary'
+ref table 'dbt_dev fact_inventory'
+ref table 'dbt_dev fact_orders'
+ref table 'dbt_dev fact_shipments'
+ref table _Measures
+
+ref cultureInfo en-GB
+

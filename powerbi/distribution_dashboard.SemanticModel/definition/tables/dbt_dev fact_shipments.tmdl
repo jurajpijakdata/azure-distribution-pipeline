@@ -1,0 +1,105 @@
+table 'dbt_dev fact_shipments'
+	lineageTag: 669984ca-65f1-442d-9b97-0df3cb166555
+
+	column shipment_id
+		dataType: string
+		lineageTag: eb801ef4-034a-4087-91dd-da8854b3ce87
+		summarizeBy: none
+		sourceColumn: shipment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_no
+		dataType: string
+		lineageTag: 00b031d5-b652-4b3f-8aa3-e04583f0572c
+		summarizeBy: none
+		sourceColumn: order_no
+
+		annotation SummarizationSetBy = Automatic
+
+	column warehouse_code
+		dataType: string
+		lineageTag: af65484b-6ea4-42f6-adc0-0f7737d79fb1
+		summarizeBy: none
+		sourceColumn: warehouse_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column carrier
+		dataType: string
+		lineageTag: ea211867-1b32-4650-a001-f40c146a8146
+		summarizeBy: none
+		sourceColumn: carrier
+
+		annotation SummarizationSetBy = Automatic
+
+	column ship_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6cce72af-aa38-4e92-bd4b-9d3603230ec6
+		summarizeBy: none
+		sourceColumn: ship_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column promised_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0065f988-7cb1-4a60-a3de-ff625a1523d3
+		summarizeBy: none
+		sourceColumn: promised_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column delivered_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 65b97d2f-4e60-4204-bb4a-325aa488c12b
+		summarizeBy: none
+		sourceColumn: delivered_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column status
+		dataType: string
+		lineageTag: 603bb55c-3403-42c1-ad6f-ab27207610dd
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_delay_days
+		dataType: int64
+		formatString: 0
+		lineageTag: c1af7cbc-7885-4e7e-b47f-a0731c2f852c
+		summarizeBy: sum
+		sourceColumn: delivery_delay_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_late
+		dataType: int64
+		formatString: 0
+		lineageTag: 86387996-297d-4687-8bba-2eed18b2771d
+		summarizeBy: sum
+		sourceColumn: is_late
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dbt_dev fact_shipments' = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("sql-distpipeline-jp.database.windows.net", "free-sql-db-8791495"),
+				  #"Navigation 1" = Source{[Schema = "dbt_dev", Item = "fact_shipments"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

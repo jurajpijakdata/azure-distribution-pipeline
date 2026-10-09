@@ -1,0 +1,81 @@
+table 'dbt_dev dim_customer'
+	lineageTag: e0cb5a85-00b7-4a49-8a58-27ddfa932088
+
+	column customer_id
+		dataType: string
+		lineageTag: e16bec50-0bc0-4be4-9eff-86482419af22
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_name
+		dataType: string
+		lineageTag: f6a93d5d-a9a0-4745-ac55-120581ed1ba1
+		summarizeBy: none
+		sourceColumn: customer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_type
+		dataType: string
+		lineageTag: 6bdc5516-4cd3-4bae-a45f-e632bde02ffa
+		summarizeBy: none
+		sourceColumn: customer_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column postal_code
+		dataType: string
+		lineageTag: e958281f-0f92-4241-abf2-dd416b83201a
+		summarizeBy: none
+		sourceColumn: postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: fe1c3b77-adff-4202-a90e-4e4a680a3783
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: ccf72a64-9918-45f3-b00e-b901a059a00f
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_warehouse_code
+		dataType: string
+		lineageTag: 4a58213d-d8d1-45ae-bc0b-7d543ba8d135
+		summarizeBy: none
+		sourceColumn: home_warehouse_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 703273d8-f116-4a99-a4bb-0c46180c42dc
+		summarizeBy: none
+		sourceColumn: created_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'dbt_dev dim_customer' = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("sql-distpipeline-jp.database.windows.net", "free-sql-db-8791495"),
+				  #"Navigation 1" = Source{[Schema = "dbt_dev", Item = "dim_customer"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

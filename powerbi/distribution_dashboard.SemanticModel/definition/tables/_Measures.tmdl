@@ -1,0 +1,95 @@
+table _Measures
+	lineageTag: 8c2b6635-86c8-4011-aa2f-d2474c060acb
+
+	measure Revenue = SUM ( 'dbt_dev fact_orders'[revenue_eur] )
+		lineageTag: 2c414909-fbc0-4674-b933-0853f956aa37
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Margin = SUM ( 'dbt_dev fact_orders'[margin_eur] )
+		lineageTag: 8baaa257-621f-4200-b47f-9bb0598edd03
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Margin %' = DIVIDE ( [Margin], [Revenue] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 52588a3d-7a27-46b7-a4aa-487c8600d4da
+
+	measure 'Revenue PM' = CALCULATE ( [Revenue], DATEADD ( 'dbt_dev dim_date'[date_day], -1, MONTH ) )
+		lineageTag: f3cb2730-28fe-4f46-9317-84884b2bb015
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue MoM %' =
+			
+			VAR current_revenue = [Revenue]
+			VAR previous_revenue = [Revenue PM]
+			RETURN
+			    DIVIDE ( current_revenue - previous_revenue, previous_revenue )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 04bc6ae4-c687-4ec8-acc0-33d0fce35022
+
+	measure 'Delivered Shipments' = CALCULATE ( COUNTROWS ( 'dbt_dev fact_shipments' ), 'dbt_dev fact_shipments'[status] = "DELIVERED" )
+		formatString: 0
+		lineageTag: 3dc91ac2-cbdc-40da-bf75-e282be492520
+
+	measure 'Late Shipments' = CALCULATE ( COUNTROWS ( 'dbt_dev fact_shipments' ), 'dbt_dev fact_shipments'[is_late] = 1 )
+		formatString: 0
+		lineageTag: d4df0736-99bd-468e-a2d1-ab8a1370b4ed
+
+	measure 'Late %' = DIVIDE ( [Late Shipments], [Delivered Shipments] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: adb6b99b-e515-4ed5-9fea-4cb3456a3ce1
+
+	measure 'Stock Value' =
+			
+			VAR last_snapshot = MAX ( 'dbt_dev fact_inventory'[snapshot_date] )
+			RETURN
+			    CALCULATE (
+			        SUM ( 'dbt_dev fact_inventory'[stock_value_eur] ),
+			        'dbt_dev fact_inventory'[snapshot_date] = last_snapshot
+			    )
+		lineageTag: a3867fcd-767d-4f3b-ad3c-6125537ee52b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure COGS = SUM ( 'dbt_dev fact_orders'[cost_eur] )
+		lineageTag: c87d3e2b-f5ec-4800-9ede-2eafb926e379
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Stock Value' =
+			
+			AVERAGEX (
+			    VALUES ( 'dbt_dev fact_inventory'[snapshot_date] ),
+			    CALCULATE ( SUM ( 'dbt_dev fact_inventory'[stock_value_eur] ) )
+			)
+		lineageTag: c59d9e7a-cbd8-44d0-8a69-bfa5bcba6865
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inventory Turnover' = DIVIDE ( [COGS], [Average Stock Value] )
+		formatString: 0.0
+		lineageTag: a6b5ca00-22d3-4a79-b8cf-c3c714af1137
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: 91b4d2fc-d6dd-4de3-997d-6e1878c21659
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				  Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t])
+				in
+				  Source
+
+	annotation PBI_ResultType = Table
+

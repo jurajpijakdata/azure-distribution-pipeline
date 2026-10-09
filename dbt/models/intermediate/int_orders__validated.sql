@@ -47,14 +47,14 @@ validated as (
 
     select
         *,
-        case
+        cast(case
             when currency = 'EUR' then unit_price
             when currency = 'CZK' then round(unit_price / czk_per_eur, 2)
-        end as unit_price_eur,
-        case
+        end as decimal(12, 2)) as unit_price_eur,
+        cast(case
             when currency = 'EUR' then line_total
             when currency = 'CZK' then round(line_total / czk_per_eur, 2)
-        end as line_total_eur,
+        end as decimal(14, 2)) as line_total_eur,
         nullif(concat_ws('; ',
             case when order_type is null then 'unknown order type' end,
             case when order_date is null then 'invalid order date: ' + order_date_raw end,

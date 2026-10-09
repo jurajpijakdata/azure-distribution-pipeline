@@ -197,3 +197,17 @@ Copy activities retry twice (60 s) to survive database wake-up.
 **Why:** The webhook is a secret: Key Vault for ADF, `.env` locally,
 GitHub Secrets for CI - never in Git (checked with `git grep`).
 All three alerts were tested by breaking something on purpose.
+
+## 023 — Power BI report as a project (.pbip), published to web
+**Date:** 2026-10-09
+**Decision:** The report is saved as a Power BI project (`powerbi/`, text files)
+instead of a binary .pbix; the data cache and personal settings are git-ignored.
+Import mode from the star schema only. A dedicated work account in the project's
+Entra directory (read-only on schema `dbt_dev`) is used, because Power BI does not
+accept personal accounts. Auto date/time is off (`dim_date` is the only calendar).
+The report is published with "Publish to web" from My workspace (free license).
+**Why:** Reviewable diffs for measures and visuals; small repo; least privilege;
+a public demo link at no cost.
+**Limits:** Publish to web is public: only acceptable because the data is
+synthetic. A real client would use secure sharing (Pro / capacity).
+The temporary Fabric Administrator role was removed after enabling the setting.

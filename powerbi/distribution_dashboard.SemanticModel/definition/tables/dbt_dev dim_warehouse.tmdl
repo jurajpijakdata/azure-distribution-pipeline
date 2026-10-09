@@ -9,11 +9,11 @@ table 'dbt_dev dim_warehouse'
 
 		annotation SummarizationSetBy = Automatic
 
-	column warehouse_name
+	column warehouse
 		dataType: string
 		lineageTag: c5646c9d-bab1-4361-9556-9ebdd7a6c9a8
 		summarizeBy: none
-		sourceColumn: warehouse_name
+		sourceColumn: warehouse
 
 		annotation SummarizationSetBy = Automatic
 
@@ -46,9 +46,10 @@ table 'dbt_dev dim_warehouse'
 		source =
 				let
 				  Source = Sql.Database("sql-distpipeline-jp.database.windows.net", "free-sql-db-8791495"),
-				  #"Navigation 1" = Source{[Schema = "dbt_dev", Item = "dim_warehouse"]}[Data]
+				  #"Navigation 1" = Source{[Schema = "dbt_dev", Item = "dim_warehouse"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(#"Navigation 1",{{"warehouse_name", "warehouse"}})
 				in
-				  #"Navigation 1"
+				  #"Renamed Columns"
 
 	annotation PBI_ResultType = Table
 

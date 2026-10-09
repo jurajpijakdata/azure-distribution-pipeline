@@ -2,23 +2,20 @@ table _Measures
 	lineageTag: 8c2b6635-86c8-4011-aa2f-d2474c060acb
 
 	measure Revenue = SUM ( 'dbt_dev fact_orders'[revenue_eur] )
+		formatString: "€"\ #,0.00;-"€"\ #,0.00;"€"\ #,0.00
 		lineageTag: 2c414909-fbc0-4674-b933-0853f956aa37
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure Margin = SUM ( 'dbt_dev fact_orders'[margin_eur] )
+		formatString: #,0\ "€";-#,0\ "€";#,0\ "€"
 		lineageTag: 8baaa257-621f-4200-b47f-9bb0598edd03
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Margin %' = DIVIDE ( [Margin], [Revenue] )
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 52588a3d-7a27-46b7-a4aa-487c8600d4da
 
 	measure 'Revenue PM' = CALCULATE ( [Revenue], DATEADD ( 'dbt_dev dim_date'[date_day], -1, MONTH ) )
+		formatString: #,0\ "€";-#,0\ "€";#,0\ "€"
 		lineageTag: f3cb2730-28fe-4f46-9317-84884b2bb015
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Revenue MoM %' =
 			
@@ -49,14 +46,12 @@ table _Measures
 			        SUM ( 'dbt_dev fact_inventory'[stock_value_eur] ),
 			        'dbt_dev fact_inventory'[snapshot_date] = last_snapshot
 			    )
+		formatString: #,0\ "€";-#,0\ "€";#,0\ "€"
 		lineageTag: a3867fcd-767d-4f3b-ad3c-6125537ee52b
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure COGS = SUM ( 'dbt_dev fact_orders'[cost_eur] )
+		formatString: #,0\ "€";-#,0\ "€";#,0\ "€"
 		lineageTag: c87d3e2b-f5ec-4800-9ede-2eafb926e379
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Average Stock Value' =
 			
@@ -64,13 +59,16 @@ table _Measures
 			    VALUES ( 'dbt_dev fact_inventory'[snapshot_date] ),
 			    CALCULATE ( SUM ( 'dbt_dev fact_inventory'[stock_value_eur] ) )
 			)
+		formatString: #,0\ "€";-#,0\ "€";#,0\ "€"
 		lineageTag: c59d9e7a-cbd8-44d0-8a69-bfa5bcba6865
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Inventory Turnover' = DIVIDE ( [COGS], [Average Stock Value] )
 		formatString: 0.0
 		lineageTag: a6b5ca00-22d3-4a79-b8cf-c3c714af1137
+
+	measure 'Rejected Rows' = SUM ( 'dbt_dev dq_rejections_summary'[rejected rows] )
+		formatString: 0
+		lineageTag: 899a92c7-6740-4f26-80cb-85fae3a5bfc4
 
 	column Column1
 		dataType: string

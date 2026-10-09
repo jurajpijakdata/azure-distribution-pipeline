@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "a24323f9fa7e7ba023ec",
+  "position": {
+    "x": 137.95787614328697,
+    "y": 1031.9249135517864,
+    "z": 3000,
+    "height": 47.82539706300615,
+    "width": 1664.6917054623293,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Synthetic data. The carrier and winter delay patterns were planted in the data generator (decision 005); this page shows that they are detected.",
+                    "textStyle": {
+                      "fontSize": "16pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

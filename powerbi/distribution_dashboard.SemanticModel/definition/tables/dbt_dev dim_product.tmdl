@@ -9,19 +9,19 @@ table 'dbt_dev dim_product'
 
 		annotation SummarizationSetBy = Automatic
 
-	column product_name
+	column 'Product name'
 		dataType: string
 		lineageTag: 68df6678-4332-4584-abee-02e7c90032dd
 		summarizeBy: none
-		sourceColumn: product_name
+		sourceColumn: Product name
 
 		annotation SummarizationSetBy = Automatic
 
-	column category
+	column Category
 		dataType: string
 		lineageTag: 725ae326-1a57-4e26-9502-e192054c932f
 		summarizeBy: none
-		sourceColumn: category
+		sourceColumn: Category
 
 		annotation SummarizationSetBy = Automatic
 
@@ -67,9 +67,10 @@ table 'dbt_dev dim_product'
 		source =
 				let
 				  Source = Sql.Database("sql-distpipeline-jp.database.windows.net", "free-sql-db-8791495"),
-				  #"Navigation 1" = Source{[Schema = "dbt_dev", Item = "dim_product"]}[Data]
+				  #"Navigation 1" = Source{[Schema = "dbt_dev", Item = "dim_product"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(#"Navigation 1",{{"product_name", "Product name"}, {"category", "Category"}})
 				in
-				  #"Navigation 1"
+				  #"Renamed Columns"
 
 	annotation PBI_ResultType = Table
 

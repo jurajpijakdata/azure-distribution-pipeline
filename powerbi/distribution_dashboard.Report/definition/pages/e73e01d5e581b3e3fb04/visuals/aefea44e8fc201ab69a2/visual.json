@@ -23,7 +23,7 @@
                       "Entity": "dbt_dev dim_warehouse"
                     }
                   },
-                  "Property": "warehouse"
+                  "Property": "Warehouse"
                 }
               },
               "queryRef": "dbt_dev dim_warehouse.warehouse_name",
@@ -37,11 +37,11 @@
                       "Entity": "dbt_dev dq_rejections_summary"
                     }
                   },
-                  "Property": "reason"
+                  "Property": "Reason"
                 }
               },
               "queryRef": "dbt_dev dq_rejections_summary.reason",
-              "nativeQueryRef": "reason"
+              "nativeQueryRef": "Reason"
             },
             {
               "field": {
@@ -211,6 +211,19 @@
             }
           }
         }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -273,8 +286,72 @@
             }
           }
         }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9310a63b716324c65bb8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dbt_dev dim_warehouse"
+              }
+            },
+            "Property": "Warehouse"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "400f7b7550ddb69f5bc5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dbt_dev dq_rejections_summary"
+              }
+            },
+            "Property": "Reason"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7d56751ece0b0b0d7dc8",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dbt_dev dq_rejections_summary"
+                  }
+                },
+                "Property": "rejected rows"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

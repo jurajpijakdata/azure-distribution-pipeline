@@ -66,11 +66,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Stock Value"
+                  "Property": "Stock value"
                 }
               },
               "queryRef": "_Measures.Stock Value",
-              "nativeQueryRef": "Stock Value"
+              "nativeQueryRef": "Stock value"
             }
           ]
         }
@@ -422,5 +422,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "13172782fb1c62b69ab0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dbt_dev dim_product"
+              }
+            },
+            "Property": "Product name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "556816b4a315ad7624a1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dbt_dev dim_product"
+              }
+            },
+            "Property": "Category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "05a69065ff41c9da321a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Inventory Turnover"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a28deadb7fd765ab331d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Stock value"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

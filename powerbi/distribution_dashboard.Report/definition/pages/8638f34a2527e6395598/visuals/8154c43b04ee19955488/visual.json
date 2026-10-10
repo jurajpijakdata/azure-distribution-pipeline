@@ -42,7 +42,7 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Stock Value"
+                  "Property": "Stock value"
                 }
               },
               "queryRef": "_Measures.Stock Value",
@@ -62,7 +62,7 @@
                     "Entity": "_Measures"
                   }
                 },
-                "Property": "Stock Value"
+                "Property": "Stock value"
               }
             },
             "direction": "Descending"

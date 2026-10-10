@@ -17,11 +17,11 @@ table 'dbt_dev dq_rejections_summary'
 
 		annotation SummarizationSetBy = Automatic
 
-	column reason
+	column Reason
 		dataType: string
 		lineageTag: fccafe85-dd9f-49fe-b992-69e8254ba08b
 		summarizeBy: none
-		sourceColumn: reason
+		sourceColumn: Reason
 
 		annotation SummarizationSetBy = Automatic
 
@@ -40,7 +40,7 @@ table 'dbt_dev dq_rejections_summary'
 				let
 				  Source = Sql.Database("sql-distpipeline-jp.database.windows.net", "free-sql-db-8791495"),
 				  #"Navigation 1" = Source{[Schema = "dbt_dev", Item = "dq_rejections_summary"]}[Data],
-				    #"Renamed Columns" = Table.RenameColumns(#"Navigation 1",{{"rejected_rows", "rejected rows"}})
+				    #"Renamed Columns" = Table.RenameColumns(#"Navigation 1",{{"rejected_rows", "rejected rows"}, {"reason", "Reason"}})
 				in
 				  #"Renamed Columns"
 

@@ -1,0 +1,86 @@
+table 'dbt_dev dq_rejected_rows'
+	lineageTag: d0d4648e-0b16-4041-94eb-644270fd2e67
+
+	column Area
+		dataType: string
+		lineageTag: 32d5813f-7407-4c35-a3e6-22887e81d637
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column warehouse_code
+		dataType: string
+		lineageTag: 1d20a726-cadf-492f-b3ae-7d8348807c4d
+		summarizeBy: none
+		sourceColumn: warehouse_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Source file'
+		dataType: string
+		lineageTag: 5460ec6b-0cbf-4f9b-a967-1dbee3fb7615
+		summarizeBy: none
+		sourceColumn: Source file
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reason
+		dataType: string
+		lineageTag: f0a9a1ff-759a-4d11-8560-e1903e7f4840
+		summarizeBy: none
+		sourceColumn: Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column Document
+		dataType: string
+		lineageTag: 6bc0ecc9-af32-4415-bd49-74d1180b8f7d
+		summarizeBy: none
+		sourceColumn: Document
+
+		annotation SummarizationSetBy = Automatic
+
+	column Line
+		dataType: int64
+		formatString: 0
+		lineageTag: 8f18e741-cec1-4737-a831-3ad706ddd88a
+		summarizeBy: none
+		sourceColumn: Line
+
+		annotation SummarizationSetBy = User
+
+	column 'Related order'
+		dataType: string
+		lineageTag: b1981219-b89f-4235-9537-a46a687e9872
+		summarizeBy: none
+		sourceColumn: Related order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: 6433262d-b676-4f6b-8487-890c1983075d
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: string
+		lineageTag: 090fc2ca-44b4-44d6-9093-f63056a9256b
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dbt_dev dq_rejected_rows' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("sql-distpipeline-jp.database.windows.net", "free-sql-db-8791495"),
+				    dbt_dev_dq_rejected_rows = Source{[Schema="dbt_dev",Item="dq_rejected_rows"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(dbt_dev_dq_rejected_rows,{{"area", "Area"}, {"document", "Document"}, {"line", "Line"}, {"product", "Product"}, {"reason", "Reason"}, {"record_date", "Date"}, {"related_order", "Related order"}, {"source_file", "Source file"}})
+				in
+				    #"Renamed Columns"
+

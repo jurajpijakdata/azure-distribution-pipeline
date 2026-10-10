@@ -38,3 +38,7 @@ relationship 6a3f94ae-3bd7-1138-b7c1-a2fd8bd299c6
 	fromColumn: 'dbt_dev fact_inventory'.snapshot_date
 	toColumn: 'dbt_dev dim_date'.date_day
 
+relationship AutoDetected_bca38878-5b0e-468c-a9c9-989f65e5a7c6
+	fromColumn: 'dbt_dev dq_rejected_rows'.warehouse_code
+	toColumn: 'dbt_dev dim_warehouse'.warehouse_code
+

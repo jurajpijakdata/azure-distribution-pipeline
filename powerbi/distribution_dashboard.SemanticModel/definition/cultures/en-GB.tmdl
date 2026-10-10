@@ -1625,7 +1625,7 @@ cultureInfo en-GB
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "dbt_dev dim_warehouse",
-			          "ConceptualProperty": "warehouse"
+			          "ConceptualProperty": "Warehouse"
 			        }
 			      },
 			      "State": "Generated",
@@ -2149,7 +2149,7 @@ cultureInfo en-GB
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "dbt_dev dq_rejections_summary",
-			          "ConceptualProperty": "reason"
+			          "ConceptualProperty": "Reason"
 			        }
 			      },
 			      "State": "Generated",
@@ -5340,7 +5340,7 @@ cultureInfo en-GB
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "_Measures",
-			          "ConceptualProperty": "Stock Value"
+			          "ConceptualProperty": "Stock value"
 			        }
 			      },
 			      "State": "Generated",

@@ -1,0 +1,396 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "34201cf206923eb9d366",
+  "position": {
+    "x": 24.418673971980525,
+    "y": 242.44254872180665,
+    "z": 3001,
+    "height": 762.21146612539212,
+    "width": 1866.2843678585116,
+    "tabOrder": 3001
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dbt_dev dim_warehouse"
+                    }
+                  },
+                  "Property": "Warehouse"
+                }
+              },
+              "queryRef": "dbt_dev dim_warehouse.warehouse",
+              "nativeQueryRef": "Warehouse"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dbt_dev dq_rejected_rows"
+                    }
+                  },
+                  "Property": "Area"
+                }
+              },
+              "queryRef": "dbt_dev dq_rejected_rows.area",
+              "nativeQueryRef": "Area"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dbt_dev dq_rejected_rows"
+                    }
+                  },
+                  "Property": "Source file"
+                }
+              },
+              "queryRef": "dbt_dev dq_rejected_rows.source_file",
+              "nativeQueryRef": "Source file"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dbt_dev dq_rejected_rows"
+                    }
+                  },
+                  "Property": "Document"
+                }
+              },
+              "queryRef": "dbt_dev dq_rejected_rows.document",
+              "nativeQueryRef": "Document"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dbt_dev dq_rejected_rows"
+                    }
+                  },
+                  "Property": "Line"
+                }
+              },
+              "queryRef": "dbt_dev dq_rejected_rows.line",
+              "nativeQueryRef": "Line"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dbt_dev dq_rejected_rows"
+                    }
+                  },
+                  "Property": "Related order"
+                }
+              },
+              "queryRef": "dbt_dev dq_rejected_rows.related_order",
+              "nativeQueryRef": "Related order"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dbt_dev dq_rejected_rows"
+                    }
+                  },
+                  "Property": "Product"
+                }
+              },
+              "queryRef": "dbt_dev dq_rejected_rows.product",
+              "nativeQueryRef": "Product"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dbt_dev dq_rejected_rows"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "dbt_dev dq_rejected_rows.record_date",
+              "nativeQueryRef": "Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dbt_dev dq_rejected_rows"
+                    }
+                  },
+                  "Property": "Reason"
+                }
+              },
+              "queryRef": "dbt_dev dq_rejected_rows.reason",
+              "nativeQueryRef": "Reason"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dbt_dev dim_warehouse"
+                  }
+                },
+                "Property": "Warehouse"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "191.32572459661236D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dbt_dev dim_warehouse.warehouse"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "155.02344684103483D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dbt_dev dq_rejected_rows.area"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "225.20610322979826D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dbt_dev dq_rejected_rows.source_file"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "154.58189884150556D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dbt_dev dq_rejected_rows.document"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "71.65124743570581D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dbt_dev dq_rejected_rows.line"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "164.88380329627472D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dbt_dev dq_rejected_rows.related_order"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "235.67448750704716D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dbt_dev dq_rejected_rows.product"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "166.8373563887895D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dbt_dev dq_rejected_rows.record_date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "453.0140037826468D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dbt_dev dq_rejected_rows.reason"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

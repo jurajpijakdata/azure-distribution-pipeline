@@ -23,11 +23,11 @@
                       "Entity": "dbt_dev dq_rejections_summary"
                     }
                   },
-                  "Property": "reason"
+                  "Property": "Reason"
                 }
               },
               "queryRef": "dbt_dev dq_rejections_summary.reason",
-              "nativeQueryRef": "reason",
+              "nativeQueryRef": "Reason",
               "active": true
             }
           ]

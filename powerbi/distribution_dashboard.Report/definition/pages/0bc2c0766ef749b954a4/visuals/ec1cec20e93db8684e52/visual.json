@@ -23,7 +23,7 @@
                       "Entity": "dbt_dev dim_warehouse"
                     }
                   },
-                  "Property": "warehouse"
+                  "Property": "Warehouse"
                 }
               },
               "queryRef": "dbt_dev dim_warehouse.warehouse_name",
@@ -94,7 +94,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'warehouse name'"
+                  "Value": "'Warehouse name'"
                 }
               }
             },

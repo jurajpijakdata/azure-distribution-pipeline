@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "0805c180b9317d7cde21",
+  "position": {
+    "x": 90.697931895927667,
+    "y": 1037.7936438091722,
+    "z": 0,
+    "height": 41.860583951966611,
+    "width": 1733.7258520106172,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "These rows were planted on purpose in the synthetic data and caught by the pipeline. Each rejected row, with its reason and source file, is available in a quarantine list.",
+                    "textStyle": {
+                      "fontSize": "16pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

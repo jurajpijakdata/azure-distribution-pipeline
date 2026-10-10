@@ -23,7 +23,7 @@
                       "Entity": "dbt_dev dim_warehouse"
                     }
                   },
-                  "Property": "warehouse"
+                  "Property": "Warehouse"
                 }
               },
               "queryRef": "dbt_dev dim_warehouse.warehouse_name",
@@ -140,7 +140,7 @@
                             "Entity": "dbt_dev dim_warehouse"
                           }
                         },
-                        "Property": "warehouse"
+                        "Property": "Warehouse"
                       }
                     },
                     "Right": {
@@ -182,7 +182,7 @@
                             "Entity": "dbt_dev dim_warehouse"
                           }
                         },
-                        "Property": "warehouse"
+                        "Property": "Warehouse"
                       }
                     },
                     "Right": {
@@ -224,7 +224,7 @@
                             "Entity": "dbt_dev dim_warehouse"
                           }
                         },
-                        "Property": "warehouse"
+                        "Property": "Warehouse"
                       }
                     },
                     "Right": {
@@ -266,7 +266,7 @@
                             "Entity": "dbt_dev dim_warehouse"
                           }
                         },
-                        "Property": "warehouse"
+                        "Property": "Warehouse"
                       }
                     },
                     "Right": {

@@ -7,6 +7,7 @@
 > No real client or company data is used.
 
 [![Live dashboard](https://img.shields.io/badge/Live%20dashboard-Power%20BI-F2C811?logo=powerbi&logoColor=black)](https://app.powerbi.com/view?r=eyJrIjoiYmIwOTY3MGQtMzZhMC00NDNlLWI3N2QtYzAwMWJhZmYzMWU3IiwidCI6ImU3NzQ1ODE4LTA3MDItNDk5Yy1iMWY1LTkzZmViOTkzOTQ4ZCJ9)
+**← click to open the interactive dashboard (no login needed)**
 
 > **At a glance**
 > - 151 messy ERP files from 4 warehouses → one tested star schema

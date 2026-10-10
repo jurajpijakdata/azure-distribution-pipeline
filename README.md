@@ -20,10 +20,7 @@
 *(Simulated scenario)* A mid-sized SK/CZ wholesaler of electrical installation
 material runs 4 warehouses (Bratislava, Žilina, Košice, Brno). Each warehouse
 ERP exports data differently — CSV and Excel files, different column names and
-languages, EUR and CZK, UTF-8 and Windows-1250, duplicates and typos. One
-warehouse changed its export format in the middle of the year.
-Management cannot answer simple questions like *"which warehouse delivers late?"*
-or *"which products sit on the shelf?"*
+languages,column names in Slovak, Czech and English, EUR and CZK, UTF-8 and Windows-1250, duplicates and typos. One warehouse changed its export format in the middle of the year. Management cannot answer simple questions like *"which warehouse delivers late?"* or *"which products sit on the shelf?"*
 
 ## Solution
 ```

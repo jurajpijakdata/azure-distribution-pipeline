@@ -12,7 +12,8 @@
 > - 151 messy ERP files from 4 warehouses → one tested star schema
 > - 15 types of planted data problems; every detectable one caught and explained
 > - Azure Blob · Data Factory · Azure SQL · dbt · Power BI · GitHub Actions · Discord alerts
-> - No passwords anywhere, €1 budget guard, costs under €0.50 per run
+> - Secure by design: managed identities and Microsoft Entra login, no stored passwords
+> - Cost-aware: a full load costs under €0.50, protected by a budget alert
 ![Sales & margin](docs/images/dashboard_sales.png)
 
 ## Business problem

@@ -76,6 +76,11 @@ Alerts go to Discord when the Data Factory load, the dbt build or CI fails.
 | shipments | delivered before shipped | 47 |
 | inventory | negative stock | 43 |
 
+Every rejected record is listed individually — warehouse, source file, document
+and line (or product and date for stock), and the reason — in the dashboard page
+*Data quality – detail* and in the model `dq_rejected_rows`, so it can be fixed
+in the source ERP.
+
 Fixed automatically instead of rejected: exact duplicates, a re-exported
 month, SKU case and spacing typos, carrier name variants, the schema change,
 three encodings. A missing inventory week is reported as a warning.

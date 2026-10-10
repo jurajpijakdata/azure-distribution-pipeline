@@ -60,9 +60,13 @@ Alerts go to Discord when the Data Factory load, the dbt build or CI fails.
   breaking something on purpose.
 
 ## Dashboard
-| Deliveries | Inventory | Data quality |
-|---|---|---|
-| ![Deliveries](docs/images/dashboard_deliveries.png) | ![Inventory](docs/images/dashboard_inventory.png) | ![Data quality](docs/images/dashboard_data_quality.png) |
+| Deliveries | Inventory |
+|---|---|
+| ![Deliveries](docs/images/dashboard_deliveries.png) | ![Inventory](docs/images/dashboard_inventory.png) |
+
+| Data quality | Data quality – detail |
+|---|---|
+| ![Data quality](docs/images/dashboard_data_quality.png) | ![Data quality detail](docs/images/dashboard_data_quality_detail.png) |
 
 ## Data quality: every detectable problem caught
 | Area | Problem | Rows rejected |

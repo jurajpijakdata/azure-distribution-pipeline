@@ -201,6 +201,13 @@
                   "Value": "15D"
                 }
               }
+            },
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
